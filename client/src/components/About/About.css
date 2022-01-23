@@ -1,0 +1,13 @@
+.about-wrapper {
+    width: 80%;
+    margin: 10px auto;
+}
+
+.about-info {
+    width: 50%;
+    margin: auto 10px;
+}
+
+.about-image {
+    width: 40%;
+}
