@@ -1,0 +1,61 @@
+#wadf {
+    width: 500px;
+    height:500px;
+    position: absolute;
+    margin: auto;
+    background-color: red;
+}
+
+.pokemon-container {
+    width: 200px;
+    height: 240px;
+    border-radius: 1rem;
+    margin: 8px;
+    box-shadow: 4px 3px 8px rgb(0, 0, 0, 27%);
+    text-transform: capitalize;
+    transition: all 0.5s;
+}
+
+.pokemon-container:hover, .pokemon-container:active, .pokemon-container:focus {
+    transform: translateY(-5px);
+}
+
+.pokemon-button-container {
+    height: 20px;
+    width: 100%;
+    margin: 8px auto 4px auto;
+}
+
+.pokemon-button-card {
+    background-color: white;
+    border-radius: 100%;
+    margin: auto;
+    width: 30px;
+    height: 30px;
+}
+
+.pokemon-button:hover, .pokemon-button:active, .pokemon-button:focus {
+    color: #3786c7;
+}
+
+.pokemon-index-card, .pokemon-name-card {
+    margin: 2px auto;
+    color: white;
+}
+
+.pokemon-image-card {
+    margin: 4px auto;
+    width: 96px;
+}
+
+.pokemon-type-container-card {
+    width: 100%;
+    justify-content: center;
+}
+
+.pokemon-type-card {
+    width: 36px;
+    border-radius: 100%;
+    box-shadow: 1px 1px 4px rgb(0, 0, 0, 27%);
+    margin: auto 4px auto 4px;
+}
