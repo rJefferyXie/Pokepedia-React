@@ -17,9 +17,17 @@
   padding: 0;
 }
 
+body {
+  background-color: rgb(248, 248, 248);
+}
+
 section {
-  /* height: 100vh; */
-  /* width: 100%; */
+  margin-bottom: 20px;
+  background-color: rgb(248, 248, 248);
+}
+
+.page-container {
+  margin: 80px 0px 0px 0px
 }
 
 button, a {
@@ -31,7 +39,7 @@ button, a {
 }
 
 h2 {
-  font-size: var(--step-0);
+  font-size: var(--step-1);
 }
 
 p {
@@ -47,8 +55,12 @@ p {
   flex-direction: column;
 }
 
-.page-container {
-  margin-top: 80px;
-  width: 100%;
-  position: relative;
+@media screen and (max-width: 960px) {
+  p {
+    font-size: var(--step-1);
+  }
+
+  h2 {
+    font-size: var(--step-2)
+  }
 }
