@@ -17,7 +17,7 @@ const About = () => {
                 </div>
                 <img alt="" src={lookup} className="about-image"></img>
             </div>
-            <div className="flex about-wrapper">
+            <div id="About-wrapper-2" className="flex about-wrapper">
                 <img alt="" src={teambuilder} className="about-image"></img>
                 <div className="flex-col about-info">
                     <h2>Team Generation</h2>

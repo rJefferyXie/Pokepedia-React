@@ -11,3 +11,22 @@
 .about-image {
     width: 40%;
 }
+
+@media screen and (max-width: 960px) {
+    .about-wrapper {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .about-info {
+        width: 100%;
+    }
+    
+    .about-image {
+        width: 90%;
+    }
+
+    #About-wrapper-2 {
+        flex-direction: column-reverse;
+    }
+}
