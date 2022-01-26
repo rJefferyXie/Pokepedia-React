@@ -10,9 +10,10 @@ import Move from "../../components/Move/Move";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const InspectPage = ({pokemonData, speciesData, pokedexIndex, customStyle, exit}) => {
+const InspectPage = ({pokemonData, speciesData, pokedexIndex, exit}) => {
     const theme = TypeColorSchemes[pokemonData.types[0].type.name];
     document.getElementById("Navbar").style.backgroundColor = theme;
+    document.getElementById("Navbar-container").style.backgroundColor = theme;
 
     const statDictionary = {
         0: "HP",
