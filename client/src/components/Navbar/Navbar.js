@@ -27,7 +27,7 @@ const Navbar = () => {
     return (
         <nav id="Navbar" className="flex">
             <button id="Navbar-logo" onClick={() => ScrollTo("#Hero")}>Poképedia</button>
-            <div id="Mobile-menu" onClick={MobileMenu}>
+            <div id="Mobile-menu" onClick={MobileMenu} className="flex-col">
                 <span className="bar"></span> 
                 <span className="bar"></span>
                 <span className="bar"></span>
