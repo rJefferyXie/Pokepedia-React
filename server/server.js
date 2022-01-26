@@ -1,21 +1,24 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+require("dotenv").config();
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCei-fp8QrlOlF9bcCw-zripc8MFK4t6j4",
-  authDomain: "pokepedia-db98c.firebaseapp.com",
-  projectId: "pokepedia-db98c",
-  storageBucket: "pokepedia-db98c.appspot.com",
-  messagingSenderId: "145510330325",
-  appId: "1:145510330325:web:509ef551421dd9799c175c",
-  measurementId: "G-E6H048R4Z4"
-};
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const pokedex = require("./routes/api/pokedex.js");
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const db = require("./config/keys").ATLAS_URI;
+const port = process.env.PORT || 5000;
+
+const app = express();
+
+app.use(cors());
+app.use(express.json({limit: '50mb'}));
+app.use(bodyParser.json());
+
+mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(console.log("Mongoose connected to the server."))
+  .catch(err => console.log(err))
+
+app.use("/api/pokedex", pokedex);
+
+app.listen(port, () => console.log(`Server is running on port: ${port}`));
