@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const pokedex = require("./routes/api/pokedex.js");
 
-const db = require("./config/keys").ATLAS_URI;
+const db = process.env.ATLAS_URI;
 const port = process.env.PORT || 5000;
 
 const app = express();
