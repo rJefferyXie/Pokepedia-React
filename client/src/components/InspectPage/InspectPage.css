@@ -1,10 +1,11 @@
 #Inspect-page {
-    position: absolute;
-    width: 95vw;
-    height: calc(100vh - 80px);
-    margin: auto;
-    background-color: white;
+    position: fixed;
+    height: 100%;
+    width: 100vw;
+    overflow-y: auto;
+    overflow-x: hidden;
     text-transform: capitalize;
+    z-index: 999;
 }
 
 #Pokemon-main {
@@ -12,12 +13,14 @@
     width: 100%;
 }
 
-#Return-button {
+.return-button {
     color: white;
+    background-color: gray;
     cursor: pointer;
     font-size: 32px;
     position: absolute;
-    top: 20px;
+    top: 40px;
+    left: 40px;
     border-radius: 100%;
     width: 60px;
     height: 60px;
@@ -47,22 +50,33 @@
     transform: rotateY(-18deg);
 }
 
-.pokemon-name {
-    margin: 40px auto 0px auto;
+#Pokemon-name {
+    margin: 20px auto 0px auto;
     text-align: center;
     width: 100%;
+    color: #4e4e4e;
+    text-transform: uppercase;
 }
 
-.pokemon-genera {
-    background-color: gray;
+#Stats-name {
+    margin: auto;
+    color: #4e4e4e;
+}
+
+.pokemon-genera, #Evolution-header, #Move-header {
     color: white;
     padding: 8px;
-    margin: 8px auto;
+    margin: 8px auto 4px auto;
     border-radius: 8px;
     width: fit-content;
+    box-shadow: 1px 1px 4px rgb(0, 0, 0, 27%);
 }
 
-.pokemon-index, .pokemon-weight, .pokemon-height, .pokemon-abilities {
+#Evolution-header, #Move-header {
+    margin: 40px auto 20px auto;
+}
+
+.pokemon-index, .pokemon-weight, .pokemon-height, .pokemon-abilities, .pokemon-habitat {
     margin: 4px auto;
     width: 100%;
     text-align: center;
@@ -88,25 +102,27 @@
 }
 
 #Ability-list {
-    overflow-y: auto;
-    flex-wrap: wrap;
-    margin: 4px auto;
     width: 100%;
+    margin: 4px auto;
 }
 
 #Ability-container {
-    width: fit-content;
+    width: 90%;
+    flex-wrap: wrap;
     margin: auto;
+    justify-content: center;
 }
 
 .pokemon-ability {
     background-color: gray;
     color: white;
-    margin: auto 4px;
+    margin: 4px;
     width: fit-content;
     padding: 8px;
     border-radius: 8px;
+    text-align: center;
     cursor: pointer;
+    box-shadow: 1px 1px 4px rgb(0, 0, 0, 27%);
 }
 
 .pokemon-name-inspect {
@@ -122,11 +138,12 @@
 
 #Pokemon-description {
     text-transform: none;
-    width: 95%;
-    margin: 20px auto;
+    width: 90%;
+    margin: 10px auto auto auto;
     border-radius: 16px;
     padding: 16px;
-    color: white;
+    box-shadow: 0px 0px 4px rgb(0, 0, 0, 27%);
+    background-color: white;
 }
 
 #Stat-list {
@@ -141,18 +158,20 @@
     margin: 4px;
     background-color:gray;
     border-radius: 16px;
+    box-shadow: 1px 1px 4px rgb(0, 0, 0, 27%);
 }
 
 .stat-bar {
     padding: 4px;
     max-width: 200px;
+    min-width: 40px;
     height: 100%;
     border-radius: 16px;
 }
 
 .stat-name {
     margin: 4px;
-    padding: 8px;
+    padding: 4px;
     width: 150px;
     text-align: right;
 }
@@ -166,7 +185,136 @@
 
 #Move-list {
     height: 360px;
-    width: 80%;
+    width: 90%;
     overflow-y: auto;
+    margin: 8px auto 40px auto;
+}
+
+#Evolution-chain {
     margin: auto;
+    width: 90%;
+    overflow-x: auto;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0px 0px 4px rgb(0, 0, 0, 27%);
+    padding: 20px;
+}
+
+.evolution-condition {
+    margin: auto 4px;
+    text-align: center;
+    flex-direction: column-reverse;
+    width: 100%;
+}
+
+.pokemon-item {
+    height: 64px;
+    margin: auto;
+}
+
+.pokemon-image-evolution {
+    height: 128px;
+    margin: auto;
+}
+
+#Spacer {
+    height: 100px;
+}
+
+#Move-table {
+    border-spacing: 0;
+    width: 90%;
+    margin: auto;
+    box-shadow: 0px 0px 4px rgb(0, 0, 0, 27%);
+    border-radius: 10px;
+}
+
+thead {
+    display: inline-table;
+    width: 100%;
+    height: 30px;
+    text-align: left;
+    color: white;
+    border-radius: 10px 10px 0px 0px;
+}
+
+tfoot {
+    display: inline-table;
+    width: 100%;
+    height: 30px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+th {
+    display: inline-table;
+    width: 10%;
+    margin: 0px 0px 0px 20px;
+}
+
+td {
+    display: inline-table;
+    width: 10%;
+    margin: 0px 0px 0px 20px;
+}
+
+.table-move-row {
+    cursor: pointer;
+    background-color: white;
+}
+
+.table-move-row:hover {
+    background-color: aliceblue;
+}
+
+tr {
+    display: inline-table;
+    width: 100%;
+    border-bottom: 1px solid rgb(235, 235, 235);
+    height: 30px;
+    line-height: 30px;
+}
+
+tbody {
+    display: block;
+    overflow-y: scroll;
+    height: 310px;
+}
+
+@media screen and (max-width: 960px) {
+    #Pokemon-main {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #Evolution-chain {
+        flex-direction: column;
+    }
+
+    .main-section {
+        perspective: none;
+        width: 90%;
+        background-color: white;
+        border-radius: 16px;
+        box-shadow: 0px 0px 4px rgb(0, 0, 0, 27%);
+        margin: 10px auto;
+        padding: 20px;
+    }
+
+    .stat-name {
+        width: 210px;
+    }
+
+    .left, .right {
+        transform: none;
+    }
+
+    .return-button {
+        top: 20px;
+        left: 20px;
+    }
+
+    .pokemon-image {
+        width: 80%;
+        order: -1;
+    }
 }
