@@ -1,15 +1,21 @@
 .about-wrapper {
-    width: 80%;
+    width: min(80%, 1160px);
     margin: 10px auto;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0px 0px 4px rgb(0, 0, 0, 27%);
+    background-color: white;
+    
 }
 
 .about-info {
-    width: 50%;
-    margin: auto 10px;
+    width: 60%;
+    margin: auto;
 }
 
 .about-image {
-    width: 40%;
+    width: 30%;
+    margin: auto 10px;
 }
 
 @media screen and (max-width: 960px) {

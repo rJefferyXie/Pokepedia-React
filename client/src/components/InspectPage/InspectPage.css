@@ -1,16 +1,19 @@
 #Inspect-page {
-    position: fixed;
     height: 100%;
-    width: 100vw;
+    width: 100%;
+    position: relative;
     overflow-y: auto;
-    overflow-x: hidden;
     text-transform: capitalize;
     z-index: 999;
 }
 
+#Inspect-container {
+    width: 100%;
+}
+
 #Pokemon-main {
     margin: auto;
-    width: 100%;
+    width: min(90%, 1360px);
 }
 
 .return-button {
@@ -19,7 +22,7 @@
     cursor: pointer;
     font-size: 32px;
     position: absolute;
-    top: 40px;
+    top: 120px;
     left: 40px;
     border-radius: 100%;
     width: 60px;
@@ -38,7 +41,7 @@
 
 .left {
     transition: all 0.5s;
-    transform: rotateY(18deg);
+    transform: rotateY(15deg);
 }
 
 .main-section:hover .right, .main-section:focus .right, .main-section:active .right {
@@ -47,7 +50,7 @@
 
 .right {
     transition: all 0.5s;
-    transform: rotateY(-18deg);
+    transform: rotateY(-15deg);
 }
 
 #Pokemon-name {
@@ -138,7 +141,7 @@
 
 #Pokemon-description {
     text-transform: none;
-    width: 90%;
+    width: min(90%, 1360px);
     margin: 10px auto auto auto;
     border-radius: 16px;
     padding: 16px;
@@ -192,7 +195,7 @@
 
 #Evolution-chain {
     margin: auto;
-    width: 90%;
+    width: min(90%, 1360px);
     overflow-x: auto;
     background-color: white;
     border-radius: 16px;
@@ -223,7 +226,7 @@
 
 #Move-table {
     border-spacing: 0;
-    width: 90%;
+    width: min(90%, 1360px);
     margin: auto;
     box-shadow: 0px 0px 4px rgb(0, 0, 0, 27%);
     border-radius: 10px;
@@ -314,7 +317,7 @@ tbody {
     }
 
     .pokemon-image {
-        width: 80%;
+        width: 90%;
         order: -1;
     }
 }

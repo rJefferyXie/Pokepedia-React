@@ -2,7 +2,7 @@
     cursor: pointer;
     border-radius: 1rem;
     width: min(min(90%, calc(12vh * 6)), 720px);
-    height: min(12%, 108px);
+    height: min(10vh, 100px);
     outline: none;
     border: none;
     position: relative;
@@ -24,15 +24,15 @@
 
 .region-name {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 3rem;
     font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
     color: #fff;
     text-shadow: 
         0 0 2px rgba(255,255,255,0.8), 
         2px 2px 2px rgba(0,0,0,0.2);
-    text-align: center;
-    width: 100%;
-    height: 100%;
 }
 
 .region-container:hover .region-name {
