@@ -12,7 +12,10 @@ const ObjectId = require("mongodb").ObjectId;
 router.get("/pokemon/:id", (req, res) => {
     PokemonPokedex.find({"pokedexNumber": req.params.id}, async (err, posts) => {
         if (err) console.log(err);
-        res.json(posts);
+        else {
+          res.json(posts);
+          console.log(`Pokemon Pokedex accessed for ${req.params.id}.`);
+        }
     });
 });
 
@@ -22,7 +25,10 @@ router.get("/pokemon/:id", (req, res) => {
 router.get("/species/:id", (req, res) => {
     SpeciesPokedex.find({"pokedexNumber": req.params.id}, async (err, posts) => {
       if (err) console.log(err);
-      res.json(posts);
+      else { 
+        res.json(posts);
+        console.log(`Species Pokedex accessed for ${req.params.id}.`);
+      }
   });
 });
 

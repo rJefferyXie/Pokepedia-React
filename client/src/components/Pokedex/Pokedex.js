@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 import PokemonCard from "../PokemonCard/PokemonCard";
-import Team from "../Team/Team";
+import { Link } from "react-router-dom";
 
 const Pokedex = () => {
   const location = useLocation();
@@ -13,14 +13,12 @@ const Pokedex = () => {
   const [speciesArray, setSpeciesArray] = useState([]);
   const [pokemonArray, setPokemonArray] = useState([]);
   const [pokemonTeam, setPokemonTeam] = useState([]);
-  const [viewingTeam, setViewingTeam] = useState(false);
 
   useEffect(() => {
     retrieve_data(region_number, region_name);
   }, []);
 
   useEffect(() => {
-    console.log(pokemonTeam)
   }, [pokemonTeam])
 
   const addPokemon = (toBeAdded) => {
@@ -37,10 +35,6 @@ const Pokedex = () => {
     setPokemonTeam(pokemonTeam.filter((_, filterindex) => {
       return filterindex !== index;
     }));
-  }
-
-  const exitTeam = () => {
-    setViewingTeam(false);
   }
 
   const retrieve_data = async (region_number, region_name) => {
@@ -110,9 +104,8 @@ const Pokedex = () => {
   }
 
   return (
-    viewingTeam === false ? 
     <section id="Pokedex-container" className="flex">
-      <button id="View-team" onClick={() => setViewingTeam(true)}>View Team</button>
+      <Link to="/team" id="View-team" state={{team: pokemonTeam}}>View Team</Link>
       <div id="Pokedex-list" className="page-container flex">
         {
         (speciesArray.length && pokemonArray.length) 
@@ -121,8 +114,7 @@ const Pokedex = () => {
         : <div>Loading..</div>}
 
       </div>
-    </section> :
-    <Team exit={exitTeam} team={pokemonTeam} addToTeam={addPokemon} removeFromTeam={removePokemon}></Team>
+    </section> 
   );
 };
 

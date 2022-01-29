@@ -5,17 +5,10 @@ import TypeColorSchemes from "../Constants/TypeColorSchemes"
 import { faSearch, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import InspectPage from "../../components/InspectPage/InspectPage";
+import React from "react";
+import { Link } from "react-router-dom";
 
-import React, { useState } from "react";
-
-const PokemonCard = ({pokemonData, speciesData, pokedexIndex, addToTeam, removeFromTeam, teamIndex, customStyle}) => {
-  const [inspecting, setInspecting] = useState(false);
-
-  const inspectPokemon = () => {
-    setInspecting(true);
-  }
-
+const PokemonCard = ({pokemonData, speciesData, pokedexIndex, addToTeam, removeFromTeam, teamIndex}) => {
   const add = () => {
     addToTeam([pokemonData, speciesData, pokedexIndex]);
   }
@@ -24,12 +17,7 @@ const PokemonCard = ({pokemonData, speciesData, pokedexIndex, addToTeam, removeF
     removeFromTeam(teamIndex);
   }
 
-  const exitInspect = () => {
-    setInspecting(false);
-  }
-
   return (
-    inspecting === false ?
     <div className="pokemon-container flex-col" style={{backgroundColor: TypeColorSchemes[pokemonData.types[0].type.name]}}>
         <div className="pokemon-button-container flex">
           {teamIndex === undefined ?
@@ -41,9 +29,9 @@ const PokemonCard = ({pokemonData, speciesData, pokedexIndex, addToTeam, removeF
             <FontAwesomeIcon style={{margin: "auto"}} icon={faTimes}></FontAwesomeIcon>
           </button>
           }
-          <button className="pokemon-button-card flex" onClick={inspectPokemon}>
+          <Link to="/inspect" className="pokemon-button-card flex" state={{ pokemonData: pokemonData, speciesData: speciesData, pokedexIndex: pokedexIndex }}>
             <FontAwesomeIcon style={{margin: "auto"}} icon={faSearch}></FontAwesomeIcon>
-          </button>
+          </Link>
         </div>
         <img className="pokemon-image-card" src={pokemonData.sprites.other["official-artwork"].front_default} alt=""></img>
         <p className="pokemon-index-card">{"#" + pokedexIndex}</p>
@@ -55,8 +43,6 @@ const PokemonCard = ({pokemonData, speciesData, pokedexIndex, addToTeam, removeF
           })}
         </div>
     </div>
-    :
-    <InspectPage pokemonData={pokemonData} speciesData={speciesData} pokedexIndex={pokedexIndex} exit={exitInspect} customStyle={customStyle}></InspectPage>
   );
 };
 
