@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
 
+import Loading from "../Loading/Loading";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import { Link } from "react-router-dom";
 
@@ -15,7 +16,7 @@ const Pokedex = () => {
   const {region_number, region_name} = location.state;
   const [speciesArray, setSpeciesArray] = useState([]);
   const [pokemonArray, setPokemonArray] = useState([]);
-  const [fact, setFact] = useState("");
+  const [finishedLoading, setFinishedLoading] = useState(false);
   const pokedex = useSelector(state => state.pokedexReducer);
 
   const searchPokedex = () => {
@@ -36,12 +37,11 @@ const Pokedex = () => {
               pokemonContainers[i].style.display = "none";
           }
         }
+      }
     }
-}
 
   useEffect(() => {
-    let facts = require("../../pokemonFacts");
-    setFact(facts[Math.floor(Math.random() * Object.keys(facts).length)]);
+    window.scrollTo(0, 0);
     if (pokedex.pokemonData.length > 0 && pokedex.speciesData.length > 0) {
       setSpeciesArray(pokedex.speciesData);
       setPokemonArray(pokedex.pokemonData);
@@ -65,7 +65,7 @@ const Pokedex = () => {
     if (pokemonJSON.length > 0 && speciesJSON.length > 0) {
       setSpeciesArray(speciesJSON[0]["pokemonData"]);
       setPokemonArray(pokemonJSON[0]["speciesData"]);
-      dispatch(allActions.pokedexActions.setPokedex({"speciesData": speciesJSON[0]["pokemonData"], "pokemonData": pokemonJSON[0]["speciesData"]}))
+      dispatch(allActions.pokedexActions.setPokedex({"speciesData": speciesJSON[0]["pokemonData"], "pokemonData": pokemonJSON[0]["speciesData"]}));
     } 
     else {
       const pokedexData = await axios.get(`https://pokeapi.co/api/v2/pokedex/${region_number}/`).then(res => generate_pokedex(res.data))
@@ -128,8 +128,7 @@ const Pokedex = () => {
 
   return (
     <section id="Pokedex-container" className="flex">
-      {
-        (speciesArray.length && pokemonArray.length) 
+      {finishedLoading
         ? <div id="Pokedex-page" className="flex-col">
         <Link to="/team" id="View-team">View Team</Link>
             <input id="Pokedex-search" type="text" placeholder="Search for pokemon..." onChange={searchPokedex}></input>
@@ -145,14 +144,7 @@ const Pokedex = () => {
                 ))}
             </div>
         </div>
-        : 
-        <section id="Loading-screen" className="flex-col">
-          <div id="Loading-container" className="flex-col">
-            <p className="loading-text">Loading...</p>
-            <p id="Fact" className="loading-text">{fact}</p>
-          </div>
-        </section>
-        }
+      : <Loading speciesArray={speciesArray} pokemonArray={pokemonArray} setFinished={() => setFinishedLoading(true)}></Loading>}
     </section> 
   );
 };

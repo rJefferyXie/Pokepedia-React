@@ -23,7 +23,7 @@ function App() {
           <Router>
             <Routes>
               <Route exact path="/" element={<Hero></Hero>}></Route>
-              <Route path="/pokedex" element={<Pokedex></Pokedex>}></Route>
+              <Route path="/pokedex/:id" element={<Pokedex></Pokedex>}></Route>
               <Route path="/inspect" element={<InspectPage></InspectPage>}></Route>
               <Route path="/team" element={<Team></Team>}></Route>
             </Routes>
