@@ -1,19 +1,19 @@
 #Team-container {
-    width: 100vw;
-    height: 100vh;
     text-transform: capitalize;
     align-items: flex-end;
     position: relative;
 }
 
 #Team-page {
-    height: calc(100% - 80px);
+    height: calc(100vh - 80px);
     width: 100%;
     overflow-y: auto;
+    margin: 80px auto;
+    position: relative;
 }
 
 #Team-wrapper {
-    width: 100%;
+    width: min(100%, 960px);
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -21,5 +21,7 @@
 }
 
 @media screen and(max-width: 960px) {
-
+    #Team-page {
+        margin: 160px auto;
+    }
 }

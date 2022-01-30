@@ -1,6 +1,6 @@
 import "./Team.css";
 
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
@@ -26,17 +26,17 @@ const Team = () => {
 
   return (
     <section id="Team-container" className="flex">
-        <button className="return-button pokemon-button flex" onClick={() => previousPage()}>
-          <FontAwesomeIcon icon={faArrowLeft} style={{margin: "auto"}}></FontAwesomeIcon>
-        </button>
         <div id="Team-page" className="flex">
-              <div id="Team-wrapper" className="flex">
-                {pokemonTeam.map((pokemon, index) => {
-                  if (pokemon === undefined) return false;
-                  return <PokemonCard pokemonData={pokemon.pokemonData} speciesData={pokemon.speciesData} pokedexIndex={pokemon.pokedexIndex} teamIndex={index} addToTeam={addPokemon} removeFromTeam={removePokemon} key={index}></PokemonCard>
-                })}
-              </div>      
-          </div>
+            <button className="return-button pokemon-button flex" onClick={() => previousPage()}>
+              <FontAwesomeIcon icon={faArrowLeft} style={{margin: "auto"}}></FontAwesomeIcon>
+            </button>
+            <div id="Team-wrapper" className="flex">
+              {[...Array(6)].map((_, i) => {
+                if (pokemonTeam[i] === undefined) { return <div className="pokemon-container flex"><FontAwesomeIcon icon={faPlus} style={{margin: "auto", fontSize: "1rem"}}></FontAwesomeIcon></div> }
+                return <PokemonCard pokemonData={pokemonTeam[i].pokemonData} speciesData={pokemonTeam[i].speciesData} pokedexIndex={pokemonTeam[i].pokedexIndex} teamIndex={i} addToTeam={addPokemon} removeFromTeam={removePokemon} key={i}></PokemonCard>
+              })}
+            </div>      
+        </div>
     </section>
   )
 };
