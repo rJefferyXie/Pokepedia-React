@@ -4,6 +4,28 @@
     align-items: flex-end;
 }
 
+#Loading-container {
+    width: min(90%, 1060px);
+    margin: auto;
+}
+
+#Fact {
+    box-shadow: 1px 1px 4px rgb(0, 0, 0, 27%);
+    background-color: white;
+    border-radius: 16px;
+    padding: 16px;
+    line-height: 1.8rem;
+}
+
+#Loading-screen {
+    height: calc(100% - 80px);
+    width: 100%;
+}
+
+.loading-text {
+    margin: auto;
+}
+
 #Pokedex-page {
     height: calc(100% - 80px);
     width: 100%;

@@ -15,6 +15,7 @@ const Pokedex = () => {
   const {region_number, region_name} = location.state;
   const [speciesArray, setSpeciesArray] = useState([]);
   const [pokemonArray, setPokemonArray] = useState([]);
+  const [fact, setFact] = useState("");
   const pokedex = useSelector(state => state.pokedexReducer);
 
   const searchPokedex = () => {
@@ -39,6 +40,8 @@ const Pokedex = () => {
 }
 
   useEffect(() => {
+    let facts = require("../../pokemonFacts");
+    setFact(facts[Math.floor(Math.random() * Object.keys(facts).length)]);
     if (pokedex.pokemonData.length > 0 && pokedex.speciesData.length > 0) {
       setSpeciesArray(pokedex.speciesData);
       setPokemonArray(pokedex.pokemonData);
@@ -125,10 +128,10 @@ const Pokedex = () => {
 
   return (
     <section id="Pokedex-container" className="flex">
-      <Link to="/team" id="View-team">View Team</Link>
       {
         (speciesArray.length && pokemonArray.length) 
         ? <div id="Pokedex-page" className="flex-col">
+        <Link to="/team" id="View-team">View Team</Link>
             <input id="Pokedex-search" type="text" placeholder="Search for pokemon..." onChange={searchPokedex}></input>
             <div id="Pokedex-list" className="page-container flex">
                 {speciesArray.map((pokemon, index) => 
@@ -142,7 +145,13 @@ const Pokedex = () => {
                 ))}
             </div>
         </div>
-        : <div id="Loading-screen">Loading..</div>
+        : 
+        <section id="Loading-screen" className="flex-col">
+          <div id="Loading-container" className="flex-col">
+            <p className="loading-text">Loading...</p>
+            <p id="Fact" className="loading-text">{fact}</p>
+          </div>
+        </section>
         }
     </section> 
   );

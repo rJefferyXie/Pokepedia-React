@@ -60,7 +60,7 @@ import necrozma from "../../images/alola/necrozma.png";
 
 const Regions = () => {
   return (
-    <section id="Regions" className="flex-col">
+    <section id="Regions" className="flex">
         <Link to="/pokedex" state={{ region_number: '2', region_name: "kanto" }} id="Kanto" className="region-container flex">
             <img alt="" src={venusaur} className="region-image"></img>
             <img alt="" src={charizard} className="region-image"></img>
