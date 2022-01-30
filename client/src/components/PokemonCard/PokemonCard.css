@@ -33,7 +33,7 @@
     margin: auto 8px;
     width: 30px;
     height: 30px;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .pokemon-index-card, .pokemon-name-card {
@@ -42,7 +42,7 @@
 }
 
 .pokemon-image-card {
-    margin: 12px auto 1px auto;
+    margin: 4px auto 1px auto;
     width: 128px;
 }
 
