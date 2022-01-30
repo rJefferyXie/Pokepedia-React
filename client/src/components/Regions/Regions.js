@@ -61,7 +61,7 @@ import necrozma from "../../images/alola/necrozma.png";
 const Regions = () => {
   return (
     <section id="Regions" className="flex">
-        <Link to="/pokedex" state={{ region_number: '2', region_name: "kanto" }} id="Kanto" className="region-container flex">
+        <Link to="/pokedex/kanto" state={{ region_number: '2', region_name: "kanto" }} id="Kanto" className="region-container flex">
             <img alt="" src={venusaur} className="region-image"></img>
             <img alt="" src={charizard} className="region-image"></img>
             <img alt="" src={blastoise} className="region-image"></img>
@@ -70,7 +70,7 @@ const Regions = () => {
             <img alt="" src={moltres} className="region-image"></img>
             <h1 className="region-name">KANTO</h1>
         </Link>
-        <Link to="/pokedex" state={{ region_number: '7', region_name: "johto" }} id="Johto" className="region-container flex">
+        <Link to="/pokedex/johto" state={{ region_number: '7', region_name: "johto" }} id="Johto" className="region-container flex">
             <h1 className="region-name">JOHTO</h1>
             <img alt="" src={meganium} className="region-image"></img>
             <img alt="" src={typhlosion} className="region-image"></img>
@@ -79,7 +79,7 @@ const Regions = () => {
             <img alt="" src={lugia} className="region-image"></img>
             <img alt="" src={celibi} className="region-image"></img>
         </Link>
-        <Link to="/pokedex" state={{ region_number: '4', region_name: "hoenn" }} id="Hoenn" className="region-container flex">
+        <Link to="/pokedex/hoenn" state={{ region_number: '4', region_name: "hoenn" }} id="Hoenn" className="region-container flex">
             <img alt="" src={sceptile} className="region-image"></img>
             <img alt="" src={blaziken} className="region-image"></img>
             <img alt="" src={swampert} className="region-image"></img>
@@ -88,7 +88,7 @@ const Regions = () => {
             <img alt="" src={rayquaza} className="region-image"></img>
             <h1 className="region-name">HOENN</h1>
         </Link>
-        <Link to="/pokedex" state={{ region_number: '6', region_name: "sinnoh" }} id="Sinnoh" className="region-container flex">
+        <Link to="/pokedex/sinnoh" state={{ region_number: '6', region_name: "sinnoh" }} id="Sinnoh" className="region-container flex">
             <h1 className="region-name">SINNOH</h1>
             <img alt="" src={torterra} className="region-image"></img>
             <img alt="" src={infernape} className="region-image"></img>
@@ -97,7 +97,7 @@ const Regions = () => {
             <img alt="" src={palkia} className="region-image"></img>
             <img alt="" src={giratina} className="region-image"></img>
         </Link>
-        <Link to="/pokedex" state={{ region_number: '9', region_name: "unova" }} id="Unova" className="region-container flex">
+        <Link to="/pokedex/unova" state={{ region_number: '9', region_name: "unova" }} id="Unova" className="region-container flex">
             <img alt="" src={serperior} className="region-image"></img>
             <img alt="" src={emboar} className="region-image"></img>
             <img alt="" src={samurott} className="region-image"></img>
@@ -106,7 +106,7 @@ const Regions = () => {
             <img alt="" src={kyurem} className="region-image"></img>
             <h1 className="region-name">UNOVA</h1>
         </Link>
-        <Link to="/pokedex" state={{ region_number: '12', region_name: "kalos" }} id="Kalos" className="region-container flex">
+        <Link to="/pokedex/kalos" state={{ region_number: '12', region_name: "kalos" }} id="Kalos" className="region-container flex">
             <h1 className="region-name">KALOS</h1>
             <img alt="" src={chesnaught} className="region-image"></img>
             <img alt="" src={delphox} className="region-image"></img>
@@ -115,7 +115,7 @@ const Regions = () => {
             <img alt="" src={yveltal} className="region-image"></img>
             <img alt="" src={zygarde} className="region-image"></img>
         </Link>
-        <Link to="/pokedex" state={{ region_number: '16', region_name: "alola" }} id="Alola" className="region-container flex">
+        <Link to="/pokedex/alola" state={{ region_number: '16', region_name: "alola" }} id="Alola" className="region-container flex">
             <img alt="" src={decidueye} className="region-image"></img>
             <img alt="" src={incineroar} className="region-image"></img>
             <img alt="" src={primarina} className="region-image"></img>

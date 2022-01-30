@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
 
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
@@ -15,6 +16,10 @@ const Team = () => {
 
   const navigate = useNavigate();
   const previousPage = () => navigate(-1);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   const addPokemon = (toBeAdded) => {
     dispatch(allActions.teamActions.addToTeam(toBeAdded));
