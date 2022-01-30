@@ -16,8 +16,8 @@ const Pokedex = () => {
   const {region_number, region_name} = location.state;
   const [speciesArray, setSpeciesArray] = useState([]);
   const [pokemonArray, setPokemonArray] = useState([]);
-  const [finishedLoading, setFinishedLoading] = useState(false);
   const pokedex = useSelector(state => state.pokedexReducer);
+  const loaded = useSelector(state => state.loadReducer);
 
   const searchPokedex = () => {
     let input = document.getElementById('Pokedex-search');
@@ -128,7 +128,7 @@ const Pokedex = () => {
 
   return (
     <section id="Pokedex-container" className="flex">
-      {finishedLoading
+      {loaded && speciesArray.length && pokemonArray.length
         ? <div id="Pokedex-page" className="flex-col">
         <Link to="/team" id="View-team">View Team</Link>
             <input id="Pokedex-search" type="text" placeholder="Search for pokemon..." onChange={searchPokedex}></input>
@@ -144,7 +144,7 @@ const Pokedex = () => {
                 ))}
             </div>
         </div>
-      : <Loading speciesArray={speciesArray} pokemonArray={pokemonArray} setFinished={() => setFinishedLoading(true)}></Loading>}
+      : <Loading speciesArray={speciesArray} pokemonArray={pokemonArray}></Loading>}
     </section> 
   );
 };

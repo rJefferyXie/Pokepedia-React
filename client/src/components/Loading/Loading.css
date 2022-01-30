@@ -1,6 +1,13 @@
 #Loading-container {
-    width: min(90%, 1060px);
+    width: min(90%, 720px);
     margin: auto;
+}
+
+#Loading-image {
+    height: 128px;
+    width: 128px;
+    margin: auto;
+    animation: load 2s linear infinite;
 }
 
 #Fact {
@@ -8,13 +15,35 @@
     background-color: white;
     border-radius: 16px;
     padding: 16px;
+    margin: 8px auto;
+}
+
+#Loading-button {
+    margin: 8px auto;
+    background-color: rgb(46, 132, 202);
+    font-size: 1.5rem;
+    color: white;
+}
+
+#Loading-button:hover, #Loading-button:active, #Loading-button:focus {
+    background-color: rgb(77, 159, 226);
 }
 
 #Loading-screen {
-    height: calc(100% - 80px);
+    height: calc(100vh - 80px);
     width: 100%;
 }
 
 .loading-text {
     margin: 8px auto;
+    text-align: center;
+}
+
+@keyframes load {
+    0% {
+        transform: rotate(0deg); 
+    }
+    100% {
+        transform: rotate(360deg); 
+    }
 }
