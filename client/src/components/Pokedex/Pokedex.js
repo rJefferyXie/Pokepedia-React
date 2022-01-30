@@ -17,6 +17,27 @@ const Pokedex = () => {
   const [pokemonArray, setPokemonArray] = useState([]);
   const pokedex = useSelector(state => state.pokedexReducer);
 
+  const searchPokedex = () => {
+    let input = document.getElementById('Pokedex-search');
+    let pokemonContainers = document.getElementById("Pokedex-list").getElementsByClassName("pokemon-container");
+    var search = input.value.toLowerCase();
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (var i = 0; i < pokemonContainers.length; i++) {
+        var searchableContainers = pokemonContainers[i].getElementsByClassName("searchable");
+        var pokemonName = searchableContainers[0].textContent;
+        var pokemonTypes = searchableContainers[1];
+        for (var j = 0; j < pokemonTypes.childElementCount; j++) {
+          if (pokemonName.indexOf(search) > -1 || pokemonTypes.childNodes[j].getAttribute("alt").indexOf(search) > -1) {
+              pokemonContainers[i].style.display = "";
+          } 
+          else {
+              pokemonContainers[i].style.display = "none";
+          }
+        }
+    }
+}
+
   useEffect(() => {
     if (pokedex.pokemonData.length > 0 && pokedex.speciesData.length > 0) {
       setSpeciesArray(pokedex.speciesData);
@@ -105,14 +126,24 @@ const Pokedex = () => {
   return (
     <section id="Pokedex-container" className="flex">
       <Link to="/team" id="View-team">View Team</Link>
-      <div id="Pokedex-list" className="page-container flex">
-        {
+      {
         (speciesArray.length && pokemonArray.length) 
-        ? speciesArray.map((pokemon, index) => (<PokemonCard speciesData={pokemonArray[index]} pokemonData={pokemon} pokedexIndex={index + 1} addToTeam={addPokemon} removeFromTeam={removePokemon} customStyle={{display: "fixed"}} key={index}></PokemonCard>
-        )) 
-        : <div>Loading..</div>}
-
-      </div>
+        ? <div id="Pokedex-page" className="flex-col">
+            <input id="Pokedex-search" type="text" placeholder="Search for pokemon..." onChange={searchPokedex}></input>
+            <div id="Pokedex-list" className="page-container flex">
+                {speciesArray.map((pokemon, index) => 
+                (<PokemonCard 
+                  speciesData={pokemonArray[index]} 
+                  pokemonData={pokemon} 
+                  pokedexIndex={index + 1} 
+                  addToTeam={addPokemon} 
+                  removeFromTeam={removePokemon} 
+                  key={index}></PokemonCard>
+                ))}
+            </div>
+        </div>
+        : <div id="Loading-screen">Loading..</div>
+        }
     </section> 
   );
 };

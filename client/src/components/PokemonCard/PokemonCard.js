@@ -35,9 +35,9 @@ const PokemonCard = ({pokemonData, speciesData, pokedexIndex, addToTeam, removeF
         </div>
         <img className="pokemon-image-card" src={pokemonData.sprites.other["official-artwork"].front_default} alt=""></img>
         <p className="pokemon-index-card">{"#" + pokedexIndex}</p>
-        <p className="pokemon-name-card">{pokemonData["name"]}</p>
+        <p className="pokemon-name-card searchable">{pokemonData["name"]}</p>
 
-        <div className="pokemon-type-container-card flex">
+        <div className="pokemon-type-container-card searchable flex">
           {pokemonData.types.map((type, index) => {
             return <img className="pokemon-type-card" src={TypeImageMap[type.type.name]} alt={type.type.name} key={index}></img>
           })}
