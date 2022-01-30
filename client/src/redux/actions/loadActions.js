@@ -1,6 +1,6 @@
 const setLoaded = () => {
     return {
-        type: "loaded/set"
+        type: "loaded"
     }
 }
 
