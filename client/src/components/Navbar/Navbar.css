@@ -1,5 +1,6 @@
 #Navbar {
     position: fixed;
+    top: 0;
     height: 80px;
     width: 100vw;
     background-color: rgba(19, 59, 105, 0.9);

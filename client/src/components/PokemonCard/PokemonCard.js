@@ -7,25 +7,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import allActions from '../../redux/actions/allActions';
 
-const PokemonCard = ({pokemonData, speciesData, pokedexIndex, addToTeam, removeFromTeam, teamIndex}) => {
-  const add = () => {
-    addToTeam({ "pokemonData": pokemonData, "speciesData": speciesData, "pokedexIndex": pokedexIndex });
+const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex}) => {
+  const dispatch = useDispatch()
+
+  const addPokemon = () => {
+    dispatch(allActions.teamActions.addToTeam({ "pokemonData": pokemonData, "speciesData": speciesData, "pokedexIndex": pokedexIndex }));
   }
 
-  const remove = () => {
-    removeFromTeam(teamIndex);
+  const removePokemon = () => {
+    dispatch(allActions.teamActions.removeFromTeam(teamIndex));
   }
 
   return (
     <div className="pokemon-container flex-col" style={{backgroundColor: TypeColorSchemes[pokemonData.types[0].type.name]}}>
         <div className="pokemon-button-container flex">
           {teamIndex === undefined ?
-          <button className="pokemon-button-card flex" onClick={() => add()}>
+          <button className="pokemon-button-card flex" onClick={() => addPokemon()}>
             <FontAwesomeIcon style={{margin: "auto"}} icon={faPlus}></FontAwesomeIcon>
           </button>
           :
-          <button className="pokemon-button-card flex" onClick={() => remove()}>
+          <button className="pokemon-button-card flex" onClick={() => removePokemon()}>
             <FontAwesomeIcon style={{margin: "auto"}} icon={faTimes}></FontAwesomeIcon>
           </button>
           }

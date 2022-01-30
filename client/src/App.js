@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import Pokedex from "./components/Pokedex/Pokedex";
 import InspectPage from "./components/InspectPage/InspectPage";
 import Team from "./components/Team/Team";
+import Footer from "./components/Footer/Footer";
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
@@ -28,6 +29,7 @@ function App() {
               <Route path="/team" element={<Team></Team>}></Route>
             </Routes>
           </Router>
+          <Footer></Footer>
         </div>
     </Provider>
   );

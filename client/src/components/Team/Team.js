@@ -37,7 +37,7 @@ const Team = () => {
             </button>
             <div id="Team-wrapper" className="flex">
               {[...Array(6)].map((_, i) => {
-                if (pokemonTeam[i] === undefined) { return <div className="pokemon-container flex"><FontAwesomeIcon icon={faPlus} style={{margin: "auto", fontSize: "1rem"}}></FontAwesomeIcon></div> }
+                if (pokemonTeam[i] === undefined) { return <div className="pokemon-container flex" key={i}><FontAwesomeIcon icon={faPlus} style={{margin: "auto", fontSize: "1rem"}}></FontAwesomeIcon></div> }
                 return <PokemonCard pokemonData={pokemonTeam[i].pokemonData} speciesData={pokemonTeam[i].speciesData} pokedexIndex={pokemonTeam[i].pokedexIndex} teamIndex={i} addToTeam={addPokemon} removeFromTeam={removePokemon} key={i}></PokemonCard>
               })}
             </div>      

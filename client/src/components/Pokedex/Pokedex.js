@@ -51,14 +51,6 @@ const Pokedex = () => {
     }
   }, []);
 
-  const addPokemon = (toBeAdded) => {
-    dispatch(allActions.teamActions.addToTeam(toBeAdded));
-  }
-
-  const removePokemon = (toBeRemoved) => {
-    dispatch(allActions.teamActions.removeFromTeam(toBeRemoved));
-  }
-
   const retrieve_data = async (region_number, region_name) => {
     const speciesJSON = await axios.get("/api/pokedex/pokemon/" + region_number).then(res => res.data);
     const pokemonJSON = await axios.get("/api/pokedex/species/" + region_number).then(res => res.data);
@@ -138,8 +130,6 @@ const Pokedex = () => {
                   speciesData={pokemonArray[index]} 
                   pokemonData={pokemon} 
                   pokedexIndex={index + 1} 
-                  addToTeam={addPokemon} 
-                  removeFromTeam={removePokemon} 
                   key={index}></PokemonCard>
                 ))}
             </div>
