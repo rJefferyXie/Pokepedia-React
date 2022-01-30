@@ -3,22 +3,21 @@
     height: 100vh;
     text-transform: capitalize;
     align-items: flex-end;
+    position: relative;
 }
 
 #Team-page {
     height: calc(100% - 80px);
     width: 100%;
-    position: absolute;
     overflow-y: auto;
 }
 
 #Team-wrapper {
-    height: fit-content;
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: 100px auto;
+    margin: auto;
 }
 
 @media screen and(max-width: 960px) {
