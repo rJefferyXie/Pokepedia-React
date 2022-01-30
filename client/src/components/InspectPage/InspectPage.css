@@ -8,6 +8,7 @@
 
 #Inspect-container {
     width: 100%;
+    position: relative;
 }
 
 #Pokemon-main {
@@ -21,7 +22,7 @@
     cursor: pointer;
     font-size: 32px;
     position: absolute;
-    top: 120px;
+    top: 40px;
     left: 40px;
     border-radius: 100%;
     width: 60px;

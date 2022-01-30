@@ -139,10 +139,10 @@ const InspectPage = () => {
 
     return (
     <section id="Inspect-page" className="flex">
-        <button className="return-button pokemon-button flex" onClick={() => previousPage()} style={{backgroundColor: theme}}>
-            <FontAwesomeIcon icon={faArrowLeft} style={{margin: "auto"}}></FontAwesomeIcon>
-        </button>
         <div id="Inspect-container" className="page-container flex-col">
+            <button className="return-button pokemon-button flex" onClick={() => previousPage()} style={{backgroundColor: theme}}>
+                <FontAwesomeIcon icon={faArrowLeft} style={{margin: "auto"}}></FontAwesomeIcon>
+            </button>
             <h2 id="Pokemon-name">{pokemonData.name}</h2>
             <p className="pokemon-genera" style={{backgroundColor: theme}}>{speciesData.genus}</p>
             <div id="Pokemon-main" className="flex">
