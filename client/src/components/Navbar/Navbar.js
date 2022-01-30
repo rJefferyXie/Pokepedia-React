@@ -17,11 +17,13 @@ const Navbar = () => {
     const ScrollTo = (id) => {
         RedirectToHome();
 
-        let section = document.querySelector(id).offsetTop - 80;
-        window.scroll({
-            top: section,
-            behavior: "smooth"
-        });    
+        if (window.location.pathname === "/") {
+            let section = document.querySelector(id).offsetTop - 80;
+            window.scroll({
+                top: section,
+                behavior: "smooth"
+            });    
+        }
     }
 
     return (

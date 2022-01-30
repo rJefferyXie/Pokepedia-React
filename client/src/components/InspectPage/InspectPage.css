@@ -4,7 +4,6 @@
     position: relative;
     overflow-y: auto;
     text-transform: capitalize;
-    z-index: 999;
 }
 
 #Inspect-container {

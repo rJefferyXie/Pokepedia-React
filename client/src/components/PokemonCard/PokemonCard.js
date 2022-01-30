@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 const PokemonCard = ({pokemonData, speciesData, pokedexIndex, addToTeam, removeFromTeam, teamIndex}) => {
   const add = () => {
-    addToTeam([pokemonData, speciesData, pokedexIndex]);
+    addToTeam({ "pokemonData": pokemonData, "speciesData": speciesData, "pokedexIndex": pokedexIndex });
   }
 
   const remove = () => {

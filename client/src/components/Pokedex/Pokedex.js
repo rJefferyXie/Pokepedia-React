@@ -3,38 +3,36 @@ import "./Pokedex.css";
 import axios from "axios";
 import { useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import allActions from '../../redux/actions/allActions';
 
 import PokemonCard from "../PokemonCard/PokemonCard";
 import { Link } from "react-router-dom";
 
 const Pokedex = () => {
+  const dispatch = useDispatch()
   const location = useLocation();
   const {region_number, region_name} = location.state;
   const [speciesArray, setSpeciesArray] = useState([]);
   const [pokemonArray, setPokemonArray] = useState([]);
-  const [pokemonTeam, setPokemonTeam] = useState([]);
+  const pokedex = useSelector(state => state.pokedexReducer);
 
   useEffect(() => {
-    retrieve_data(region_number, region_name);
+    if (pokedex.pokemonData.length > 0 && pokedex.speciesData.length > 0) {
+      setSpeciesArray(pokedex.speciesData);
+      setPokemonArray(pokedex.pokemonData);
+    }
+    else {
+      retrieve_data(region_number, region_name);
+    }
   }, []);
 
-  useEffect(() => {
-  }, [pokemonTeam])
-
   const addPokemon = (toBeAdded) => {
-    if (pokemonTeam.length >= 6) { return; }
-
-    if (pokemonTeam) {
-      setPokemonTeam([...pokemonTeam, toBeAdded])
-    } else {
-      setPokemonTeam([toBeAdded]);
-    }
+    dispatch(allActions.teamActions.addToTeam(toBeAdded));
   }
 
-  const removePokemon = (index) => {
-    setPokemonTeam(pokemonTeam.filter((_, filterindex) => {
-      return filterindex !== index;
-    }));
+  const removePokemon = (toBeRemoved) => {
+    dispatch(allActions.teamActions.removeFromTeam(toBeRemoved));
   }
 
   const retrieve_data = async (region_number, region_name) => {
@@ -43,6 +41,7 @@ const Pokedex = () => {
     if (pokemonJSON.length > 0 && speciesJSON.length > 0) {
       setSpeciesArray(speciesJSON[0]["pokemonData"]);
       setPokemonArray(pokemonJSON[0]["speciesData"]);
+      dispatch(allActions.pokedexActions.setPokedex({"speciesData": speciesJSON[0]["pokemonData"], "pokemonData": pokemonJSON[0]["speciesData"]}))
     } 
     else {
       const pokedexData = await axios.get(`https://pokeapi.co/api/v2/pokedex/${region_number}/`).then(res => generate_pokedex(res.data))
@@ -105,7 +104,7 @@ const Pokedex = () => {
 
   return (
     <section id="Pokedex-container" className="flex">
-      <Link to="/team" id="View-team" state={{team: pokemonTeam}}>View Team</Link>
+      <Link to="/team" id="View-team">View Team</Link>
       <div id="Pokedex-list" className="page-container flex">
         {
         (speciesArray.length && pokemonArray.length) 

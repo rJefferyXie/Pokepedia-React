@@ -9,6 +9,7 @@ import Move from "../../components/Move/Move";
 
 import { useLocation, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
+
 import axios from "axios";
 
 const InspectPage = () => {
