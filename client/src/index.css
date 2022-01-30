@@ -55,6 +55,12 @@ p {
   flex-direction: column;
 }
 
+.text-button {
+  padding: 20px 40px;
+  width: fit-content;
+  margin: auto;
+}
+
 @media screen and (max-width: 960px) {
   p {
     font-size: var(--step-1);
