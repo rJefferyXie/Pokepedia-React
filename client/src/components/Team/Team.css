@@ -50,6 +50,7 @@
 @media screen and (max-width: 960px) {
     #Team-container {
         flex-direction: column;
+        height: 100%;
     }
 
     #Team-left {
