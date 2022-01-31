@@ -14,7 +14,6 @@ router.get("/pokemon/:id", (req, res) => {
         if (err) console.log(err);
         else {
           res.json(posts);
-          console.log(`Pokemon Pokedex accessed for ${req.params.id}.`);
         }
     });
 });
@@ -27,7 +26,6 @@ router.get("/species/:id", (req, res) => {
       if (err) console.log(err);
       else { 
         res.json(posts);
-        console.log(`Species Pokedex accessed for ${req.params.id}.`);
       }
   });
 });
@@ -42,7 +40,6 @@ router.post("/pokemon/:id", (req, res) => {
   });
   newPokemonPokedex.save((err, res) => {
     if (err) { throw err }
-    console.log("Pokemon Pokedex filled for version " + req.body.pokedexNumber);
   });
 });
 
@@ -56,7 +53,6 @@ router.post("/species/:id", (req, res) => {
   });
   newSpeciesPokedex.save((err, res) => {
     if (err) { throw err }
-    console.log("Species Pokedex filled for version " + req.body.pokedexNumber);
   });
 });
 
