@@ -196,31 +196,32 @@ const InspectPage = () => {
             <div id="Evolution-chain" className="flex">
                 {evolutionData.map((evolution, index) => {
                     const evolutionCondition = Object.entries(evolution).map(([key, value], index) => {
-                        if (key === "type" || value === "level-up" || value === "use-item" || key ==="known_move_type") { return false; }
-                        if (key === "image") { return <img className="pokemon-image-evolution" src={value} alt="" key={index}></img> }
-                        if (key === "item-name") { return <p key={index}>{"Use " + value}</p> }
-                        if (key === "item-image") { return <img className="pokemon-item" src={value} alt="" key={index}></img> }
-                        if (key === "name") { return <p className="pokemon-genera" style={{backgroundColor: TypeColorSchemes[evolution["type"]]}} key={index}>{value}</p> }
-                        if (key === "min_affection") { return <p key={index}>{"Level up with " + value + "+ Affection"}</p> }
-                        if (key === "min_happiness") { return <p key={index}>{"Level up with " + value + "+ Happiness"}</p> }
-                        if (key === "min_beauty") { return <p key={index}>{"Level up with " + value + "+ Beauty"}</p> }
-                        if (key === "min_level") { return <p key={index}>{"Level up (" + value + "+)"}</p> }
-                        if (key === "known_move") { return <p key={index}>{"Level up knowing " + value.name}</p> }
-                        if (key === "time_of_day") { return <p key={index}>{"Evolves at " + value}</p> }
-                        if (key === "gender") {
-                            if (value === 2) { return <p>{"Gender: "}<span style={{color: "#01A6EA"}} key={index}>Male</span></p> }
-                            else { return <p>{"Gender: "}<span style={{color: "#FFB1CB"}} key={index}>Female</span></p> }
+                        switch (key) {
+                            case "image": return <img className="pokemon-image-evolution" src={value} alt="" key={index}></img>;
+                            case "item-name": return <p key={index}>{"Use " + value}</p>
+                            case "item-image": return <img className="pokemon-item" src={value} alt="" key={index}></img>
+                            case "name": return <p className="pokemon-genera" style={{backgroundColor: TypeColorSchemes[evolution["type"]]}} key={index}>{value}</p>
+                            case "min_affection": return <p key={index}>{"Level up with " + value + "+ Affection"}</p>
+                            case "min_happiness": return <p key={index}>{"Level up with " + value + "+ Happiness"}</p>
+                            case "min_beauty": return <p key={index}>{"Level up with " + value + "+ Beauty"}</p>
+                            case "min_level": return <p key={index}>{"Level up (" + value + "+)"}</p>
+                            case "known_move": return <p key={index}>{"Level up knowing " + value.name}</p>
+                            case "time_of_day": return <p key={index}>{"Evolves at " + value}</p>
+                            case "held_item": return <p key={index}>{"Holding " + value.name}</p>
+                            case "location": return <p key={index}>{"Level up at: " + value.name}</p> 
+                            case "party_species": return <p key={index}>{"Level up with " + value.name + " in party."}</p>
+                            case "gender": {
+                                if (value === 2) { return <p>{"Gender: "}<span style={{color: "#01A6EA"}} key={index}>Male</span></p> }
+                                else { return <p>{"Gender: "}<span style={{color: "#FFB1CB"}} key={index}>Female</span></p> }
+                            }
+                            case "type": case "trigger": case "arrow": {
+                                return false;
+                            }
+                            default: {
+                                console.log(key, value);
+                                return false;
+                            }
                         }
-                        if (key === "held_item") {
-                            return (
-                                <div className="pokemon-item-container flex-col" key={index}>
-                                    {/* <img src={value.url} alt=""></img> */}
-                                    <p>{"Holding " + value.name}</p>
-                                </div>
-                            )
-                        }
-                        if (key === "location") { return <p key={index}>{"Level up at: " + value.name}</p> }
-                        return <p className="evolution-condition" key={index}>{value}</p>
                     });
                     return <div className="flex-col evolution-condition" key={index}>{evolutionCondition}</div>;
                 })}
@@ -248,9 +249,6 @@ const InspectPage = () => {
                 </tbody>
                 <tfoot style={{backgroundColor: theme}}></tfoot>
             </table>
-            <div id="Spacer">
-
-            </div>
         </div>
     </section>
     );
