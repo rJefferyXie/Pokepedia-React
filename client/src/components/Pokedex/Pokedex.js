@@ -17,7 +17,7 @@ const Pokedex = () => {
   const [speciesArray, setSpeciesArray] = useState([]);
   const [pokemonArray, setPokemonArray] = useState([]);
   const pokedex = useSelector(state => state.pokedexReducer);
-  const loaded = useSelector(state => state.loadReducer);
+  const loaded = useSelector(state => state.loadReducer.loaded);
 
   const searchPokedex = () => {
     let input = document.getElementById('Pokedex-search');
@@ -120,10 +120,9 @@ const Pokedex = () => {
 
   return (
     <section id="Pokedex-container" className="flex">
-      {loaded && speciesArray.length && pokemonArray.length
-        ? <div id="Pokedex-page" className="flex-col">
+      {(loaded && (speciesArray.length && pokemonArray.length)) ? <div id="Pokedex-page" className="flex-col">
         <Link to="/team" id="View-team">View Team</Link>
-            <input id="Pokedex-search" type="text" placeholder="Search for pokemon..." onChange={searchPokedex}></input>
+            <input id="Pokedex-search" type="text" placeholder="Search by Pokemon Name or Type..." onChange={searchPokedex}></input>
             <div id="Pokedex-list" className="page-container flex">
                 {speciesArray.map((pokemon, index) => 
                 (<PokemonCard 
