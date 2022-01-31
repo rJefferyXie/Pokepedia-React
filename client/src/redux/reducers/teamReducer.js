@@ -4,9 +4,12 @@ const team = (state = { team: [] }, action) => {
         return { team: [...state.team, action.payload.pokemon] }
       }
       case 'team/remove': {
-        return { team : state.team.filter((_, filterindex) => {
-          return filterindex !== action.payload.pokemon
+        return { team: state.team.filter(pokemon => {
+          return pokemon.pokemonData.name !== action.payload.pokemon
         })}
+      }
+      case 'team/clear': {
+        return { team: [] }
       }
       default:
         return state;

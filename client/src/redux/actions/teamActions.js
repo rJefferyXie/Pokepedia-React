@@ -12,6 +12,12 @@ const removeFromTeam = (pokemon) => {
     }
 }
 
+const clearTeam = () => {
+    return {
+        type: "team/clear"
+    }
+}
+
 export default {
-    addToTeam, removeFromTeam
+    addToTeam, removeFromTeam, clearTeam
 }
