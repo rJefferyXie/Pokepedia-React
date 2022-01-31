@@ -18,7 +18,7 @@ const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex}) => {
   }
 
   const removePokemon = () => {
-    dispatch(allActions.teamActions.removeFromTeam(teamIndex));
+    dispatch(allActions.teamActions.removeFromTeam(pokemonData.name));
   }
 
   return (
