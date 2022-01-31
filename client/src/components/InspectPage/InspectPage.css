@@ -220,10 +220,6 @@
     margin: auto;
 }
 
-#Spacer {
-    height: 100px;
-}
-
 #Move-table {
     border-spacing: 0;
     width: min(90%, 1360px);
