@@ -24,7 +24,7 @@ const Loading = ({ pokemonArray, speciesArray }) => {
             <div id="Loading-container" className="flex-col">
                 <p id="Fact">{fact}</p>
                 {(speciesArray.length && pokemonArray.length) 
-                ? <button id="Loading-button" className="text-button" onClick={() => setFinished(true)}>Continue</button> 
+                ? <button id="Loading-button" className="text-button" onClick={() => setFinished()}>Continue</button> 
                 : <div style={{margin: "auto"}}>
                     <img id="Loading-image" src={loadingImage} alt=""></img>
                     <p className="loading-text">Loading...</p>
