@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import Pokedex from "./components/Pokedex/Pokedex";
 import InspectPage from "./components/InspectPage/InspectPage";
 import Team from "./components/Team/Team";
+import Dashboard from "./components/Dashboard/Dashboard";
 import Footer from "./components/Footer/Footer";
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
@@ -27,6 +28,7 @@ function App() {
               <Route path="/pokedex/:id" element={<Pokedex></Pokedex>}></Route>
               <Route path="/inspect" element={<InspectPage></InspectPage>}></Route>
               <Route path="/team" element={<Team></Team>}></Route>
+              <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
             </Routes>
           </Router>
           <Footer></Footer>
