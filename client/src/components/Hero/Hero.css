@@ -1,11 +1,13 @@
 #Hero-wrapper {
     position: relative;
+    width: min(100%, 1180px);
+    margin: 120px auto 40px auto;
 }
 
 #Hero-wallpaper {
     width: 100%;
     object-fit: cover;
-    border-radius: 0px 0px 20px 20px;
+    border-radius: 20px;
 }
 
 #Hero-text {
@@ -16,9 +18,15 @@
     transform: translate(-50%, -50%);
     color: white;
     width: 80%;
-    font-size: var(--step-0);
-    padding: var(--step--1);
+    font-size: var(--step-1);
+    padding: 1rem;
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0, 0.6); /* Black w/opacity/see-through */
+    background-color: rgba(0,0,0, 0.7); /* Black w/opacity/see-through */
     border-radius: 16px;
+}
+
+@media screen and (max-width: 960px) {
+    #Hero-wrapper {
+        margin: 80px auto 0px auto;
+    }
 }
