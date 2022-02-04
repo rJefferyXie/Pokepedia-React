@@ -1,0 +1,32 @@
+#Share-form {
+    margin: 120px auto;
+    width: min(100%, 520px);
+}
+
+#Username {
+    width: min(90%, 300px);
+    height: 40px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 1px 1px 2px rgb(0, 0, 0, 27%);
+    font-size: 1rem;
+    outline: none;
+    border: 1px solid lightgray;
+    margin: 4px auto;
+}
+
+#Share-team {
+    box-shadow: 1px 1px 2px rgb(0, 0, 0, 27%);
+    background-color: white;
+    border-radius: 16px;
+    padding: 16px;
+    margin: 4px auto;
+}
+
+#Share-tags {
+    box-shadow: 1px 1px 2px rgb(0, 0, 0, 27%);
+    background-color: white;
+    border-radius: 16px;
+    padding: 16px;
+    margin: 4px auto;
+}
