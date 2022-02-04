@@ -1,9 +1,11 @@
 #Inspect-page {
     height: 100%;
-    width: 100%;
+    width: min(100%, 1480px);
     position: relative;
     overflow-y: auto;
+    overflow-x: hidden;
     text-transform: capitalize;
+    margin: auto;
 }
 
 #Inspect-container {
@@ -13,7 +15,7 @@
 
 #Pokemon-main {
     margin: auto;
-    width: min(90%, 1360px);
+    width: 100%;
 }
 
 .return-button {
