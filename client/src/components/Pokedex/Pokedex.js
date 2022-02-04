@@ -57,12 +57,13 @@ const Pokedex = () => {
     if (pokemonJSON.length > 0 && speciesJSON.length > 0) {
       setSpeciesArray(speciesJSON[0]["pokemonData"]);
       setPokemonArray(pokemonJSON[0]["speciesData"]);
-      dispatch(allActions.pokedexActions.setPokedex({"speciesData": speciesJSON[0]["pokemonData"], "pokemonData": pokemonJSON[0]["speciesData"]}));
+      dispatch(allActions.pokedexActions.setPokedex({"speciesData": speciesJSON[0]["pokemonData"], "pokemonData": pokemonJSON[0]["speciesData"], "region": region_name}));
     } 
     else {
       const pokedexData = await axios.get(`https://pokeapi.co/api/v2/pokedex/${region_number}/`).then(res => generate_pokedex(res.data))
       axios.post("/api/pokedex/pokemon/" + region_number, {"pokedexNumber": region_number, "pokemonData": pokedexData[0]});
       axios.post("/api/pokedex/species/" + region_number, {"pokedexNumber": region_number, "speciesData": pokedexData[1]});
+      dispatch(allActions.pokedexActions.setPokedex({"speciesData": speciesJSON[0]["pokemonData"], "pokemonData": pokemonJSON[0]["speciesData"], "region": region_name}));
     }
   }
 
