@@ -210,11 +210,12 @@ const InspectPage = () => {
                             case "held_item": return <p key={index}>{"Holding " + value.name}</p>
                             case "location": return <p key={index}>{"Level up at: " + value.name}</p> 
                             case "party_species": return <p key={index}>{"Level up with " + value.name + " in party."}</p>
+                            case "arrow": return <p key={index}>{value}</p>;
                             case "gender": {
                                 if (value === 2) { return <p>{"Gender: "}<span style={{color: "#01A6EA"}} key={index}>Male</span></p> }
                                 else { return <p>{"Gender: "}<span style={{color: "#FFB1CB"}} key={index}>Female</span></p> }
                             }
-                            case "type": case "trigger": case "arrow": {
+                            case "type": case "trigger": {
                                 return false;
                             }
                             default: {
