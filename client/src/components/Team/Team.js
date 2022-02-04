@@ -4,8 +4,9 @@ import { faArrowLeft, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
+import ShareForm from "../ShareForm/ShareForm";
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
@@ -14,6 +15,8 @@ const Team = () => {
   const pokemonTeam = useSelector(state => state.teamReducer.team);
   const pokedex = useSelector(state => state.pokedexReducer);
   const build = useSelector(state => state.buildReducer);
+
+  const [sharing, setSharing] = useState(false);
 
   const dispatch = useDispatch()
   const navigate = useNavigate();
@@ -81,14 +84,6 @@ const Team = () => {
     dispatch(allActions.teamActions.clearTeam());
   }
 
-  const addPokemon = (toBeAdded) => {
-    dispatch(allActions.teamActions.addToTeam(toBeAdded));
-  }
-
-  const removePokemon = (toBeRemoved) => {
-    dispatch(allActions.teamActions.removeFromTeam(toBeRemoved));
-  }
-
   const toggleLegendary = () => {
     dispatch(allActions.buildActions.toggleLegendary());
   }
@@ -98,31 +93,34 @@ const Team = () => {
   }
 
   return (
-    <section id="Team-container" className="flex">
-        <button className="return-button pokemon-button flex" onClick={() => previousPage()}>
-          <FontAwesomeIcon icon={faArrowLeft} style={{margin: "auto"}}></FontAwesomeIcon>
-        </button>
-        <div id="Team-left" className="flex-col">
-          <h2 id="Team-header">Team Builder</h2>
-          <div id="Team-button-container" className="flex">
-            <button className="team-button" style={{backgroundColor: "#A7DB8D"}} onClick={() => generateTeam()}>Generate</button>
-            <button className="team-button" style={{backgroundColor: "#F77F7F"}} onClick={() => clearTeam()}>Clear Team</button>
-          </div>
-          <div id="Team-settings-container" className="flex-col">
-            <h3 id="Team-header">Build Settings</h3>
-            <div id="Settings-container" className="flex-col">
-              <label className="settings-label"><input type="checkbox" defaultChecked={build.legendary} onClick={() => toggleLegendary()}></input> No Legendary Pokemon</label>
-              <label className="settings-label"><input type="checkbox" defaultChecked={build.mythic} onClick={() => toggleMythic()}></input> No Mythical Pokemon</label>
-            </div>
+    sharing === false ? <section id="Team-container" className="flex">
+      <button className="return-button pokemon-button flex" onClick={() => previousPage()}>
+        <FontAwesomeIcon icon={faArrowLeft} style={{margin: "auto"}}></FontAwesomeIcon>
+      </button>
+      <div id="Team-left" className="flex-col">
+        <h2 id="Team-header">Team Builder</h2>
+        <div id="Team-button-container" className="button-container flex">
+          <button className="team-button" style={{backgroundColor: "#A7DB8D"}} onClick={() => generateTeam()}>Generate</button>
+          <button className="team-button" style={{backgroundColor: "#F77F7F"}} onClick={() => clearTeam()}>Clear Team</button>
+        </div>
+        <div id="Team-settings-container" className="flex-col">
+          <h3 id="Team-header">Build Settings</h3>
+          <div id="Settings-container" className="flex-col">
+            <label className="settings-label"><input type="checkbox" defaultChecked={build.legendary} onClick={() => toggleLegendary()}></input> No Legendary Pokemon</label>
+            <label className="settings-label"><input type="checkbox" defaultChecked={build.mythic} onClick={() => toggleMythic()}></input> No Mythical Pokemon</label>
           </div>
         </div>
+      </div>
+      <div id="Team-right" className="flex-col">
         <div id="Team-wrapper" className="flex">
           {[...Array(6)].map((_, i) => {
             if (pokemonTeam[i] === undefined) { return <div className="pokemon-container flex" key={i}><FontAwesomeIcon icon={faPlus} style={{margin: "auto", fontSize: "1rem"}}></FontAwesomeIcon></div> }
-            return <PokemonCard pokemonData={pokemonTeam[i].pokemonData} speciesData={pokemonTeam[i].speciesData} pokedexIndex={pokemonTeam[i].pokedexIndex} teamIndex={i} addToTeam={addPokemon} removeFromTeam={removePokemon} key={i}></PokemonCard>
+            return <PokemonCard pokemonData={pokemonTeam[i].pokemonData} speciesData={pokemonTeam[i].speciesData} pokedexIndex={pokemonTeam[i].pokedexIndex} share={true} teamIndex={i} key={i}></PokemonCard>
           })}
-        </div>      
-    </section>
+        </div>   
+        <button id="Share-button" className="text-button" onClick={() => setSharing(true)}>Share Team</button>   
+      </div>
+    </section> : <ShareForm cancel={() => setSharing(false)}></ShareForm>
   )
 };
 
