@@ -1,7 +1,7 @@
-const setPokedex = ({ pokemonData, speciesData }) => {
+const setPokedex = ({ pokemonData, speciesData, region }) => {
     return {
         type: "pokedex/set", 
-        payload: { pokemonData, speciesData }
+        payload: { pokemonData, speciesData, region }
     }
 }
 
