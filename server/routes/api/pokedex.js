@@ -4,8 +4,6 @@ const router = express.Router();
 const PokemonPokedex = require("../../models/PokemonPokedex");
 const SpeciesPokedex = require("../../models/SpeciesPokedex");
 
-const ObjectId = require("mongodb").ObjectId;
-
 // @route GET api/pokedex/pokemon/:id
 // @desc Get the pokemon pokedex for id
 // @access Public
