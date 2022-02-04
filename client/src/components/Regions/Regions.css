@@ -8,7 +8,7 @@
     cursor: pointer;
     border-radius: 1rem;
     width: min(min(90%, calc(12vh * 6)), 720px);
-    height: min(12vh, 120px);
+    height: min(12vh, 100px);
     outline: none;
     border: none;
     position: relative;
