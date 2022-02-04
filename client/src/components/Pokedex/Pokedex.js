@@ -10,7 +10,7 @@ import Loading from "../Loading/Loading";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import { Link } from "react-router-dom";
 
-const Pokedex = () => {
+const Pokedex = () => {  
   const dispatch = useDispatch()
   const location = useLocation();
   const {region_number, region_name} = location.state;

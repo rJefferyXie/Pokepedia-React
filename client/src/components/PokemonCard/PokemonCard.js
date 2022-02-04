@@ -6,11 +6,20 @@ import { faSearch, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import React from "react";
+import { useInView } from 'react-intersection-observer';
+
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
 
 const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex}) => {
+  const supportsLazyLoad = ('loading' in document.createElement('img'));
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    rootMargin: '200px 0px',
+    skip: supportsLazyLoad !== false,
+  });
+
   const dispatch = useDispatch()
 
   const addPokemon = () => {
@@ -22,7 +31,7 @@ const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex}) => {
   }
 
   return (
-    <div className="pokemon-container flex-col" style={{backgroundColor: TypeColorSchemes[pokemonData.types[0].type.name]}}>
+    <div ref={ref} className="pokemon-container flex-col" style={{backgroundColor: TypeColorSchemes[pokemonData.types[0].type.name]}}>
         <div className="pokemon-button-container flex">
           {teamIndex === undefined ?
           <button className="pokemon-button-card flex" onClick={() => addPokemon()}>
@@ -37,7 +46,7 @@ const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex}) => {
             <FontAwesomeIcon style={{margin: "auto"}} icon={faSearch}></FontAwesomeIcon>
           </Link>
         </div>
-        <img className="pokemon-image-card" src={pokemonData.sprites.other["official-artwork"].front_default} alt=""></img>
+        {inView || supportsLazyLoad ? <img className="pokemon-image-card" src={pokemonData.sprites.other["official-artwork"].front_default} alt="" loading="lazy"></img> : null}
         <p className="pokemon-index-card">{"#" + pokedexIndex}</p>
         <p className="pokemon-name-card searchable">{pokemonData["name"]}</p>
 
