@@ -1,31 +1,71 @@
 #Regions {
-    flex-wrap: wrap;
-    width: min(90%, 1060px);
-    margin: auto;
+    width: min(90%, 1160px);
+    margin: 16px auto;
+    justify-content: center;
 }
 
 .region-container {
     cursor: pointer;
-    border-radius: 1rem;
-    width: min(min(90%, calc(12vh * 6)), 720px);
-    height: min(12vh, 100px);
+    border-radius: 8px;
+    width: calc(100% / 7);
+    height: 500px;
     outline: none;
     border: none;
     position: relative;
-    margin: 5px auto;
-    padding: 0px;
+    overflow: hidden;
+    margin: 0px 3px;
+    box-shadow: 0px 0px 4px rgb(0, 0, 0, 27%);
+}
+
+.region-wallpaper {
+    object-fit: cover;
+    height: 100%;
+}
+
+#Kanto {
+    margin: 0px 3px 0px 0px;
+}
+
+#Alola {
+    margin: 0px 0px 0px 3px;
 }
 
 .region-image {
-    image-rendering: -moz-crisp-edges; /* Firefox */
-    image-rendering: -o-crisp-edges; /* Opera */
-    image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
-    image-rendering: crisp-edges;
-    -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
-    width: calc(90% / 6);
-    max-width: 96px;
+    position: absolute;
+    width: 84px;
     opacity: 0;
-    margin: auto;
+    z-index: 1;
+    background-color: rgba(33, 202, 224, 0.3);
+    padding: 4px;
+    margin: 2px;
+    border-radius: 100%;
+}
+
+.i1 {
+    left: 0px;
+}
+
+.i2 {
+    right: 0px;
+    top: 13%;
+}
+
+.i3 {
+    top: 26%;
+}
+
+.i4 {
+    bottom: 0%;
+    right: 0px;
+}
+
+.i5 {
+    bottom: 13%;
+}
+
+.i6 {
+    bottom: 26%;
+    right: 0px;
 }
 
 .region-name {
@@ -33,74 +73,94 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 3rem;
+    font-size: 2.7rem;
     font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
     color: #fff;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    text-align: center;
     text-shadow: 
         0 0 2px rgba(255,255,255,0.8), 
         2px 2px 2px rgba(0,0,0,0.2);
+}
+
+.region-name-hover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.7rem;
+    font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+    color: #fff;
+    background-color: rgba(33, 202, 224, 0.3);
+    width: 100%;
+    text-align: center;
+    text-shadow: 
+        0 0 2px rgba(255,255,255,0.8), 
+        2px 2px 2px rgba(0,0,0,0.2);
+    opacity: 0;
+    z-index: 1;
 }
 
 .region-container:hover .region-name {
     opacity: 0;
 }
 
-.region-container:hover .region-image {
+.region-container:hover .region-image, .region-container:hover .region-name-hover {
     opacity: 1;
 }
 
-#Kanto {
-    background-color: rgb(255, 214, 139);
+.region-container:hover .region-wallpaper {
+    filter: brightness(25%);
 }
 
-#Kanto:hover {
-    box-shadow: 0px 0px 1px 2px rgb(241, 206, 140);
-}
-  
-#Johto {
-    background-color: rgb(143, 178, 253);
+@media screen and (max-width: 1200px) {
+    #Regions {
+        flex-wrap: wrap;
+    }
+
+    .region-container {
+        width: calc(calc(100% - 12px) / 2);
+        height: 240px;
+        margin: 3px;
+    }
+
+    .i1 {
+        left: 0px;
+    }
+    
+    .i2 {
+        left: 50%;
+        transform: translateX(-50%);
+        top: initial;
+    }
+    
+    .i3 {
+        top: initial;
+        right: 0px;
+    }
+    
+    .i4 {
+        bottom: 0%;
+        left: 0px;
+    }
+    
+    .i5 {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0%;
+    }
+    
+    .i6 {
+        bottom: 0%;
+        right: 0px;
+    }
 }
 
-#Johto:hover {
-    box-shadow: 0px 0px 1px 2px rgb(126, 166, 252);
-}
-
-#Hoenn {
-    background-color: rgb(128, 255, 155);
-}
-
-#Hoenn:hover {
-    box-shadow: 0px 0px 1px 2px rgb(110, 250, 140);
-}
-
-#Sinnoh {
-    background-color: rgb(154, 244, 250);
-}
-
-#Sinnoh:hover {
-    box-shadow: 0px 0px 1px 2px rgb(143, 246, 253);
-}
-
-#Unova {
-    background-color: rgb(203, 185, 253);
-}
-
-#Unova:hover {
-    box-shadow: 0px 0px 1px 2px rgb(193, 172, 252);
-}
-
-#Kalos {
-    background-color: rgb(144, 255, 209);
-}
-
-#Kalos:hover {
-    box-shadow: 0px 0px 1px 2px  rgb(127, 253, 201);
-}
-
-#Alola {
-    background-color: rgb(255, 187, 155);
-}
-
-#Alola:hover {
-    box-shadow: 0px 0px 1px 2px rgb(255, 174, 137);
+@media screen and (max-width: 960px){
+    .region-container {
+        width: 100%;
+        height: 240px;
+        margin: 8px 0px;
+    }
 }
