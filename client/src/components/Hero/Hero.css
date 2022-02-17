@@ -1,7 +1,7 @@
 #Hero-wrapper {
     position: relative;
-    width: min(100%, 1180px);
-    margin: 120px auto 40px auto;
+    width: min(100%, 1160px);
+    margin: 120px auto 16px auto;
 }
 
 #Hero-wallpaper {
