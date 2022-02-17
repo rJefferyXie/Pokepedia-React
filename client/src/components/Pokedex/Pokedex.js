@@ -121,18 +121,22 @@ const Pokedex = () => {
 
   return (
     <section id="Pokedex-container" className="flex">
-      {(loaded && (speciesArray.length && pokemonArray.length)) ? <div id="Pokedex-page" className="flex-col">
-        <Link to="/team" id="View-team">View Team</Link>
+      {(loaded && (speciesArray.length && pokemonArray.length)) ? 
+        <div id="Pokedex-page" className="flex-col">
+          <div id="Pokedex-top" className="flex">
+            <button id="Tutorial" className="flex">Tutorial (Incomplete)</button>
             <input id="Pokedex-search" type="text" placeholder="Search by Pokemon Name or Type..." onChange={searchPokedex}></input>
-            <div id="Pokedex-list" className="page-container flex">
-                {speciesArray.map((pokemon, index) => 
-                (<PokemonCard 
-                  speciesData={pokemonArray[index]} 
-                  pokemonData={pokemon} 
-                  pokedexIndex={index + 1} 
-                  key={index}></PokemonCard>
-                ))}
-            </div>
+            <Link to="/team" id="View-team" className="flex">View Team</Link>
+          </div>
+          <div id="Pokedex-list" className="page-container flex">
+              {speciesArray.map((pokemon, index) => 
+              (<PokemonCard 
+                speciesData={pokemonArray[index]} 
+                pokemonData={pokemon} 
+                pokedexIndex={index + 1} 
+                key={index}></PokemonCard>
+              ))}
+          </div>
         </div>
       : <Loading speciesArray={speciesArray} pokemonArray={pokemonArray}></Loading>}
     </section> 
