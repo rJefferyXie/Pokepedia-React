@@ -22,6 +22,7 @@ const Loading = ({ pokemonArray, speciesArray }) => {
     return (
         <section id="Loading-screen" className="flex-col">
             <div id="Loading-container" className="flex-col">
+                <h1 style={{margin: "auto", fontSize: "1.8rem"}}>Random Pokémon Fact</h1>
                 <p id="Fact">{fact}</p>
                 {(speciesArray.length && pokemonArray.length) 
                 ? <button id="Loading-button" className="text-button" onClick={() => setFinished()}>Continue</button> 
