@@ -8,9 +8,12 @@
 
 #Dashboard-right {
     height: 100%;
-    width: min(100%, 1820px);
-    flex-wrap: wrap;
+    width: min(100%, 820px);
     justify-content: center;
+}
+
+#Posts {
+    flex-wrap: wrap;
 }
 
 .team-post {
