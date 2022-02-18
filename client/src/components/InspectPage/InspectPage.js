@@ -75,7 +75,7 @@ const InspectPage = () => {
                             }
                         }
                     }
-                    currentChain["arrow"] = <FontAwesomeIcon icon={faArrowRight} alt=""></FontAwesomeIcon>
+                    currentChain["arrow"] = <FontAwesomeIcon icon={faArrowRight} alt="" className="evo-arrow"></FontAwesomeIcon>
                     data.push(currentChain);
                     data.push(await getPokeContainer(newChain));
                 }
@@ -99,7 +99,7 @@ const InspectPage = () => {
                                 }
                             }
                         }
-                        currentChain["arrow"] = <FontAwesomeIcon icon={faArrowRight} alt=""></FontAwesomeIcon>
+                        currentChain["arrow"] = <FontAwesomeIcon icon={faArrowRight} alt="" className="evo-arrow"></FontAwesomeIcon>
                         data.push(currentChain);
                         data.push(await getPokeContainer(babyChain));
                     }
@@ -147,7 +147,7 @@ const InspectPage = () => {
             <h2 id="Pokemon-name">{pokemonData.name}</h2>
             <p className="pokemon-genera" style={{backgroundColor: theme}}>{speciesData.genus}</p>
             <div id="Pokemon-main" className="flex">
-                <div className="flex-col main-section">
+                <div id="Main-left" className="flex-col main-section">
                     <p className="pokemon-index left">{"Pokedex Entry #" + pokedexIndex}</p>
                     <p className="pokemon-height left">{"Height " + pokemonData.height * 10 + "cm (" + (pokemonData.height / 2.54 / 12).toFixed(1) + "ft. "  + (pokemonData.height / 2.54 % 12).toFixed(1) + 'in.)'}</p>
                     <p className="pokemon-weight left">{"Weight " + pokemonData.weight / 10 + "kg (" + (pokemonData.weight / 4.536).toFixed(1) + "lbs)"}</p>
@@ -169,7 +169,7 @@ const InspectPage = () => {
                     </div>
                 </div>
                 <img className="pokemon-image" src={pokemonData.sprites.other["official-artwork"].front_default} alt=""></img>
-                <div className="flex-col main-section">
+                <div id="Main-right" className="flex-col main-section">
                     <div id="Stat-list" className="flex-col right">
                         <h2 id="Stats-name">Pokemon Stats</h2>
                         {pokemonData.stats.map((stat, index) => {
