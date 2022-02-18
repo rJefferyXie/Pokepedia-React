@@ -31,14 +31,6 @@
     margin: 4px auto;
 }
 
-.team-button {
-    padding: 20px;
-    width: 180px;
-    margin: auto 4px;
-    color: white;
-    font-size: var(--step-0);
-}
-
 #Team-settings-container {
     background-color: white;
     border-radius: 16px;
@@ -49,17 +41,6 @@
 
 #Settings-container {
     margin: auto;
-}
-
-#Share-button {
-    margin: 10px auto auto auto;
-    background-color: rgb(28, 114, 185);
-    color: white;
-    font-size: 1.3rem;
-}
-
-#Share-button:hover, #Share-button:focus, #Share-button:active {
-    background-color: rgb(45, 133, 204);
 }
 
 @media screen and (max-width: 960px) {

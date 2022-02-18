@@ -11,6 +11,8 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
 
+import { Button } from "@mui/material";
+
 const Team = () => {
   const pokemonTeam = useSelector(state => state.teamReducer.team);
   const pokedex = useSelector(state => state.pokedexReducer);
@@ -93,15 +95,16 @@ const Team = () => {
   }
 
   return (
-    sharing === false ? <section id="Team-container" className="flex">
+    <section id="Team-container" className="flex">
+      {sharing === false ? null : <ShareForm cancel={() => setSharing(false)}></ShareForm>}
       <button className="return-button pokemon-button flex" onClick={() => previousPage()}>
         <FontAwesomeIcon icon={faArrowLeft} style={{margin: "auto"}}></FontAwesomeIcon>
       </button>
       <div id="Team-left" className="flex-col">
         <h2 id="Team-header">Team Builder</h2>
         <div id="Team-button-container" className="button-container flex">
-          <button className="team-button" style={{backgroundColor: "#A7DB8D"}} onClick={() => generateTeam()}>Generate</button>
-          <button className="team-button" style={{backgroundColor: "#F77F7F"}} onClick={() => clearTeam()}>Clear Team</button>
+          <Button variant="contained" color="error" onClick={() => clearTeam()} style={{margin: "auto 4px", width: "fit-content"}}>Clear Team</Button>
+          <Button variant="contained" color="success" onClick={() => generateTeam()} style={{margin: "auto 4px", width: "fit-content"}}>Generate</Button>
         </div>
         <div id="Team-settings-container" className="flex-col">
           <h3 id="Team-header">Build Settings</h3>
@@ -118,9 +121,9 @@ const Team = () => {
             return <PokemonCard pokemonData={pokemonTeam[i].pokemonData} speciesData={pokemonTeam[i].speciesData} pokedexIndex={pokemonTeam[i].pokedexIndex} share={true} teamIndex={i} key={i}></PokemonCard>
           })}
         </div>   
-        <button id="Share-button" className="text-button" onClick={() => setSharing(true)}>Share Team</button>   
+        <Button variant="contained" color="primary" onClick={() => setSharing(true)} style={{margin: "auto", width: "fit-content"}}>Share Team</Button>   
       </div>
-    </section> : <ShareForm cancel={() => setSharing(false)}></ShareForm>
+    </section> 
   )
 };
 
