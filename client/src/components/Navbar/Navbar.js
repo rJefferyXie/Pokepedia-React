@@ -38,7 +38,7 @@ const Navbar = () => {
                 <button onClick={() => ScrollTo("#Hero")} className="nav-button">Home</button>
                 <button onClick={() => ScrollTo("#About")} className="nav-button">About</button>
                 <button onClick={() => ScrollTo("#Regions")} className="nav-button">Regions</button>
-                <a href="/dashboard" className="nav-button">Dashboard</a>
+                <a href="/dashboard" className="nav-button flex">Dashboard</a>
             </div>
         </nav>
     );
