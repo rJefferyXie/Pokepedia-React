@@ -1,7 +1,6 @@
 #Pokedex-container {
     height: 100%;
     width: 100%;
-    align-items: flex-end;
     margin: 80px 0px 0px 0px;
 }
 
@@ -60,8 +59,8 @@
 }
 
 @media screen and (max-width: 1200px) {
-    #Pokedex-container {
-        margin: 150px 0px 0px 0px;
+    #Pokedex-list {
+        margin: 150px auto 80px auto;
     }
 
     #Pokedex-search {
