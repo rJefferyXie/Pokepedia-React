@@ -123,7 +123,7 @@ const Regions = () => {
             <img alt="" src={zekrom} className="region-image i5"></img>
             <img alt="" src={kyurem} className="region-image i6"></img>
         </Link>
-        <Link to="/pokedex/kalos" state={{ region_number: '14', region_name: "kalos" }} id="Kalos" className="region-container flex-col">
+        <Link to="/pokedex/kalos" state={{ region_number: '12', region_name: "kalos" }} id="Kalos" className="region-container flex-col">
             <h1 className="region-name">KALOS</h1>
             <h1 className="region-name-hover">VISIT</h1>
             <img alt="" src={kalos} className="region-wallpaper"></img>
