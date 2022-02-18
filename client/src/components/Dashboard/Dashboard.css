@@ -6,29 +6,38 @@
     justify-content: center;
 }
 
+#Dashboard-right {
+    height: 100%;
+    width: min(100%, 1820px);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .team-post {
     margin: 4px 4px;
     background-color: white;
     padding: 8px;
-    border-radius: 16px;
+    border-radius: 8px;
     box-shadow: 0px 0px 4px rgb(0, 0, 0, 27%);
     width: 400px;
+    cursor: pointer;
 }
 
 .team-titles {
-    width: 95%;
+    width: 100%;
     justify-content: space-between;
     margin: auto;
 }
 
 .team-wrapper {
-    margin: auto;
-    width: 100%;
+    margin: 4px auto;
+    width: min(100%, 400px);
     justify-content: center;
     flex-wrap: wrap;
 }
 
 .team-tags {
+    display: none;
     margin: auto;
     flex-wrap: wrap;
     text-align: center;
@@ -43,7 +52,7 @@
     color: white;    
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     border-radius: 8px;
-    font-size: var(--step--1);
+    font-size: var(--step--2);
 }
 
 .selected {
