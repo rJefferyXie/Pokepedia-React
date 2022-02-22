@@ -26,16 +26,14 @@
     justify-content: center;
 }
 
-#View-team, #Tutorial {
-    width: 200px;
-    height: 20px;
+.pokedex-button {
+    height: 50px;
     border-radius: 16px;
-    padding: 25px 15px;
-    background-color: rgb(58, 58, 58);
     color: white;
     justify-content: center;
     align-items: center;
     font-size: 1rem;
+    margin: 0px 16px;
 }
 
 #Tutorial {
@@ -50,8 +48,8 @@
     width: min(90%, 420px);
     height: 20px;
     padding: 25px;
-    border-radius: 16px;
-    box-shadow: 1px 1px 4px rgb(0, 0, 0, 27%);
+    border-radius: 4px;
+    box-shadow: 1px 1px 2px rgb(0, 0, 0, 27%);
     margin: 0px 16px;
     font-size: 1rem;
     outline: none;
