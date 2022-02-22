@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
 
-const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex, dashboard}) => {
+const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex, dashboard, showTeam}) => {
   const supportsLazyLoad = ('loading' in document.createElement('img'));
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -24,6 +24,9 @@ const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex, dashboa
 
   const addPokemon = () => {
     dispatch(allActions.teamActions.addToTeam({ "pokemonData": pokemonData, "speciesData": speciesData, "pokedexIndex": pokedexIndex }));
+    if (showTeam) {
+      showTeam();
+    }
   }
 
   const removePokemon = () => {
