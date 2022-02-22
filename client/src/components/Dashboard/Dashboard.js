@@ -19,13 +19,38 @@ const Dashboard = () => {
   return (
     <section id="Dashboard-container" className="flex">
       <div id="Dashboard-left" className="flex">
-        <Card variant="outlined" style={{width: "200px", height: "120px", margin: "4px", textAlign: "center"}}>
-          <p style={{fontSize: "initial"}}>Teams Shared All Time</p>
-          <p>{posts.length}</p>
+        <Card variant="outlined" className="flex-col fun-stat">
+          <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Total Teams Shared</p>
+          <strong style={{fontSize: "initial", margin: "auto"}}>{posts.length}</strong>
         </Card>
-        <Card variant="outlined" style={{width: "200px", height: "120px", margin: "4px", textAlign: "center"}}>Most Teams Shared</Card>
-        <Card variant="outlined" style={{width: "200px", height: "120px", margin: "4px", textAlign: "center"}}>Most Popular Region</Card>
-        <Card variant="outlined" style={{width: "200px", height: "120px", margin: "4px", textAlign: "center"}}>Most Popular Pokemon</Card>
+        <Card variant="outlined" className="flex-col fun-stat">
+          <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Teams Shared Today</p>
+          <strong style={{fontSize: "initial", margin: "auto"}}>{posts.length}</strong>
+        </Card>
+        <Card variant="outlined" className="flex-col fun-stat">
+          <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Teams Shared</p>
+          <strong style={{fontSize: "initial", margin: "auto"}}>Kenny Omega</strong>
+        </Card>
+        <Card variant="outlined" className="flex-col fun-stat">
+          <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Popular Region</p>
+          <strong style={{fontSize: "initial", margin: "auto"}}>Hoenn</strong>
+        </Card>
+        <Card variant="outlined" className="flex-col fun-stat">
+          <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Popular Pokemon</p>
+          <strong style={{fontSize: "initial", margin: "auto"}}>Lucario</strong>
+        </Card>
+        <Card variant="outlined" className="flex-col fun-stat">
+          <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Popular Type</p>
+          <strong style={{fontSize: "initial", margin: "auto"}}>Dragon</strong>
+        </Card>
+        <Card variant="outlined" className="flex-col fun-stat">
+          <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Heaviest Team</p>
+          <strong style={{fontSize: "initial", margin: "auto"}}>600 lbs.</strong>
+        </Card>
+        <Card variant="outlined" className="flex-col fun-stat">
+          <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Lightest Team</p>
+          <strong style={{fontSize: "initial", margin: "auto"}}>20 lbs.</strong>
+        </Card>
       </div>
       <div id="Dashboard-right" className="flex-col">
         <div id="Region-filter" className="flex">
