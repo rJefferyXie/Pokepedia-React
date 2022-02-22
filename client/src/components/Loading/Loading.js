@@ -1,5 +1,4 @@
 import "./Loading.css"
-import loadingImage from "../../images/loader.png";
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -24,13 +23,16 @@ const Loading = ({ pokemonArray, speciesArray }) => {
     return (
         <section id="Loading-screen" className="flex-col">
             <div id="Loading-container" className="flex-col">
-                <Card variant="outlined" className="flex-col" style={{margin: "8px auto"}}>
-                    <h1 style={{margin: "8px auto 0px"}}>Random Pokémon Fact</h1>
-                    <p style={{padding: "8px"}}>{fact}</p>
+                <Card variant="outlined" className="flex-col" style={{margin: "8px auto", padding: "8px"}}>
+                    <h1 style={{margin: "0px 8px"}}>Random Pokémon Fact</h1>
+                    <p style={{padding: "2px 8px"}}>{fact}</p>
                 </Card>
                 {(speciesArray.length && pokemonArray.length) 
                 ? <Button variant="contained" onClick={() => setFinished()} style={{width: "fit-content", margin: "auto"}}>Continue</Button> 
-                : <LinearProgress color="primary"></LinearProgress>}
+                : <div className="flex-col">
+                    <LinearProgress color="primary"></LinearProgress>
+                    <p style={{margin: "4px auto", fontSize: "1rem"}}>Loading Pokédex...</p>
+                </div>}
             </div>
         </section>
     )
