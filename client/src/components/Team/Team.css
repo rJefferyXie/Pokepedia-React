@@ -5,7 +5,7 @@
     margin: 80px auto 0px auto;
 }
 
-#Team-wrapper {
+.team-wrapper {
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;

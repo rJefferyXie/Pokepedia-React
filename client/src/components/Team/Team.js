@@ -115,7 +115,7 @@ const Team = () => {
         </div>
       </div>
       <div id="Team-right" className="flex-col">
-        <div id="Team-wrapper" className="flex">
+        <div className="flex team-wrapper">
           {[...Array(6)].map((_, i) => {
             if (pokemonTeam[i] === undefined) { return <div className="pokemon-container flex" key={i}><FontAwesomeIcon icon={faPlus} style={{margin: "auto", fontSize: "1rem"}}></FontAwesomeIcon></div> }
             return <PokemonCard pokemonData={pokemonTeam[i].pokemonData} speciesData={pokemonTeam[i].speciesData} pokedexIndex={pokemonTeam[i].pokedexIndex} share={true} teamIndex={i} key={i}></PokemonCard>
