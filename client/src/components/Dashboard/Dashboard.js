@@ -6,6 +6,8 @@ import Pagination from '@mui/material/Pagination';
 
 import PokemonCard from "../PokemonCard/PokemonCard";
 
+import { Button, Card } from "@mui/material";
+
 const Dashboard = () => {
     const [posts, setPosts] = useState([]);
 
@@ -16,7 +18,25 @@ const Dashboard = () => {
 
   return (
     <section id="Dashboard-container" className="flex">
+      <div id="Dashboard-left" className="flex">
+        <Card variant="outlined" style={{width: "200px", height: "120px", margin: "4px", textAlign: "center"}}>
+          <p style={{fontSize: "initial"}}>Teams Shared All Time</p>
+          <p>{posts.length}</p>
+        </Card>
+        <Card variant="outlined" style={{width: "200px", height: "120px", margin: "4px", textAlign: "center"}}>Most Teams Shared</Card>
+        <Card variant="outlined" style={{width: "200px", height: "120px", margin: "4px", textAlign: "center"}}>Most Popular Region</Card>
+        <Card variant="outlined" style={{width: "200px", height: "120px", margin: "4px", textAlign: "center"}}>Most Popular Pokemon</Card>
+      </div>
       <div id="Dashboard-right" className="flex-col">
+        <div id="Region-filter" className="flex">
+          <Button variant="contained" color="info" style={{margin: "4px"}}>Kanto</Button>
+          <Button variant="contained" color="info" style={{margin: "4px"}}>Johto</Button>
+          <Button variant="contained" color="info" style={{margin: "4px"}}>Hoenn</Button>
+          <Button variant="contained" color="info" style={{margin: "4px"}}>Sinnoh</Button>
+          <Button variant="contained" color="info" style={{margin: "4px"}}>Kalos</Button>
+          <Button variant="contained" color="info" style={{margin: "4px"}}>Unova</Button>
+          <Button variant="contained" color="info" style={{margin: "4px"}}>Alola</Button>
+        </div>
         <div id="Posts" className="flex">
           {posts.map((post, index) => {
           return <div className="team-post flex-col" key={index}>
@@ -24,7 +44,7 @@ const Dashboard = () => {
               <h3>{post.username}</h3>
               <h3 style={{textTransform: "capitalize"}}>{post.region}</h3>
             </div>
-            <div className="team-wrapper flex">
+            <div className="ds-team-wrapper flex">
               {post.team.map((pokemon, teamIndex) => {
                 return <PokemonCard pokemonData={pokemon.pokemonData} speciesData={pokemon.speciesData} dashboard={true} key={teamIndex}></PokemonCard>
               })}

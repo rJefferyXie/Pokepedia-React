@@ -1,25 +1,37 @@
 #Dashboard-container {
     height: 100%;
     width: min(100%, 1820px);
-    margin: 120px auto;
-    flex-wrap: wrap;
+    margin: 100px auto;
     justify-content: center;
+}
+
+#Dashboard-left {
+    height: 100%;
+    width: min(100%, 420px);
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 #Dashboard-right {
     height: 100%;
     width: min(100%, 820px);
+}
+
+#Region-filter {
+    width: 100%;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 #Posts {
     flex-wrap: wrap;
+    margin-top: 8px;
 }
 
 .team-post {
     margin: 4px 4px;
     background-color: white;
-    padding: 8px;
+    padding: 4px 8px;
     border-radius: 8px;
     box-shadow: 0px 0px 4px rgb(0, 0, 0, 27%);
     width: 400px;
@@ -32,7 +44,7 @@
     margin: auto;
 }
 
-.team-wrapper {
+.ds-team-wrapper {
     margin: 4px auto;
     width: min(100%, 400px);
     justify-content: center;
