@@ -1,10 +1,4 @@
-import TypeColorSchemes from "../Constants/TypeColorSchemes";
-
-import React, { useEffect, useState } from "react";
-
 const Move = (props) => {
-    const [inspecting, setInspecting] = useState(false);
-
     return (
         <tr className="table-move-row">
             <td className="td-level">{props.level}</td>
