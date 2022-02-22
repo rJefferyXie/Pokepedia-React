@@ -159,7 +159,7 @@ const Pokedex = () => {
           </div>
           <Snackbar open={teamShow} autoHideDuration={2000} onClose={closeTeam} style={{width: "100%"}}>
             <div className="flex" style={{width: "100%"}}>
-              {pokemonTeam.length < 6 ? 
+              {pokemonTeam.length <= 6 ? 
                 <Alert onClose={closeTeam} severity="success" style={{width: "fit-content", textAlign: "center"}}>
                   Your Pokemon was added to your team!
                   <div className="flex team-wrapper">
