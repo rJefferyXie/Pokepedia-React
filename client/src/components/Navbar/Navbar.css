@@ -5,6 +5,7 @@
     width: 100vw;
     background-color: rgba(19, 59, 105, 0.9);
     z-index: 9999;
+    transition: background-color 0.5s ease-in-out;
 }
 
 #Navbar-logo {
@@ -24,6 +25,7 @@
     width: 75%;
     justify-content: flex-end;
     margin: 0px 40px 0px 0px;
+    transition: background-color 0.5s ease-in-out;
 }
 
 .nav-button {
