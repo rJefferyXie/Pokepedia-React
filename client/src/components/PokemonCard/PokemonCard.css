@@ -42,8 +42,12 @@
 }
 
 .pokemon-index-card, .pokemon-name-card {
-    margin: 1px auto;
     color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    height: 100%;
+    width: 100%;
 }
 
 .pokemon-image-card {
