@@ -18,7 +18,7 @@ const Navbar = () => {
         RedirectToHome();
 
         if (window.location.pathname === "/") {
-            let section = document.querySelector(id).offsetTop - 80;
+            let section = document.querySelector(id).offsetTop - 100;
             window.scroll({
                 top: section,
                 behavior: "smooth"
