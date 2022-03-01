@@ -1,7 +1,8 @@
 import "./App.css";
 
-import Hero from './components/Hero/Hero';
 import Navbar from './components/Navbar/Navbar';
+import Hero from './components/Hero/Hero';
+import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
 import Pokedex from "./components/Pokedex/Pokedex";
 import InspectPage from "./components/InspectPage/InspectPage";
 import Team from "./components/Team/Team";
@@ -22,6 +23,7 @@ function App() {
     <Provider store={store}>
         <div className="App">
           <Navbar></Navbar>
+          <MusicPlayer></MusicPlayer>
           <Router>
             <Routes>
               <Route exact path="/" element={<Hero></Hero>}></Route>
