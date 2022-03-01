@@ -14,6 +14,8 @@ import PauseIcon from '@mui/icons-material/Pause';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import CloseIcon from '@mui/icons-material/Close';
 
 import React, { useState, useEffect } from 'react'
 
@@ -21,6 +23,7 @@ const MusicPlayer = () => {
     const [playing, setPlaying] = useState(false);
     const [regionNumber, setRegionNumber] = useState(0);
     const [trackNumber, setTrackNumber] = useState(0);
+    const [closed, setClosed] = useState(false);
 
     const regions = {
         0: "johto",
@@ -90,9 +93,19 @@ const MusicPlayer = () => {
     }, []);
 
     return (
-        <Card id="Music-player" className="flex-col" style={{width: "240px"}}>
+        <Card id="Music-player" className="flex-col" style={closed === false ? {width: "200px"} : {width: "fit-content"}}>
             <audio id="Music-audio" src={Soundtracks[regions[regionNumber]][trackNumber]["file_path"]}></audio>
-            <Typography style={{padding: "4px 8px 0px 8px", margin: "auto"}}>{Soundtracks[regions[regionNumber]][trackNumber]["name"]}</Typography>
+            <Tooltip title={closed === false ? "Close Player" : "Open Player"} placement="top" style={closed === false ? {position: "absolute", top: "0", left: "0"} : {}} arrow>
+                {closed === false ? 
+                <IconButton onClick={() => setClosed(true)}>
+                    <CloseIcon style={{padding: "0px 0px 0px 0px", width: "16px", height: "16px", color: "red"}}></CloseIcon>
+                </IconButton> :                 
+                <IconButton onClick={() => setClosed(false)}>
+                    <MusicNoteIcon style={{padding: "0px 0px 0px 0px", width: "16px", height: "16px", color: "green"}}></MusicNoteIcon>
+                </IconButton>}
+            </Tooltip>
+            {closed === false ? <Typography style={{padding: "4px 8px 0px 8px", margin: "auto"}}>{Soundtracks[regions[regionNumber]][trackNumber]["name"]}</Typography> : null}
+            {closed === false ? 
             <div className="flex" style={{width: "fit-content", margin: "auto"}}>
                 <Tooltip title="Previous Region" placement="top" arrow>
                     <IconButton onClick={() => prevRegion()}>
@@ -105,8 +118,10 @@ const MusicPlayer = () => {
                         <ArrowRightIcon></ArrowRightIcon>
                     </IconButton>  
                 </Tooltip> 
-            </div>
-            <Slider size="small" style={{width: "80%", margin: "auto"}}></Slider>
+            </div> : null}
+            {closed === false ? <Slider size="small" style={{width: "80%", margin: "auto"}}></Slider> : null}
+
+            {closed === false ?             
             <div className="flex" style={{margin: "0px auto"}}>
                 <Tooltip title="Previous Song" placement="top" arrow>
                     <IconButton aria-label="previous" onClick={() => prevSong()}>
@@ -123,7 +138,7 @@ const MusicPlayer = () => {
                         <SkipNextIcon></SkipNextIcon>
                     </IconButton>
                 </Tooltip>
-            </div>
+            </div> : null}
         </Card>
     )
 }
