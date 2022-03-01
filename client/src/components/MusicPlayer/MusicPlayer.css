@@ -1,0 +1,7 @@
+#Music-player {
+    position: fixed;
+    bottom: 3%;
+    right: 3%;
+    z-index: 999;
+    padding: 0px 8px;
+}
