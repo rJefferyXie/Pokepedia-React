@@ -1,19 +1,24 @@
 #Hero-wrapper {
     position: relative;
     width: min(100%, 1160px);
-    margin: 120px auto 16px auto;
+    margin: 100px auto 16px auto;
 }
 
 #Hero-wallpaper {
     width: 100%;
     object-fit: cover;
     border-radius: 20px;
+    margin: 0px auto 20px;
 }
 
 #Hero-text {
     text-align: center;
     width: 90%;
-    margin: 0px auto 40px;
+    margin: 0px auto 20px;
+}
+
+#Hero-button-container {
+    justify-content: center;
 }
 
 @media screen and (max-width: 960px) {
@@ -23,5 +28,10 @@
 
     #Hero-text {
         margin: 20px auto;
+    }
+
+    #Hero-wallpaper {
+        border-radius: 0px;
+        border: none;
     }
 }
