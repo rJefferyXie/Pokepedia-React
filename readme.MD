@@ -1,0 +1,1 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/42d1f3ff-d0fa-47d2-801b-9f0209010f44/deploy-status)](https://app.netlify.com/sites/pokepediajx/deploys)
