@@ -23,7 +23,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const MusicPlayer = () => {
     const [playing, setPlaying] = useState(false);
-    const [volume, setVolume] = useState(0.10);
     const [regionNumber, setRegionNumber] = useState(0);
     const [trackNumber, setTrackNumber] = useState(0);
 
@@ -38,6 +37,11 @@ const MusicPlayer = () => {
         4: "unova",
         5: "kalos",
         6: "alola"
+    }
+
+    const changeVolume = (_, volume) => {
+        let player = document.getElementById("Music-audio");
+        player.volume = volume;
     }
 
     const nextSong = () => {
@@ -124,11 +128,7 @@ const MusicPlayer = () => {
                     </IconButton>  
                 </Tooltip> 
             </div> : null}
-            {music.closed === false ? 
-            <Tooltip title={volume} placement="top" arrow>
-                <Slider size="small" style={{width: "80%", margin: "auto"}}></Slider>
-            </Tooltip>: null}
-
+            {music.closed === false ? <Slider size="small" defaultValue={0.1} step={0.01} min={0.00} max={1.00} onChange={changeVolume} style={{width: "80%", margin: "auto"}}></Slider> : null}
             {music.closed === false ?             
             <div className="flex" style={{margin: "0px auto"}}>
                 <Tooltip title="Previous Song" placement="top" arrow>
