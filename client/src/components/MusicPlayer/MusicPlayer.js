@@ -18,12 +18,17 @@ import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import CloseIcon from '@mui/icons-material/Close';
 
 import React, { useState, useEffect } from 'react'
+import allActions from '../../redux/actions/allActions';
+import { useSelector, useDispatch } from 'react-redux';
 
 const MusicPlayer = () => {
     const [playing, setPlaying] = useState(false);
+    const [volume, setVolume] = useState(0.10);
     const [regionNumber, setRegionNumber] = useState(0);
     const [trackNumber, setTrackNumber] = useState(0);
-    const [closed, setClosed] = useState(false);
+
+    const music = useSelector(state => state.musicReducer);
+    const dispatch = useDispatch()
 
     const regions = {
         0: "johto",
@@ -93,35 +98,38 @@ const MusicPlayer = () => {
     }, []);
 
     return (
-        <Card id="Music-player" className="flex-col" style={closed === false ? {width: "200px"} : {width: "fit-content"}}>
+        <Card id="Music-player" className="flex-col" style={music.closed === false ? {width: "200px", padding: "4px 20px"} : {borderRadius: "100%", width: "32px", height: "32px", padding: "0px"}}>
             <audio id="Music-audio" src={Soundtracks[regions[regionNumber]][trackNumber]["file_path"]}></audio>
-            <Tooltip title={closed === false ? "Close Player" : "Open Player"} placement="top" style={closed === false ? {position: "absolute", top: "0", left: "0"} : {}} arrow>
-                {closed === false ? 
-                <IconButton onClick={() => setClosed(true)}>
+            <Tooltip title={music.closed === false ? "Close Player" : "Open Player"} placement="top" style={music.closed === false ? {position: "absolute", top: "0", right: "0"} : {width: "100%"}} arrow>
+                {music.closed === false ? 
+                <IconButton onClick={() => dispatch(allActions.musicActions.close())}>
                     <CloseIcon style={{padding: "0px 0px 0px 0px", width: "16px", height: "16px", color: "red"}}></CloseIcon>
                 </IconButton> :                 
-                <IconButton onClick={() => setClosed(false)}>
+                <IconButton onClick={() => dispatch(allActions.musicActions.open())}>
                     <MusicNoteIcon style={{padding: "0px 0px 0px 0px", width: "16px", height: "16px", color: "green"}}></MusicNoteIcon>
                 </IconButton>}
             </Tooltip>
-            {closed === false ? <Typography style={{padding: "4px 8px 0px 8px", margin: "auto"}}>{Soundtracks[regions[regionNumber]][trackNumber]["name"]}</Typography> : null}
-            {closed === false ? 
+            {music.closed === false ? <Typography style={{padding: "0px 8px 0px 8px", margin: "auto", width: "160px", height: "20px", overflow: "hidden", textOverflow: "ellipsis", textAlign: "center"}}>{Soundtracks[regions[regionNumber]][trackNumber]["name"]}</Typography> : null}
+            {music.closed === false ? 
             <div className="flex" style={{width: "fit-content", margin: "auto"}}>
                 <Tooltip title="Previous Region" placement="top" arrow>
                     <IconButton onClick={() => prevRegion()}>
-                        <ArrowLeftIcon></ArrowLeftIcon>
+                        <ArrowLeftIcon style={{fontSize: "2rem"}}></ArrowLeftIcon>
                     </IconButton>  
                 </Tooltip>             
                 <Typography style={{padding: "4px 8px 0px 8px", margin: "auto", textTransform: "capitalize"}}>{regions[regionNumber]}</Typography>
                 <Tooltip title="Next Region" placement="top" arrow>
                     <IconButton onClick={() => nextRegion()}>
-                        <ArrowRightIcon></ArrowRightIcon>
+                        <ArrowRightIcon style={{fontSize: "2rem"}}></ArrowRightIcon>
                     </IconButton>  
                 </Tooltip> 
             </div> : null}
-            {closed === false ? <Slider size="small" style={{width: "80%", margin: "auto"}}></Slider> : null}
+            {music.closed === false ? 
+            <Tooltip title={volume} placement="top" arrow>
+                <Slider size="small" style={{width: "80%", margin: "auto"}}></Slider>
+            </Tooltip>: null}
 
-            {closed === false ?             
+            {music.closed === false ?             
             <div className="flex" style={{margin: "0px auto"}}>
                 <Tooltip title="Previous Song" placement="top" arrow>
                     <IconButton aria-label="previous" onClick={() => prevSong()}>
