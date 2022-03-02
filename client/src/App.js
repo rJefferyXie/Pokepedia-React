@@ -10,17 +10,14 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Footer from "./components/Footer/Footer";
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-
-// Redux State Management
 import { Provider } from 'react-redux';
-import { createStore } from "redux";
-import rootReducer from "./redux/reducers/rootReducer";
+import { PersistGate } from 'redux-persist/integration/react'
+import { store, persistor } from "./redux/Store";
 
 function App() {
-  let store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
   return (
     <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
         <div className="App">
           <Navbar></Navbar>
           <MusicPlayer></MusicPlayer>
@@ -35,6 +32,7 @@ function App() {
           </Router>
           <Footer></Footer>
         </div>
+      </PersistGate>
     </Provider>
   );
 }
