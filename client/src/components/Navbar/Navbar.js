@@ -1,5 +1,7 @@
 import "./Navbar.css";
 
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
 
     // Switch to mobile menu
@@ -8,15 +10,7 @@ const Navbar = () => {
         document.querySelector('#Navbar-container').classList.toggle('active');
     };
 
-    const RedirectToHome = () => {
-        if (window.location.pathname !== "/") {
-            window.location.pathname = "/";
-        }
-    }
-
     const ScrollTo = (id) => {
-        RedirectToHome();
-
         if (window.location.pathname === "/") {
             let section = document.querySelector(id).offsetTop - 100;
             window.scroll({
@@ -28,17 +22,17 @@ const Navbar = () => {
 
     return (
         <nav id="Navbar" className="flex">
-            <button id="Navbar-logo" onClick={() => ScrollTo("#Hero")}>PoképediaJX</button>
+            <Link id="Navbar-logo" to="/" onClick={() => ScrollTo("#Hero")}>PoképediaJX</Link>
             <div id="Mobile-menu" onClick={MobileMenu} className="flex-col">
                 <span className="bar"></span> 
                 <span className="bar"></span>
                 <span className="bar"></span>
             </div>
             <div id="Navbar-container" className="flex" onClick={MobileMenu}>
-                <button onClick={() => ScrollTo("#Hero")} className="nav-button">Home</button>
-                <button onClick={() => ScrollTo("#About")} className="nav-button">About</button>
-                <button onClick={() => ScrollTo("#Regions")} className="nav-button">Regions</button>
-                <a href="/dashboard" className="nav-button flex">Dashboard</a>
+                <Link to="/" onClick={() => ScrollTo("#Hero")} className="nav-button">Home</Link>
+                <Link to="/" onClick={() => ScrollTo("#About")} className="nav-button">About</Link>
+                <Link to="/" onClick={() => ScrollTo("#Regions")} className="nav-button">Regions</Link>
+                <Link to="/dashboard" className="nav-button flex">Dashboard</Link>
             </div>
         </nav>
     );

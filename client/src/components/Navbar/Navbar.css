@@ -9,8 +9,11 @@
 }
 
 #Navbar-logo {
+    display: flex;
     height: 100%;
     width: 30%;
+    justify-content: center;
+    align-items: center;
     font-size: var(--step-3);
     background-color: transparent;
     border: none;
