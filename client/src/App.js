@@ -19,9 +19,9 @@ function App() {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <div className="App">
-          <Navbar></Navbar>
-          <MusicPlayer></MusicPlayer>
           <Router>
+            <Navbar></Navbar>
+            <MusicPlayer></MusicPlayer>
             <Routes>
               <Route exact path="/" element={<Hero></Hero>}></Route>
               <Route path="/pokedex/:id" element={<Pokedex></Pokedex>}></Route>
