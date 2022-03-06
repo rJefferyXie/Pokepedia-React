@@ -29,9 +29,9 @@ const Navbar = () => {
                 <span className="bar"></span>
             </div>
             <div id="Navbar-container" className="flex" onClick={MobileMenu}>
-                <Link to="/" onClick={() => ScrollTo("#Hero")} className="nav-button">Home</Link>
-                <Link to="/" onClick={() => ScrollTo("#About")} className="nav-button">About</Link>
-                <Link to="/" onClick={() => ScrollTo("#Regions")} className="nav-button">Regions</Link>
+                <Link to="/" onClick={() => ScrollTo("#Hero")} className="nav-button flex">Home</Link>
+                <Link to="/" onClick={() => ScrollTo("#About")} className="nav-button flex">About</Link>
+                <Link to="/" onClick={() => ScrollTo("#Regions")} className="nav-button flex">Regions</Link>
                 <Link to="/dashboard" className="nav-button flex">Dashboard</Link>
             </div>
         </nav>
