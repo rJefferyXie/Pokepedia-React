@@ -110,7 +110,7 @@ const MusicPlayer = () => {
                     <CloseIcon style={{padding: "0px 0px 0px 0px", width: "16px", height: "16px", color: "red"}}></CloseIcon>
                 </IconButton> :                 
                 <IconButton onClick={() => dispatch(allActions.musicActions.open())}>
-                    <MusicNoteIcon style={{padding: "0px 0px 0px 0px", width: "16px", height: "16px", color: "green"}}></MusicNoteIcon>
+                    <MusicNoteIcon style={{padding: "0px 0px 0px 0px", width: "16px", height: "16px"}}></MusicNoteIcon>
                 </IconButton>}
             </Tooltip>
             {music.closed === false ? <Typography style={{padding: "0px 8px 0px 8px", margin: "auto", width: "160px", height: "20px", overflow: "hidden", textOverflow: "ellipsis", textAlign: "center"}}>{Soundtracks[regions[regionNumber]][trackNumber]["name"]}</Typography> : null}
