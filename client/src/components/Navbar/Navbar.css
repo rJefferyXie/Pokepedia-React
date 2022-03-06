@@ -3,7 +3,7 @@
     top: 0;
     height: 80px;
     width: 100vw;
-    background-color: rgba(19, 59, 105, 0.9);
+    background-color: rgba(6, 114, 177, 0.8);
     z-index: 9999;
     transition: background-color 0.5s ease-in-out;
 }
@@ -67,7 +67,7 @@
     }
 
     #Navbar-container.active {
-        background: rgba(46, 72, 128, 0.9);
+        background-color: rgba(6, 114, 177, 0.8);
         top: 100%;
         transition: all 0.5s ease;
         z-index: 99;
