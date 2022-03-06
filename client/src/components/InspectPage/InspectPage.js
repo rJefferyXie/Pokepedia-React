@@ -18,7 +18,6 @@ const InspectPage = () => {
 
     const theme = TypeColorSchemes[pokemonData.types[0].type.name];
     document.getElementById("Navbar").style.backgroundColor = theme;
-    document.getElementById("Navbar-container").style.backgroundColor = theme;
 
     const statDictionary = {
         0: "HP",
@@ -33,8 +32,17 @@ const InspectPage = () => {
     const [moveData, setMoveData] = useState([]);
     // const [loadedMoves, setLoadedMoves] = useState(false);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        getEvolutionChain();
+        getMoves();
+    }, []);
+
     const navigate = useNavigate();
-    const previousPage = () => navigate(-1);
+    const previousPage = () => {
+        document.getElementById("Navbar").style.backgroundColor = "rgba(6, 114, 177, 0.8)";
+        navigate(-1);
+    }
 
     const getPokeContainer = async (evolutionChain) => {
         return axios.get(evolutionChain.species.url.replace("-species", ""))
@@ -122,16 +130,7 @@ const InspectPage = () => {
           }))
         }
         return Promise.all(promiseArray);
-      }
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        getEvolutionChain();
-        getMoves();
-    }, []);
-
-    useEffect(() => {
-    }, [evolutionData])
+    }
     
     async function getItemImage(data_url) {
         return axios.get(data_url)

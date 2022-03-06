@@ -1,24 +1,21 @@
 import "./Loading.css"
 
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
 
 import { LinearProgress, Card, Button } from "@mui/material";
 
-const Loading = ({ pokemonArray, speciesArray }) => {
+const Loading = () => {
     const dispatch = useDispatch()
     const [fact, setFact] = useState("");
+    const pokedex = useSelector(state => state.pokedexReducer);
 
     useEffect(() => {
         window.scrollTo(0, 0);
         let facts = require("../../pokemonFacts");
         setFact(facts[Math.floor(Math.random() * Object.keys(facts).length)]);
     }, []);
-
-    const setFinished = () => {
-        dispatch(allActions.loadActions.setLoaded());
-    }
 
     return (
         <section id="Loading-screen" className="flex-col">
@@ -27,10 +24,10 @@ const Loading = ({ pokemonArray, speciesArray }) => {
                     <h1 style={{margin: "0px 8px"}}>Random Pokémon Fact</h1>
                     <p style={{padding: "2px 8px"}}>{fact}</p>
                 </Card>
-                {(speciesArray.length && pokemonArray.length) 
-                ? <Button variant="contained" onClick={() => setFinished()} style={{width: "fit-content", margin: "auto"}}>Continue</Button> 
+                {(pokedex.speciesData.length && pokedex.pokemonData.length) 
+                ? <Button className="mui-button" variant="contained" onClick={() => dispatch(allActions.loadActions.setLoaded(true))} style={{width: "fit-content", margin: "auto", backgroundColor: "rgba(6, 114, 177, 0.8)"}}>Continue</Button> 
                 : <div className="flex-col">
-                    <LinearProgress color="primary"></LinearProgress>
+                    <LinearProgress></LinearProgress>
                     <p style={{margin: "4px auto", fontSize: "1rem"}}>Loading Pokédex...</p>
                 </div>}
             </div>
