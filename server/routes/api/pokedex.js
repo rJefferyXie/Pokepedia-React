@@ -4,6 +4,14 @@ const router = express.Router();
 const PokemonPokedex = require("../../models/PokemonPokedex");
 const SpeciesPokedex = require("../../models/SpeciesPokedex");
 
+// @route GET api/pokedex/start
+// @desc Wake up the Heroku server.
+// @access Public
+
+router.get("/start", (req, res) => {
+  res.json("Heroku server has started.");
+})
+
 // @route GET api/pokedex/pokemon/:id
 // @desc Get the pokemon pokedex for id
 // @access Public

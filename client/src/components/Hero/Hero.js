@@ -8,6 +8,7 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import React, { useEffect } from "react";
+import axios from "axios";
 import { useDispatch } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
 
@@ -25,6 +26,7 @@ const Hero = () => {
 
   useEffect(() => {
     dispatch(allActions.loadActions.setLoaded(false));
+    axios.get("/api/pokedex/start/").then(res => res.data);
   }, []);
 
   return (
