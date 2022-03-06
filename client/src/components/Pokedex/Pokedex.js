@@ -78,12 +78,12 @@ const Pokedex = () => {
 
   return (
     <section id="Pokedex-container" className="flex">
-      {(loaded && (pokedex.speciesData.length && pokedex.pokemonData.length)) ? 
+      {(loaded && (pokedex.speciesData.length && pokedex.pokemonData.length)) ? null : <Loading></Loading>}
         <div id="Pokedex-page" className="flex-col">
           <div id="Pokedex-top" className="flex">
-            <Button id="Tutorial" variant="contained" className="mui-button" style={{backgroundColor: "rgba(9, 141, 42, 0.7)"}}>Tutorial (Incomplete)</Button>
+            <Button variant="contained" className="mui-button" style={{backgroundColor: "rgba(9, 141, 42, 0.7)"}}>Tutorial (Incomplete)</Button>
             <input id="Pokedex-search" type="text" placeholder="Search by Pokemon Name or Type..." onChange={searchPokedex}></input>
-            <Button id="Show-team" variant="contained" className="mui-button" component={Link} to="/team" style={{backgroundColor: "rgba(6, 114, 177, 0.8)"}}>View Team</Button>
+            <Button variant="contained" className="mui-button" component={Link} to="/team" style={{backgroundColor: "rgba(6, 114, 177, 0.8)"}}>View Team</Button>
           </div>
           <div id="Pokedex-list" className="page-container flex">
               {pokedex.speciesData.map((pokemon, index) => 
@@ -119,7 +119,6 @@ const Pokedex = () => {
             </div>
           </Snackbar>
         </div>
-      : <Loading></Loading>}
     </section> 
   );
 };
