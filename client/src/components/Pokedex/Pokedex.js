@@ -19,8 +19,6 @@ const Pokedex = () => {
   const dispatch = useDispatch()
   const location = useLocation();
   const {region_number, region_name} = location.state;
-  const [speciesArray, setSpeciesArray] = useState([]);
-  const [pokemonArray, setPokemonArray] = useState([]);
   const [teamShow, setTeamShow] = useState(false);
   const pokedex = useSelector(state => state.pokedexReducer);
   const loaded = useSelector(state => state.loadReducer.loaded);
@@ -61,96 +59,36 @@ const Pokedex = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (pokedex.pokemonData.length > 0 && pokedex.speciesData.length > 0) {
-      setSpeciesArray(pokedex.speciesData);
-      setPokemonArray(pokedex.pokemonData);
-    }
-    else {
-      retrieve_data(region_number, region_name);
+    if (pokedex.region !== region_name) { 
+      dispatch(allActions.pokedexActions.setPokedex(
+        {"speciesData": [], "pokemonData": [], "region": ""}));
+      retrieve_data(); 
     }
   }, []);
 
-  const retrieve_data = async (region_number, region_name) => {
+  const retrieve_data = async () => {
     const speciesJSON = await axios.get("/api/pokedex/pokemon/" + region_number).then(res => res.data);
     const pokemonJSON = await axios.get("/api/pokedex/species/" + region_number).then(res => res.data);
-    if (pokemonJSON.length > 0 && speciesJSON.length > 0) {
-      setSpeciesArray(speciesJSON[0]["pokemonData"]);
-      setPokemonArray(pokemonJSON[0]["speciesData"]);
-      dispatch(allActions.pokedexActions.setPokedex({"speciesData": speciesJSON[0]["pokemonData"], "pokemonData": pokemonJSON[0]["speciesData"], "region": region_name}));
-    } 
-    else {
-      const pokedexData = await axios.get(`https://pokeapi.co/api/v2/pokedex/${region_number}/`).then(res => generate_pokedex(res.data))
-      axios.post("/api/pokedex/pokemon/" + region_number, {"pokedexNumber": region_number, "pokemonData": pokedexData[0]});
-      axios.post("/api/pokedex/species/" + region_number, {"pokedexNumber": region_number, "speciesData": pokedexData[1]});
-      dispatch(allActions.pokedexActions.setPokedex({"speciesData": speciesJSON[0]["pokemonData"], "pokemonData": pokemonJSON[0]["speciesData"], "region": region_name}));
-    }
-  }
-
-  const generate_pokedex = async (data) => {
-    const pokemon_data = await get_promise_array_species(data['pokemon_entries']);
-    setPokemonArray(pokemon_data);
-    const species_data = await get_promise_array_pokemon(pokemon_data);
-    setSpeciesArray(species_data);
-    return [species_data, pokemon_data];
-  }
-
-  const get_promise_array_species = async (data) => {
-    let promiseArray = [];
-    for (var i = 0; i < data.length; i++) {
-      promiseArray.push(axios.get(data[i]["pokemon_species"]["url"]).then((response) => {
-        for (var j = 0; j < response.data["flavor_text_entries"].length; j++) {
-          if (response.data["flavor_text_entries"][j].language.name === "en") {
-            response.data["flavor_text"] = response.data["flavor_text_entries"][j]["flavor_text"];
-            delete response.data["flavor_text_entries"];
-            break;
-          }
-        }
-        for (var k = 0; k < response.data["genera"].length; k++) {
-          if (response.data["genera"][k].language.name === "en") {
-            response.data["genus"] = response.data["genera"][k]["genus"];
-            delete response.data["genera"];
-            break;
-          }
-        }
-        delete response.data["names"];
-        delete response.data["pal_park_encounters"];
-        delete response.data["shape"];
-        return response.data;
-      }))
-    }
-    return Promise.all(promiseArray);
-  }
-
-  const get_promise_array_pokemon = async (data) => {
-    let promiseArray = [];
-    for (var m = 0; m < data.length; m++) {
-      promiseArray.push(axios.get(data[m]['varieties'][0]['pokemon']['url']).then((response) => {
-        for (var x = 0; x < response.data["moves"].length; x++) {
-          response.data["moves"][x]["version_group_details"] = response.data["moves"][x]["version_group_details"][0];
-          delete response.data["moves"][x]["version_group_details"]["version_group"];
-        }
-        delete response.data["game_indices"];
-        delete response.data["held_items"];
-        delete response.data["sprites"]["versions"];
-        return response.data;
-      }))
-    }
-    return Promise.all(promiseArray);
+    dispatch(allActions.pokedexActions.setPokedex(
+      {"speciesData": speciesJSON[0]["pokemonData"], 
+      "pokemonData": pokemonJSON[0]["speciesData"], 
+      "region": region_name}
+      ));
   }
 
   return (
     <section id="Pokedex-container" className="flex">
-      {(loaded && (speciesArray.length && pokemonArray.length)) ? 
+      {(loaded && (pokedex.speciesData.length && pokedex.pokemonData.length)) ? 
         <div id="Pokedex-page" className="flex-col">
           <div id="Pokedex-top" className="flex">
-            <Button id="Tutorial" variant="contained" color="secondary" className="pokedex-button">Tutorial (Incomplete)</Button>
+            <Button id="Tutorial" variant="contained" className="mui-button" style={{backgroundColor: "rgba(9, 141, 42, 0.7)"}}>Tutorial (Incomplete)</Button>
             <input id="Pokedex-search" type="text" placeholder="Search by Pokemon Name or Type..." onChange={searchPokedex}></input>
-            <Button id="Show-team" variant="contained" color="info" component={Link} to="/team" className="pokedex-button">View Team</Button>
+            <Button id="Show-team" variant="contained" className="mui-button" component={Link} to="/team" style={{backgroundColor: "rgba(6, 114, 177, 0.8)"}}>View Team</Button>
           </div>
           <div id="Pokedex-list" className="page-container flex">
-              {speciesArray.map((pokemon, index) => 
+              {pokedex.speciesData.map((pokemon, index) => 
               (<PokemonCard 
-                speciesData={pokemonArray[index]} 
+                speciesData={pokedex.pokemonData[index]} 
                 pokemonData={pokemon} 
                 pokedexIndex={index + 1} 
                 showTeam={() => openTeam()}
@@ -181,7 +119,7 @@ const Pokedex = () => {
             </div>
           </Snackbar>
         </div>
-      : <Loading speciesArray={speciesArray} pokemonArray={pokemonArray}></Loading>}
+      : <Loading></Loading>}
     </section> 
   );
 };
