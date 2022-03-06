@@ -1,20 +1,19 @@
 #Hero-wrapper {
     position: relative;
     width: min(100%, 1160px);
-    margin: 100px auto 16px auto;
+    margin: 120px auto 16px auto;
 }
 
 #Hero-wallpaper {
-    width: 100%;
+    width: 60%;
     object-fit: cover;
-    border-radius: 20px;
     margin: 0px auto 20px;
+    border-radius: 16px;
 }
 
-#Hero-text {
-    text-align: center;
-    width: 90%;
-    margin: 0px auto 20px;
+#Left-hero-wrapper {
+    width: 40%;
+    margin: auto 20px auto auto;
 }
 
 #Hero-button-container {
@@ -24,14 +23,17 @@
 @media screen and (max-width: 960px) {
     #Hero-wrapper {
         margin: 80px auto 0px auto;
-    }
-
-    #Hero-text {
-        margin: 20px auto;
+        flex-direction: column-reverse;
     }
 
     #Hero-wallpaper {
         border-radius: 0px;
         border: none;
+        width: 100%;
+    }
+
+    #Left-hero-wrapper {
+        width: 90%;
+        text-align: center;
     }
 }
