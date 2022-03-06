@@ -9,6 +9,12 @@
   --step-5: clamp(2.49rem, 1.67rem + 4.08vw, 4.58rem);
 }
 
+/* 
+blue: "rgba(6, 114, 177, 0.8)" 
+green: "rgba(9, 141, 42, 0.8))"
+red: "rgba(177, 6, 6, 0.7)"
+*/
+
 * {
   box-sizing: border-box;
   font-family: 'Verdana', sans-serif;
@@ -27,6 +33,12 @@ section {
 
 .page-container {
   margin: 80px 0px 0px 0px
+}
+
+.mui-button {
+  text-shadow: 
+  0 0 1px rgba(255,255,255,0.8), 
+  1px 1px 1px rgba(0,0,0,0.4);
 }
 
 button, a {
