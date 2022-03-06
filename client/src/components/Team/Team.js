@@ -61,7 +61,6 @@ const Team = () => {
 
         if (build.legendary) {
           if (species.is_legendary) {
-            console.log("legendary detected.", pokemon.name)
             dispatch(allActions.teamActions.removeFromTeam(pokemon.name));
             return;
           }
@@ -69,7 +68,6 @@ const Team = () => {
 
         if (build.mythic) {
           if (species.is_mythic) {
-            console.log("mythic detected.", pokemon.name)
             dispatch(allActions.teamActions.removeFromTeam(pokemon.name));
             return;
           }
@@ -105,6 +103,7 @@ const Team = () => {
         <div id="Team-button-container" className="button-container flex">
           <Button variant="contained" className="mui-button" onClick={() => clearTeam()} style={{margin: "auto 4px", width: "fit-content", backgroundColor: "rgba(177, 6, 6, 0.7)"}}>Clear Team</Button>
           <Button variant="contained" className="mui-button" onClick={() => generateTeam()} style={{margin: "auto 4px", width: "fit-content", backgroundColor: "rgba(9, 141, 42, 0.8)"}}>Generate</Button>
+          <Button variant="contained" className="mui-button" onClick={() => setSharing(true)} style={{margin: "auto 4px", width: "fit-content", backgroundColor: "rgba(6, 114, 177, 0.8)"}}>Share Team</Button>   
         </div>
         <div id="Team-settings-container" className="flex-col">
           <h3 id="Team-header">Build Settings</h3>
@@ -121,7 +120,6 @@ const Team = () => {
             return <PokemonCard pokemonData={pokemonTeam[i].pokemonData} speciesData={pokemonTeam[i].speciesData} pokedexIndex={pokemonTeam[i].pokedexIndex} share={true} teamIndex={i} key={i}></PokemonCard>
           })}
         </div>   
-        <Button variant="contained" color="info" className="mui-button" onClick={() => setSharing(true)} style={{margin: "auto", width: "fit-content"}}>Share Team</Button>   
       </div>
     </section> 
   )
