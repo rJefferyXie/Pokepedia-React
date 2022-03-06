@@ -1,6 +1,7 @@
-const setLoaded = () => {
+const setLoaded = (loaded) => {
     return {
-        type: "loaded"
+        type: "loaded",
+        payload: { loaded }
     }
 }
 
