@@ -26,6 +26,7 @@ const Hero = () => {
 
   useEffect(() => {
     dispatch(allActions.loadActions.setLoaded(false));
+    dispatch(allActions.teamActions.clearTeam());
     axios.get("/api/pokedex/start/").then(res => res.data);
   }, []);
 
