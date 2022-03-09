@@ -41,7 +41,7 @@ const ShareForm = ({cancel}) => {
     }
 
     return (
-        <div id="Overlay">
+        <div className="overlay">
             <ClickAwayListener onClickAway={() => cancel()}>
                 <div id="Share-form" className="flex-col">
                     <input id="Username" type="text" placeholder="Enter a name..." maxLength="20"></input>
@@ -66,8 +66,8 @@ const ShareForm = ({cancel}) => {
                         </div>
                     </div>
                     <div className="button-container flex">
-                        <Button variant="contained" onClick={() => cancel()} style={{margin: "auto 4px", width: "fit-content", backgroundColor: "rgba(177, 6, 6, 0.7)"}}>Cancel</Button>
-                        <Button variant="contained" onClick={() => shareTeam()} style={{margin: "auto 4px", width: "fit-content", backgroundColor: "rgba(9, 141, 42, 0.8)"}}>Share</Button>
+                        <Button variant="contained" className="mui-button" onClick={() => cancel()} style={{margin: "auto 4px", width: "fit-content", backgroundColor: "rgba(177, 6, 6, 0.7)"}}>Cancel</Button>
+                        <Button variant="contained" className="mui-button" onClick={() => shareTeam()} style={{margin: "auto 4px", width: "fit-content", backgroundColor: "rgba(9, 141, 42, 0.8)"}}>Share</Button>
                     </div>
                 </div>
             </ClickAwayListener>
