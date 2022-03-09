@@ -144,7 +144,7 @@
 #Pokemon-description {
     text-transform: none;
     width: min(90%, 640px);
-    margin: 10px auto auto auto;
+    margin: auto auto auto auto;
 }
 
 #Stat-list {
