@@ -6,6 +6,8 @@ import Pagination from '@mui/material/Pagination';
 
 import PokemonCard from "../PokemonCard/PokemonCard";
 
+import Loading from "../Loading/Loading";
+
 import { Button, Card } from "@mui/material";
 
 const Dashboard = () => {
@@ -24,6 +26,7 @@ const Dashboard = () => {
 
   return (
     <section id="Dashboard-container" className="flex">
+      {posts.length ? null : <Loading></Loading>}
       <div id="Dashboard-left" className="flex">
         <Card variant="outlined" className="flex-col fun-stat">
           <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Total Teams Shared</p>
