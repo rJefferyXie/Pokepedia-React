@@ -46,7 +46,7 @@ const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex, dashboa
               <FontAwesomeIcon style={{margin: "auto"}} icon={faTimes}></FontAwesomeIcon>
             </button>
             }
-            <Link to="/inspect" className="pokemon-button-card flex" state={{ pokemonData: pokemonData, speciesData: speciesData, pokedexIndex: pokedexIndex }}>
+            <Link to={"/inspect/" + pokemonData.name} className="pokemon-button-card flex" state={{ pokemonData: pokemonData, speciesData: speciesData, pokedexIndex: pokedexIndex }}>
               <FontAwesomeIcon style={{margin: "auto"}} icon={faSearch}></FontAwesomeIcon>
             </Link>
           </div> : null
