@@ -36,14 +36,6 @@
     margin: 0px 16px;
 }
 
-#Tutorial {
-    background-color: rgb(82, 180, 90);
-}
-
-#View-team {
-    background-color: rgb(64, 120, 153);
-}
-
 #Pokedex-search {
     width: min(90%, 420px);
     height: 20px;
@@ -56,24 +48,24 @@
     border: 1px solid lightgray;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 720px) {
     #Pokedex-list {
-        margin: 150px auto 80px auto;
+        margin: 124px auto 80px auto;
     }
 
     #Pokedex-search {
-        margin: 0px 0px 16px 0px;
+        margin: 0px 0px 10px 0px;
     }
 
     #Tutorial {
-        width: calc(90% / 2);
-        margin: 0px 4px 0px 4px;
+        width: min(calc(90% / 2), 300px);
+        margin: 0px 2px 0px 2px;
         order: 1;
     }
 
     #View-team {
-        width: calc(90% / 2);
-        margin: 0px 4px 0px 4px;
+        width: min(calc(90% / 2), 300px);
+        margin: 0px 2px 0px 2px;
         order: 2;
     }
 }
