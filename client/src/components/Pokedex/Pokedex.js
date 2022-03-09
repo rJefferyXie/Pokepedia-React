@@ -11,6 +11,7 @@ import allActions from '../../redux/actions/allActions';
 
 import Loading from "../Loading/Loading";
 import PokemonCard from "../PokemonCard/PokemonCard";
+import Tutorial from "../Tutorial/Tutorial";
 import { Link } from "react-router-dom";
 
 import { Button, Snackbar, Alert } from "@mui/material";
@@ -20,6 +21,7 @@ const Pokedex = () => {
   const location = useLocation();
   const {region_number, region_name} = location.state;
   const [teamShow, setTeamShow] = useState(false);
+  const [tutorialShow, setTutorialShow] = useState(false);
   const pokedex = useSelector(state => state.pokedexReducer);
   const loaded = useSelector(state => state.loadReducer.loaded);
   const pokemonTeam = useSelector(state => state.teamReducer.team);
@@ -32,8 +34,12 @@ const Pokedex = () => {
     if (reason === "clickaway") {
       return;
     }
-
     setTeamShow(false);
+  }
+
+  const handleClickAway = () => {
+    console.log("click way")
+    setTutorialShow(false);
   }
 
   const searchPokedex = () => {
@@ -79,11 +85,12 @@ const Pokedex = () => {
   return (
     <section id="Pokedex-container" className="flex">
       {(loaded && (pokedex.speciesData.length && pokedex.pokemonData.length)) ? null : <Loading></Loading>}
+      {tutorialShow === true ? <Tutorial onClickAway={() => handleClickAway()}></Tutorial> : null}
         <div id="Pokedex-page" className="flex-col">
           <div id="Pokedex-top" className="flex">
-            <Button variant="contained" className="mui-button" style={{backgroundColor: "rgba(9, 141, 42, 0.7)"}}>Tutorial (Incomplete)</Button>
+            <Button id="Tutorial" variant="contained" className="mui-button" onClick={() => setTutorialShow(true)} style={{backgroundColor: "rgba(9, 141, 42, 0.7)"}}>Tutorial</Button>
             <input id="Pokedex-search" type="text" placeholder="Search by Pokemon Name or Type..." onChange={searchPokedex}></input>
-            <Button variant="contained" className="mui-button" component={Link} to="/team" style={{backgroundColor: "rgba(6, 114, 177, 0.8)"}}>View Team</Button>
+            <Button id="View-team" variant="contained" className="mui-button" component={Link} to="/team" style={{backgroundColor: "rgba(6, 114, 177, 0.8)"}}>View Team</Button>
           </div>
           <div id="Pokedex-list" className="page-container flex">
               {pokedex.speciesData.map((pokemon, index) => 
