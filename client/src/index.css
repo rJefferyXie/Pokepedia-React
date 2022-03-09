@@ -41,6 +41,15 @@ section {
   1px 1px 1px rgba(0,0,0,0.4);
 }
 
+.overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  width: 100%;
+  height: calc(100vh + 80px);
+  z-index: 99;
+  top: -80px;
+}
+
 button, a {
   cursor: pointer;
   outline: none;
