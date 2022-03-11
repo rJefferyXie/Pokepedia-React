@@ -23,8 +23,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const MusicPlayer = () => {
     const [playing, setPlaying] = useState(false);
-    const [regionNumber, setRegionNumber] = useState(0);
-    const [trackNumber, setTrackNumber] = useState(0);
+    const [regionNumber, setRegionNumber] = useState(Math.floor(Math.random() * 7));
+    const [trackNumber, setTrackNumber] = useState(Math.floor(Math.random() * 7));
 
     const music = useSelector(state => state.musicReducer);
     const dispatch = useDispatch()
@@ -95,10 +95,9 @@ const MusicPlayer = () => {
     }, [trackNumber, regionNumber]);
 
     useEffect(() => {
-        setRegionNumber(Math.floor(Math.random() * 7));
-        setTrackNumber(Math.floor(Math.random() * 7));
         let player = document.getElementById("Music-audio");
         player.addEventListener("ended", nextSong);
+        player.volume = "0.1";
     }, []);
 
     return (
