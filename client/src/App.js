@@ -21,7 +21,7 @@ function App() {
         <div className="App">
           <Router>
             <Navbar></Navbar>
-            <MusicPlayer></MusicPlayer>
+            <MusicPlayer region={Math.floor(Math.random() * 7)} track={Math.floor(Math.random() * 7)}></MusicPlayer>
             <Routes>
               <Route exact path="/" element={<Hero></Hero>}></Route>
               <Route path="/pokedex/:id" element={<Pokedex></Pokedex>}></Route>
