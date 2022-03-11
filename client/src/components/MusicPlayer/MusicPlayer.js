@@ -92,30 +92,26 @@ const MusicPlayer = () => {
 
     useEffect(() => {
         setSongSRC(Soundtracks[regions[regionNumber]][trackNumber]["file_path"]);
-    }, [trackNumber, regionNumber]);
-
-    useEffect(() => {
         if (audioRef.current) {
             audioRef.current.pause();
             audioRef.current.load();
             audioRef.current.play().catch(e => {});
             setPlaying(true);
         }
-    }, [songSRC])
+    }, [trackNumber, regionNumber]);
 
     useEffect(() => {
         setTrackNumber(Math.floor(Math.random() * 7));
         setRegionNumber(Math.floor(Math.random() * 7));
 
         let player = document.getElementById("Music-audio");
-        player.addEventListener("ended", nextSong);
         player.volume = "0.1";
         audioRef.current.pause();
     }, []);
 
     return (
         <Card id="Music-player" className="flex-col" style={music.closed === false ? {width: "200px", padding: "4px 20px"} : {borderRadius: "100%", width: "32px", height: "32px", padding: "0px"}}>
-            <audio id="Music-audio" ref={audioRef}>
+            <audio id="Music-audio" ref={audioRef} onEnded={() => nextSong()}>
                 <source src={songSRC} type="audio/mp3"></source>
             </audio>
             <Tooltip title={music.closed === false ? "Close Player" : "Open Player"} placement="top" style={music.closed === false ? {position: "absolute", top: "0", right: "0"} : {width: "100%"}} arrow>
