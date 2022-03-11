@@ -17,7 +17,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import CloseIcon from '@mui/icons-material/Close';
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import allActions from '../../redux/actions/allActions';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -26,7 +26,7 @@ const MusicPlayer = ({ region, track }) => {
     const [regionNumber, setRegionNumber] = useState(region);
     const [trackNumber, setTrackNumber] = useState(track);
     const [songSRC, setSongSRC] = useState();
-    const audioRef = useRef();
+    const [player, setPlayer] = useState();
 
     const music = useSelector(state => state.musicReducer);
     const dispatch = useDispatch()
@@ -92,24 +92,27 @@ const MusicPlayer = ({ region, track }) => {
 
     useEffect(() => {
         setSongSRC(Soundtracks[regions[regionNumber]][trackNumber]["file_path"]);
-        if (audioRef.current) {
-            audioRef.current.pause();
-            audioRef.current.load();
-            audioRef.current.play().catch(e => {});
+        if (player) {
+            player.pause();
+            player.load();
+            player.play().catch(e => {});
             setPlaying(true);
         }
     }, [trackNumber, regionNumber]);
 
     useEffect(() => {
         let player = document.getElementById("Music-audio");
+        if (player === null) { return }
+
         player.volume = "0.1";
-        audioRef.current.pause();
+        player.pause();
+        setPlayer(player);
         setPlaying(false);
     }, []);
 
     return (
         <Card id="Music-player" className="flex-col" style={music.closed === false ? {width: "200px", padding: "4px 20px"} : {borderRadius: "100%", width: "32px", height: "32px", padding: "0px"}}>
-            <audio id="Music-audio" ref={audioRef} onEnded={() => nextSong()}>
+            <audio id="Music-audio" onEnded={() => nextSong()}>
                 <source src={songSRC} type="audio/mp3"></source>
             </audio>
             <Tooltip title={music.closed === false ? "Close Player" : "Open Player"} placement="top" style={music.closed === false ? {position: "absolute", top: "0", right: "0"} : {width: "100%"}} arrow>
