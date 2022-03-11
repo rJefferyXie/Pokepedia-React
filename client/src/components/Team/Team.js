@@ -30,6 +30,19 @@ const Team = () => {
 
   const generateTeam = () => {
     let slotsLeft = 6 - pokemonTeam.length;
+    let pokemonNames = [];
+    let pokemonTypes = new Set();
+
+    // initializing all pokemon and types that already exist.
+    for (var i = 0; i < pokemonTeam.length; i++) {
+      let pokemon = pokemonTeam[i].pokemonData;
+      pokemonNames.push(pokemon.name);
+      let types = pokemon.types;
+      for (var j = 0; j < types.length; j++) {
+        pokemonTypes.add(types[j].type.name);
+      }
+    }
+
     let myInterval = setInterval(() => {
       if (slotsLeft > 0) {
         let index = Math.floor(Math.random() * pokedex.speciesData.length);
@@ -57,6 +70,12 @@ const Team = () => {
           }
         }
 
+        if (build.duplicates) {
+          if (pokemonNames.includes(pokemon.name)) {
+            return;
+          }
+        }
+
         dispatch(allActions.teamActions.addToTeam({ "pokemonData": pokemon, "speciesData": species, "pokedexIndex": index + 1 }));
 
         if (build.legendary) {
@@ -71,6 +90,23 @@ const Team = () => {
             dispatch(allActions.teamActions.removeFromTeam(pokemon.name));
             return;
           }
+        }
+
+        if (build.types) {
+          for (var k = 0; k < pokemon.types.length; k++) {
+            if (pokemonTypes.has(pokemon.types[k].type.name)) {
+              dispatch(allActions.teamActions.removeFromTeam(pokemon.name));
+              return;
+            }
+          }
+        }
+
+        // Update pokemon names that are being used
+        pokemonNames.push(pokemon.name);
+
+        // Update types that are being used
+        for (var l = 0; l < pokemon.types.length; l++) {
+          pokemonTypes.add(pokemon.types[l].type.name)
         }
 
         slotsLeft -= 1;
@@ -92,6 +128,14 @@ const Team = () => {
     dispatch(allActions.buildActions.toggleMythic());
   }
 
+  const toggleTypes = () => {
+    dispatch(allActions.buildActions.toggleTypes());
+  }
+
+  const toggleDuplicates = () => {
+    dispatch(allActions.buildActions.toggleDuplicates());
+  }
+
   return (
     <section id="Team-container" className="flex">
       {sharing === false ? null : <ShareForm cancel={() => setSharing(false)}></ShareForm>}
@@ -110,6 +154,8 @@ const Team = () => {
           <div id="Settings-container" className="flex-col">
             <label className="settings-label"><input type="checkbox" defaultChecked={build.legendary} onClick={() => toggleLegendary()}></input> No Legendary Pokemon</label>
             <label className="settings-label"><input type="checkbox" defaultChecked={build.mythic} onClick={() => toggleMythic()}></input> No Mythical Pokemon</label>
+            <label className="settings-label"><input type="checkbox" defaultChecked={build.types} onClick={() => toggleTypes()}></input> No Duplicate Types</label>
+            <label className="settings-label"><input type="checkbox" defaultChecked={build.duplicates} onClick={() => toggleDuplicates()}></input> No Duplicate Pokemon</label>
           </div>
         </div>
       </div>
