@@ -21,10 +21,10 @@ import React, { useState, useEffect, useRef } from 'react'
 import allActions from '../../redux/actions/allActions';
 import { useSelector, useDispatch } from 'react-redux';
 
-const MusicPlayer = () => {
+const MusicPlayer = ({ region, track }) => {
     const [playing, setPlaying] = useState(false);
-    const [regionNumber, setRegionNumber] = useState(0);
-    const [trackNumber, setTrackNumber] = useState(0);
+    const [regionNumber, setRegionNumber] = useState(region);
+    const [trackNumber, setTrackNumber] = useState(track);
     const [songSRC, setSongSRC] = useState();
     const audioRef = useRef();
 
@@ -101,12 +101,10 @@ const MusicPlayer = () => {
     }, [trackNumber, regionNumber]);
 
     useEffect(() => {
-        setTrackNumber(Math.floor(Math.random() * 7));
-        setRegionNumber(Math.floor(Math.random() * 7));
-
         let player = document.getElementById("Music-audio");
         player.volume = "0.1";
         audioRef.current.pause();
+        setPlaying(false);
     }, []);
 
     return (
