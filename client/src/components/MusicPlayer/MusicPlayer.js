@@ -63,7 +63,6 @@ const MusicPlayer = ({ region, track }) => {
     }
 
     const playPause = () => {
-        let player = document.getElementById("Music-audio");
         setPlaying(!playing);
         if (playing) {
             player.pause();
@@ -132,7 +131,7 @@ const MusicPlayer = ({ region, track }) => {
                         <ArrowLeftIcon style={{fontSize: "2rem"}}></ArrowLeftIcon>
                     </IconButton>  
                 </Tooltip>             
-                <Typography style={{padding: "4px 8px 0px 8px", margin: "auto", textTransform: "capitalize"}}>{regions[regionNumber]}</Typography>
+                <Typography id="Song-Name" style={{padding: "4px 8px 0px 8px", margin: "auto", textTransform: "capitalize"}}>{regions[regionNumber]}</Typography>
                 <Tooltip title="Next Region" placement="top" arrow>
                     <IconButton onClick={() => nextRegion()}>
                         <ArrowRightIcon style={{fontSize: "2rem"}}></ArrowRightIcon>
