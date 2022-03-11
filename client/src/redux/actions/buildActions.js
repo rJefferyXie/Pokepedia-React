@@ -10,12 +10,18 @@ const toggleMythic = () => {
     }
 }
 
-// const toggleTypes = () => {
-//     return {
-//         type: "build/types"
-//     }
-// }
+const toggleTypes = () => {
+    return {
+        type: "build/types"
+    }
+}
+
+const toggleDuplicates = () => {
+    return {
+        type: "build/duplicates"
+    }
+}
 
 export default {
-    toggleLegendary, toggleMythic
+    toggleLegendary, toggleMythic, toggleTypes, toggleDuplicates
 }
