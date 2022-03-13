@@ -102,11 +102,27 @@
     .ds {
         width: 60px;
         height: 70px;
-        border-radius: 6px;
     }
     
     .ds .pokemon-image-card {
         margin: auto;
         width: 60px;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .pokemon-container {
+        height: 230px;
+        width: 170px;
+    }
+
+    .ds {
+        width: 55px;
+        height: 65px;
+    }
+    
+    .ds .pokemon-image-card {
+        margin: auto;
+        width: 55px;
     }
 }
