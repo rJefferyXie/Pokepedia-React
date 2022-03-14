@@ -12,17 +12,58 @@ import { Button, Card } from "@mui/material";
 
 const Dashboard = () => {
     const [posts, setPosts] = useState([]);
+    const [postsToday, setPostsToday] = useState(0);
+    const [stats, setStats] = useState([]);
     const [pageNumber, setPageNumber] = useState(1);
+
+    const [topUser, setTopUser] = useState("");
+    const [topRegion, setTopRegion] = useState("");
+    const [topPokemon, setTopPokemon] = useState("");
+    const [topType, setTopType] = useState("");
 
     const handlePageChange = (event, value) => {
       setPageNumber(value);
-      console.log(pageNumber);
+    }
+
+    const getPostsToday = (date, day, month, year) => {
+      let postDay = date.getDate();
+      let postMonth = date.getMonth();
+      let postYear = date.getFullYear();
+
+      console.log(day, postDay);
+
+      if (day === postDay && month === postMonth && year === postYear) {
+        setPostsToday(postsToday => postsToday + 1);
+      }
     }
 
     useEffect(() => {
         window.scrollTo(0, 0);
         axios.get("/api/teams/all").then(response => setPosts(response.data));
+        axios.get("/api/dashboard/stats").then(response => setStats(response.data[0]));
     }, []);
+
+    useEffect(() => {
+      if (posts.length === 0) return;
+
+      let start = new Date();
+      let day = start.getDate();
+      let month = start.getMonth();
+      let year = start.getFullYear();
+
+      for (var i = 0; i < posts.length; i++) { 
+        getPostsToday(new Date(posts[i]["time"]), day, month, year); 
+      }
+      
+    }, [posts]);
+
+    useEffect(() => {
+      if (stats.length === 0) return;
+      setTopUser(Object.keys(stats.users).reduce((a, b) => stats.users[a] > stats.users[b] ? a : b));
+      setTopRegion(Object.keys(stats.regions).reduce((a, b) => stats.regions[a] > stats.regions[b] ? a : b));
+      setTopPokemon(Object.keys(stats.pokemon).reduce((a, b) => stats.pokemon[a] > stats.pokemon[b] ? a : b));
+      setTopType(Object.keys(stats.types).reduce((a, b) => stats.types[a] > stats.types[b] ? a : b));
+    }, [stats])
 
   return (
     <section id="Dashboard-container" className="flex">
@@ -34,23 +75,23 @@ const Dashboard = () => {
         </Card>
         <Card variant="outlined" className="flex-col fun-stat">
           <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Teams Shared Today</p>
-          <strong style={{fontSize: "initial", margin: "auto"}}>{posts.length}</strong>
+          <strong style={{fontSize: "initial", margin: "auto"}}>{postsToday}</strong>
         </Card>
         <Card variant="outlined" className="flex-col fun-stat">
           <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Teams Shared</p>
-          <strong style={{fontSize: "initial", margin: "auto"}}>Kenny Omega</strong>
+          <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topUser}</strong>
         </Card>
         <Card variant="outlined" className="flex-col fun-stat">
           <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Popular Region</p>
-          <strong style={{fontSize: "initial", margin: "auto"}}>Hoenn</strong>
+          <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topRegion}</strong>
         </Card>
         <Card variant="outlined" className="flex-col fun-stat">
           <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Popular Pokemon</p>
-          <strong style={{fontSize: "initial", margin: "auto"}}>Lucario</strong>
+          <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topPokemon}</strong>
         </Card>
         <Card variant="outlined" className="flex-col fun-stat">
           <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Popular Type</p>
-          <strong style={{fontSize: "initial", margin: "auto"}}>Dragon</strong>
+          <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topType}</strong>
         </Card>
       </div>
       <div id="Dashboard-right" className="flex-col">
