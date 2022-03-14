@@ -31,12 +31,13 @@ const ShareForm = ({cancel}) => {
 
     const shareTeam = () => {
         let name = document.getElementById("Username");
-        if (name.value !== "") {
-            axios.post("/api/teams/create", {username: document.getElementById("Username").value, region: pokedex.region, tags: tags, team: pokemonTeam});
+        if (name.value === "" || pokemonTeam.length < 6) {
+            alert("Please make sure your team has six pokemon and you entered a name!");
+        } else {
+            axios.post("/api/teams/create", {username: name.value, region: pokedex.region, tags: tags, team: pokemonTeam});
+            axios.post("/api/dashboard/stats", {username: name.value, region: pokedex.region, team: pokemonTeam});
             cancel();
             alert("You have successfully shared your team!")
-        } else {
-            alert("Please make sure your team has six pokemon and you entered a name!");
         }
     }
 
