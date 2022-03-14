@@ -16,7 +16,6 @@ router.get("/all", (req, res) => {
 // @desc Create a new team
 // @access Public
 router.post("/create", (req, res) => {
-    console.log(req.body);
     let newTeam = new TeamShare({
         username: req.body.username,
         region: req.body.region,
