@@ -17,9 +17,10 @@ const TeamShareSchema = new Schema({
     tags: {
         type: []
     },
-    time : {
+    time: {
         type : Date, 
-        default: Date.now }
-    });
+        default: new Date() 
+    }
+});
 
 module.exports = TeamShare = mongoose.model("teamShare", TeamShareSchema);
