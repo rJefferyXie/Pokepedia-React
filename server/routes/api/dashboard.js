@@ -9,7 +9,6 @@ const DashboardStats = require("../../models/DashboardStats");
 router.get("/stats", (req, res) => {
     DashboardStats.find({}, (err, data) => {
         res.json(data);
-        console.log(data);
     });
 });
 
