@@ -30,7 +30,7 @@ router.post("/stats", (req, res) => {
         }
 
         // updating regions
-        if (users.hasOwnProperty(req.body.region)) {
+        if (regions.hasOwnProperty(req.body.region)) {
             regions[req.body.region] += 1;
         } else {
             regions[req.body.region] = 1;
