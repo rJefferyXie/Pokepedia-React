@@ -10,12 +10,13 @@
     width: min(100%, 420px);
     justify-content: center;
     flex-wrap: wrap;
-    margin: auto 0px;
+    margin: auto;
 }
 
 #Dashboard-right {
     height: 100%;
     width: min(100%, 820px);
+    margin: auto;
 }
 
 #Region-filter {
@@ -40,8 +41,8 @@
 }
 
 .fun-stat {
-    width: min(200px, 45%);
-    height: 120px; 
+    width: min(205px, 47%);
+    height: 80px; 
     margin: 4px;
     text-align: center;
 }
