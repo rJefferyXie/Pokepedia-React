@@ -1,7 +1,11 @@
 const team = (state = { team: [] }, action) => {
     switch (action.type) {
       case 'team/add': {
-        return { team: [...state.team, action.payload.pokemon] }
+        if (state.team.length < 6) {
+          return { team: [...state.team, action.payload.pokemon] }
+        } else {
+          return { team: state.team }
+        }
       }
       case 'team/remove': {
         return { team: state.team.filter(pokemon => {
