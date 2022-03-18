@@ -8,7 +8,6 @@ const About = () => {
     <section id="About" className="flex-col">
         <div className="flex-col">
             <div className="flex about-wrapper">
-                <img alt="" src={lookup} className="about-image"></img>
                 <div className="flex-col about-info">
                     <h2>Pokemon Lookup</h2>
                     <p>
@@ -16,8 +15,10 @@ const About = () => {
                         Learn about each pokemon's characteristics, stats, moveset, and evolution chain with ease.
                     </p>
                 </div>
+                <img alt="" src={lookup} className="about-image"></img>
             </div>
             <div id="About-wrapper-2" className="flex about-wrapper">
+                <img alt="" src={teambuilder} className="about-image"></img>
                 <div className="flex-col about-info">
                     <h2>Team Generation</h2>
                     <p>
@@ -25,7 +26,6 @@ const About = () => {
                         Customize your team with options such as banning legendary pokemon, duplicate pokemon types, and more.
                     </p>
                 </div>
-                <img alt="" src={teambuilder} className="about-image"></img>
             </div>
         </div>
     </section>

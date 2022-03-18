@@ -1,15 +1,16 @@
 .about-wrapper {
     width: min(90%, 1160px);
-    margin: 30px auto;
+    margin: auto;
+    padding: 10px;
 }
 
 .about-info {
-    width: 60%;
+    width: 100%;
     margin: auto;
 }
 
 .about-image {
-    width: 30%;
+    width: 50%;
     margin: 4px;
 }
 
