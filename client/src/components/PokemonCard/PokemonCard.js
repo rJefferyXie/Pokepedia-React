@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
 
-const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex, dashboard, showTeam}) => {
+const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex, dashboard, showTeam, teamRemove}) => {
   const supportsLazyLoad = ('loading' in document.createElement('img'));
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -34,7 +34,7 @@ const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex, dashboa
   }
 
   return (
-    <div ref={ref} className={dashboard === undefined ? "pokemon-container flex-col" : "pokemon-container ds flex-col"} style={{backgroundColor: TypeColorSchemes[pokemonData.types[0].type.name]}}>
+    <div ref={ref} onClick={teamRemove !== undefined ? () => teamRemove() : null} className={dashboard === undefined ? "pokemon-container flex-col" : "pokemon-container ds flex-col"} style={teamRemove !== undefined ? {backgroundColor: TypeColorSchemes[pokemonData.types[0].type.name], cursor: "pointer"} : {backgroundColor: TypeColorSchemes[pokemonData.types[0].type.name]}}>
         {dashboard === undefined ? 
           <div className="pokemon-button-container flex">
             {teamIndex === undefined ?
