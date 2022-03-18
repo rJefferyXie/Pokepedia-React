@@ -3,6 +3,8 @@ import "./Dashboard.css";
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import Pagination from '@mui/material/Pagination';
+import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
 
 import PokemonCard from "../PokemonCard/PokemonCard";
 
@@ -21,16 +23,21 @@ const Dashboard = () => {
     const [topPokemon, setTopPokemon] = useState("");
     const [topType, setTopType] = useState("");
 
+    const [showFilters, setShowFilters] = useState(false);
+    const [filter, setFilter] = useState("");
+
     const handlePageChange = (event, value) => {
       setPageNumber(value);
+    }
+
+    const handleFilterChange = () => {
+
     }
 
     const getPostsToday = (date, day, month, year) => {
       let postDay = date.getDate();
       let postMonth = date.getMonth();
       let postYear = date.getFullYear();
-
-      console.log(day, postDay);
 
       if (day === postDay && month === postMonth && year === postYear) {
         setPostsToday(postsToday => postsToday + 1);
@@ -69,6 +76,16 @@ const Dashboard = () => {
     <section id="Dashboard-container" className="flex">
       {posts.length ? null : <Loading></Loading>}
       <div id="Dashboard-left" className="flex">
+          {/* <MenuList open={true} id="Region-filter" className="flex" style={{width: "100%"}}>
+            <MenuItem style={{margin: "4px", backgroundColor: "black"}}>Kanto</MenuItem>
+            <MenuItem style={{margin: "4px"}}>Johto</MenuItem>
+            <MenuItem style={{margin: "4px"}}>Hoenn</MenuItem>
+            <MenuItem style={{margin: "4px"}}>Sinnoh</MenuItem>
+            <MenuItem style={{margin: "4px"}}>Kalos</MenuItem>
+            <MenuItem style={{margin: "4px"}}>Unova</MenuItem>
+            <MenuItem style={{margin: "4px"}}>Alola</MenuItem>
+          </MenuList> */}
+
         <Card variant="outlined" className="flex-col fun-stat">
           <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Total Teams Shared</p>
           <strong style={{fontSize: "initial", margin: "auto"}}>{posts.length}</strong>
@@ -95,15 +112,6 @@ const Dashboard = () => {
         </Card>
       </div>
       <div id="Dashboard-right" className="flex-col">
-        {/* <div id="Region-filter" className="flex">
-          <Button variant="contained" color="info" style={{margin: "4px"}}>Kanto</Button>
-          <Button variant="contained" color="info" style={{margin: "4px"}}>Johto</Button>
-          <Button variant="contained" color="info" style={{margin: "4px"}}>Hoenn</Button>
-          <Button variant="contained" color="info" style={{margin: "4px"}}>Sinnoh</Button>
-          <Button variant="contained" color="info" style={{margin: "4px"}}>Kalos</Button>
-          <Button variant="contained" color="info" style={{margin: "4px"}}>Unova</Button>
-          <Button variant="contained" color="info" style={{margin: "4px"}}>Alola</Button>
-        </div> */}
         <div id="Posts" className="flex">
           {posts.filter((_, index) => ((pageNumber - 1) * 8) <= index && index < (pageNumber * 8)).map((post, index) => {
           return <div className="team-post flex-col" key={index}>
