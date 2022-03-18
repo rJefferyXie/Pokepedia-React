@@ -9,6 +9,10 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
 
+import IconButton from '@mui/material/IconButton';
+import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
+import Tooltip from '@mui/material/Tooltip';
+
 import Loading from "../Loading/Loading";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import Tutorial from "../Tutorial/Tutorial";
@@ -20,15 +24,14 @@ const Pokedex = () => {
   const dispatch = useDispatch()
   const location = useLocation();
   const {region_number, region_name} = location.state;
+
   const [teamShow, setTeamShow] = useState(false);
+  const [fullTeamShow, setFullTeamShow] = useState(false);
   const [tutorialShow, setTutorialShow] = useState(false);
+
   const pokedex = useSelector(state => state.pokedexReducer);
   const loaded = useSelector(state => state.loadReducer.loaded);
   const pokemonTeam = useSelector(state => state.teamReducer.team);
-
-  const openTeam = () => {
-    setTeamShow(true);
-  }
 
   const closeTeam = (event, reason) => {
     if (reason === "clickaway") {
@@ -37,9 +40,11 @@ const Pokedex = () => {
     setTeamShow(false);
   }
 
-  const handleClickAway = () => {
-    console.log("click way")
-    setTutorialShow(false);
+  const closeFullTeam  = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setFullTeamShow(false);
   }
 
   const searchPokedex = () => {
@@ -79,13 +84,14 @@ const Pokedex = () => {
       {"speciesData": speciesJSON[0]["pokemonData"], 
       "pokemonData": pokemonJSON[0]["speciesData"], 
       "region": region_name}
-      ));
+      )
+    );
   }
 
   return (
     <section id="Pokedex-container" className="flex">
       {(loaded && (pokedex.speciesData.length && pokedex.pokemonData.length)) ? null : <Loading></Loading>}
-      {tutorialShow === true ? <Tutorial onClickAway={() => handleClickAway()}></Tutorial> : null}
+      {tutorialShow === true ? <Tutorial onClickAway={() => setTutorialShow(false)}></Tutorial> : null}
         <div id="Pokedex-page" className="flex-col">
           <div id="Pokedex-top" className="flex">
             <Button id="Tutorial" variant="contained" className="mui-button" onClick={() => setTutorialShow(true)} style={{backgroundColor: "rgba(9, 141, 42, 0.7)"}}>Tutorial</Button>
@@ -98,31 +104,41 @@ const Pokedex = () => {
                 speciesData={pokedex.pokemonData[index]} 
                 pokemonData={pokemon} 
                 pokedexIndex={index + 1} 
-                showTeam={() => openTeam()}
+                showTeam={() => { fullTeamShow === false ? setTeamShow(true) : setTeamShow(false) }}
                 key={index}></PokemonCard>
               ))}
           </div>
+          {teamShow === false ? 
+          <Tooltip title="View Your Team" placement="top" arrow>
+            <IconButton onClick={() => { setFullTeamShow(true); setTeamShow(false); } } style={{position: "fixed", bottom: "3%", left: "3%", backgroundColor: "white", boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)"}}>
+              <CatchingPokemonIcon style={{padding: "0px 0px 0px 0px", width: "16px", height: "16px", color: "black"}}></CatchingPokemonIcon>
+            </IconButton>
+          </Tooltip> : null}
           <Snackbar open={teamShow} autoHideDuration={2000} onClose={closeTeam} style={{width: "100%"}}>
             <div className="flex" style={{width: "100%"}}>
-              {pokemonTeam.length <= 6 ? 
-                <Alert onClose={closeTeam} severity="success" style={{width: "fit-content", textAlign: "center"}}>
-                  Your Pokemon was added to your team!
-                  <div className="flex team-wrapper">
-                    {[...Array(6)].map((_, i) => {
-                      if (pokemonTeam[i] === undefined) { return <div className="ds flex" key={i} style={{backgroundColor: "white"}}><FontAwesomeIcon icon={faPlus} style={{margin: "auto", fontSize: "1rem"}}></FontAwesomeIcon></div> }
-                      return <PokemonCard pokemonData={pokemonTeam[i].pokemonData} speciesData={pokemonTeam[i].speciesData} key={i} dashboard={true}></PokemonCard>
-                    })}
-                  </div> 
-                </Alert> :
-                <Alert onClose={closeTeam} severity="error" style={{width: "fit-content", textAlign: "center"}}>
-                  Your team already has six pokemon!
-                  <div className="flex team-wrapper">
-                    {[...Array(6)].map((_, i) => {
-                      return <PokemonCard pokemonData={pokemonTeam[i].pokemonData} speciesData={pokemonTeam[i].speciesData} key={i} dashboard={true}></PokemonCard>
-                    })}
-                  </div> 
-                </Alert>
-              }
+              <Alert onClose={closeTeam} severity={pokemonTeam.length <= 6 ? "success" : "error"} style={{width: "fit-content", textAlign: "center"}}>
+                {pokemonTeam.length <= 6 ? "Your pokemon was added to your team!"
+                : "Your team already has six pokemon!"}
+                <div className="flex team-wrapper" style={{margin: "4px auto auto auto"}}>
+                  {[...Array(6)].map((_, i) => {
+                    if (pokemonTeam[i] === undefined) { return <div className="ds flex" key={i} style={{backgroundColor: "white"}}><FontAwesomeIcon icon={faPlus} style={{margin: "auto", fontSize: "1rem"}}></FontAwesomeIcon></div> }
+                    return <PokemonCard teamRemove={() => dispatch(allActions.teamActions.removeFromTeam(pokemonTeam[i].pokemonData.name))} pokemonData={pokemonTeam[i].pokemonData} speciesData={pokemonTeam[i].speciesData} key={i} dashboard={true}></PokemonCard>
+                  })}
+                </div> 
+              </Alert>
+            </div>
+          </Snackbar>
+          <Snackbar open={fullTeamShow} onClose={closeFullTeam} style={{width: "100%"}}>
+            <div className="flex" style={{width: "100%"}}>
+              <Alert onClose={closeFullTeam} severity="info" style={{width: "fit-content", textAlign: "center"}}>
+                This is your pokemon team. Click on a pokemon to remove it.
+                <div className="flex team-wrapper" style={{margin: "4px auto auto auto"}}>
+                  {[...Array(6)].map((_, i) => {
+                    if (pokemonTeam[i] === undefined) { return <div className="ds flex" key={i} style={{backgroundColor: "white"}}><FontAwesomeIcon icon={faPlus} style={{margin: "auto", fontSize: "1rem"}}></FontAwesomeIcon></div> }
+                    return <PokemonCard teamRemove={() => dispatch(allActions.teamActions.removeFromTeam(pokemonTeam[i].pokemonData.name))} pokemonData={pokemonTeam[i].pokemonData} speciesData={pokemonTeam[i].speciesData} key={i} dashboard={true}></PokemonCard>
+                  })}
+                </div> 
+              </Alert>
             </div>
           </Snackbar>
         </div>

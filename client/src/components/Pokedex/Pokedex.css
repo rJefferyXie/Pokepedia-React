@@ -7,6 +7,7 @@
 #Pokedex-page {
     height: calc(100% - 80px);
     width: 100%;
+    position: relative;
 }
 
 #Pokedex-list {
