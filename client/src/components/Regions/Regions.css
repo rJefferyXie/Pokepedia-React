@@ -1,6 +1,6 @@
 #Regions {
     width: min(90%, 1160px);
-    margin: 16px auto;
+    margin: 80px auto 16px;
     justify-content: center;
 }
 
@@ -117,6 +117,7 @@
 @media screen and (max-width: 1200px) {
     #Regions {
         flex-wrap: wrap;
+        margin: 40px auto 16px;
     }
 
     .region-container {
