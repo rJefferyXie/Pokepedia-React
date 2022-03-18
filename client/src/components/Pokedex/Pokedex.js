@@ -116,8 +116,8 @@ const Pokedex = () => {
           </Tooltip> : null}
           <Snackbar open={teamShow} autoHideDuration={2000} onClose={closeTeam} style={{width: "100%"}}>
             <div className="flex" style={{width: "100%"}}>
-              <Alert onClose={closeTeam} severity={pokemonTeam.length <= 6 ? "success" : "error"} style={{width: "fit-content", textAlign: "center"}}>
-                {pokemonTeam.length <= 6 ? "Your pokemon was added to your team!"
+              <Alert onClose={closeTeam} severity={pokemonTeam.length < 6 ? "success" : "error"} style={{width: "fit-content", textAlign: "center"}}>
+                {pokemonTeam.length < 6 ? "Your pokemon was added to your team!"
                 : "Your team already has six pokemon!"}
                 <div className="flex team-wrapper" style={{margin: "4px auto auto auto"}}>
                   {[...Array(6)].map((_, i) => {
