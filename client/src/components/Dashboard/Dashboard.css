@@ -2,7 +2,6 @@
     height: 100%;
     width: min(100%, 1820px);
     margin: 100px auto;
-    justify-content: center;
 }
 
 #Dashboard-left {
