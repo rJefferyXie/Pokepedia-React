@@ -7,7 +7,8 @@ const TeamShare = require("../../models/TeamShare");
 // @desc Get the pokemon pokedex for id
 // @access Public
 router.get("/all", (req, res) => {
-    TeamShare.find({}, (err, data) => {
+    TeamShare.find().sort({ "time": -1 }).exec((err, data) => {
+        console.log(data)
         res.json(data);
     }) 
 });
