@@ -111,7 +111,7 @@ const Pokedex = () => {
           {teamShow === false ? 
           <Tooltip title="View Your Team" placement="top" arrow>
             <IconButton onClick={() => { setFullTeamShow(true); setTeamShow(false); } } style={{position: "fixed", bottom: "3%", left: "3%", backgroundColor: "white", boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)"}}>
-              <CatchingPokemonIcon style={{padding: "0px 0px 0px 0px", width: "16px", height: "16px", color: "black"}}></CatchingPokemonIcon>
+              <CatchingPokemonIcon style={{padding: "0px 0px 0px 0px", width: "16px", height: "16px", color: "red"}}></CatchingPokemonIcon>
             </IconButton>
           </Tooltip> : null}
           <Snackbar open={teamShow} autoHideDuration={2000} onClose={closeTeam} style={{width: "100%"}}>
