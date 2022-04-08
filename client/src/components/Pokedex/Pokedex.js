@@ -101,7 +101,7 @@ const Pokedex = () => {
         regionNumber = '12';
         break;
       case "alola":
-        regionNumber = '14';
+        regionNumber = '16';
         break;
       default:
         return;
