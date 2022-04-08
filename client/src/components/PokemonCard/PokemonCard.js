@@ -52,7 +52,7 @@ const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex, dashboa
           </div> : null
         }
 
-        {inView || supportsLazyLoad ? <img className="pokemon-image-card" src={pokemonData.sprites.other["official-artwork"].front_default} alt="" loading="lazy"></img> : null}
+        {inView || supportsLazyLoad ? <img className="pokemon-image-card" src={pokemonData.sprites.other["official-artwork"].front_default} alt={pokemonData["name"]} loading="lazy"></img> : null}
         {pokedexIndex !== undefined ? <p className="pokemon-index-card">{"#" + pokedexIndex}</p>: null}
         <p className="pokemon-name-card searchable">{pokemonData["name"]}</p>
 

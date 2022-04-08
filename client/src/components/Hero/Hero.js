@@ -41,7 +41,7 @@ const Hero = () => {
             <Button variant="contained" className="mui-button" component={Link} to="/dashboard" style={{width: "fit-content", margin: "0px 4px", backgroundColor: "rgba(6, 114, 177, 0.8)"}}>View Dashboard</Button>
           </div>
         </div>
-        <img alt="" src={wallpaper} id="Hero-wallpaper"></img>
+        <img alt="All eevee evolutions." src={wallpaper} id="Hero-wallpaper"></img>
       </div>
       <About></About>
       <Regions></Regions>

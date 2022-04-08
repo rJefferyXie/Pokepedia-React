@@ -15,10 +15,10 @@ const About = () => {
                         Learn about each pokemon's characteristics, stats, moveset, and evolution chain with ease.
                     </p>
                 </div>
-                <img alt="" src={lookup} className="about-image"></img>
+                <img alt="Look up information about all the pokemon." src={lookup} className="about-image"></img>
             </div>
             <div id="About-wrapper-2" className="flex about-wrapper">
-                <img alt="" src={teambuilder} className="about-image"></img>
+                <img alt="Generate your own pokemon team." src={teambuilder} className="about-image"></img>
                 <div className="flex-col about-info">
                     <h2>Team Generation</h2>
                     <p>

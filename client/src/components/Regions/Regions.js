@@ -71,79 +71,79 @@ const Regions = () => {
         <Link to="/pokedex/kanto" id="Kanto" className="region-container flex-col">
             <h1 className="region-name">KANTO</h1>
             <h1 className="region-name-hover">VISIT</h1>
-            <img alt="" src={kanto} className="region-wallpaper" style={{objectPosition: "left"}}></img>
-            <img alt="" src={venusaur} className="region-image i1"></img>
-            <img alt="" src={charizard} className="region-image i2"></img>
-            <img alt="" src={blastoise} className="region-image i3"></img>
-            <img alt="" src={articuno} className="region-image i4"></img>
-            <img alt="" src={zapdos} className="region-image i5"></img>
-            <img alt="" src={moltres} className="region-image i6"></img>
+            <img alt="kanto" src={kanto} className="region-wallpaper" style={{objectPosition: "left"}}></img>
+            <img alt="venusaur" src={venusaur} className="region-image i1"></img>
+            <img alt="charizard" src={charizard} className="region-image i2"></img>
+            <img alt="blastoise" src={blastoise} className="region-image i3"></img>
+            <img alt="articuno" src={articuno} className="region-image i4"></img>
+            <img alt="zapdos" src={zapdos} className="region-image i5"></img>
+            <img alt="moltres" src={moltres} className="region-image i6"></img>
         </Link>
         <Link to="/pokedex/johto" id="Johto" className="region-container flex-col">
             <h1 className="region-name">JOHTO</h1>
             <h1 className="region-name-hover">VISIT</h1>
-            <img alt="" src={johto} className="region-wallpaper"></img>
-            <img alt="" src={meganium} className="region-image i1"></img>
-            <img alt="" src={typhlosion} className="region-image i2"></img>
-            <img alt="" src={feraligatr} className="region-image i3"></img>
-            <img alt="" src={hooh} className="region-image i4"></img>
-            <img alt="" src={lugia} className="region-image i5"></img>
-            <img alt="" src={celibi} className="region-image i6"></img>
+            <img alt="johto" src={johto} className="region-wallpaper"></img>
+            <img alt="meganium" src={meganium} className="region-image i1"></img>
+            <img alt="typhlosion" src={typhlosion} className="region-image i2"></img>
+            <img alt="feraligatr" src={feraligatr} className="region-image i3"></img>
+            <img alt="ho-oh" src={hooh} className="region-image i4"></img>
+            <img alt="lugia" src={lugia} className="region-image i5"></img>
+            <img alt="celibi" src={celibi} className="region-image i6"></img>
         </Link>
         <Link to="/pokedex/hoenn" id="Hoenn" className="region-container flex-col">
             <h1 className="region-name">HOENN</h1>
             <h1 className="region-name-hover">VISIT</h1>
-            <img alt="" src={hoenn} className="region-wallpaper"></img>
-            <img alt="" src={sceptile} className="region-image i1"></img>
-            <img alt="" src={blaziken} className="region-image i2"></img>
-            <img alt="" src={swampert} className="region-image i3"></img>
-            <img alt="" src={groudon} className="region-image i4"></img>
-            <img alt="" src={kyogre} className="region-image i5"></img>
-            <img alt="" src={rayquaza} className="region-image i6"></img>
+            <img alt="hoenn" src={hoenn} className="region-wallpaper"></img>
+            <img alt="sceptile" src={sceptile} className="region-image i1"></img>
+            <img alt="blaziken" src={blaziken} className="region-image i2"></img>
+            <img alt="swampert" src={swampert} className="region-image i3"></img>
+            <img alt="groudon" src={groudon} className="region-image i4"></img>
+            <img alt="kyogre" src={kyogre} className="region-image i5"></img>
+            <img alt="rayquaza" src={rayquaza} className="region-image i6"></img>
         </Link>
         <Link to="/pokedex/sinnoh" id="Sinnoh" className="region-container flex-col">
             <h1 className="region-name">SINNOH</h1>
             <h1 className="region-name-hover">VISIT</h1>
-            <img alt="" src={sinnoh} className="region-wallpaper" style={{objectPosition: "right"}}></img>
-            <img alt="" src={torterra} className="region-image i1"></img>
-            <img alt="" src={infernape} className="region-image i2"></img>
-            <img alt="" src={empoleon} className="region-image i3"></img>
-            <img alt="" src={dialga} className="region-image i4"></img>
-            <img alt="" src={palkia} className="region-image i5"></img>
-            <img alt="" src={giratina} className="region-image i6"></img>
+            <img alt="sinnoh" src={sinnoh} className="region-wallpaper" style={{objectPosition: "right"}}></img>
+            <img alt="torterra" src={torterra} className="region-image i1"></img>
+            <img alt="infernape" src={infernape} className="region-image i2"></img>
+            <img alt="empoleon" src={empoleon} className="region-image i3"></img>
+            <img alt="dialga" src={dialga} className="region-image i4"></img>
+            <img alt="palkia" src={palkia} className="region-image i5"></img>
+            <img alt="giratina" src={giratina} className="region-image i6"></img>
         </Link>
         <Link to="/pokedex/unova" id="Unova" className="region-container flex-col">
             <h1 className="region-name">UNOVA</h1>
             <h1 className="region-name-hover">VISIT</h1>
-            <img alt="" src={unova} className="region-wallpaper"></img>
-            <img alt="" src={serperior} className="region-image i1"></img>
-            <img alt="" src={emboar} className="region-image i2"></img>
-            <img alt="" src={samurott} className="region-image i3"></img>
-            <img alt="" src={reshiram} className="region-image i4"></img>
-            <img alt="" src={zekrom} className="region-image i5"></img>
-            <img alt="" src={kyurem} className="region-image i6"></img>
+            <img alt="unova" src={unova} className="region-wallpaper"></img>
+            <img alt="serperior" src={serperior} className="region-image i1"></img>
+            <img alt="emboar" src={emboar} className="region-image i2"></img>
+            <img alt="samurott" src={samurott} className="region-image i3"></img>
+            <img alt="reshiram" src={reshiram} className="region-image i4"></img>
+            <img alt="zekrom" src={zekrom} className="region-image i5"></img>
+            <img alt="kyurem" src={kyurem} className="region-image i6"></img>
         </Link>
         <Link to="/pokedex/kalos" id="Kalos" className="region-container flex-col">
             <h1 className="region-name">KALOS</h1>
             <h1 className="region-name-hover">VISIT</h1>
-            <img alt="" src={kalos} className="region-wallpaper"></img>
-            <img alt="" src={chesnaught} className="region-image i1"></img>
-            <img alt="" src={delphox} className="region-image i2"></img>
-            <img alt="" src={greninja} className="region-image i3"></img>
-            <img alt="" src={xerneas} className="region-image i4"></img>
-            <img alt="" src={yveltal} className="region-image i5"></img>
-            <img alt="" src={zygarde} className="region-image i6"></img>
+            <img alt="kalos" src={kalos} className="region-wallpaper"></img>
+            <img alt="chesnaught" src={chesnaught} className="region-image i1"></img>
+            <img alt="delphox" src={delphox} className="region-image i2"></img>
+            <img alt="greninja" src={greninja} className="region-image i3"></img>
+            <img alt="xerneas" src={xerneas} className="region-image i4"></img>
+            <img alt="yveltal" src={yveltal} className="region-image i5"></img>
+            <img alt="zygarde" src={zygarde} className="region-image i6"></img>
         </Link>
         <Link to="/pokedex/alola" id="Alola" className="region-container flex-col">
             <h1 className="region-name">ALOLA</h1>
             <h1 className="region-name-hover">VISIT</h1>
-            <img alt="" src={alola} className="region-wallpaper"></img>
-            <img alt="" src={decidueye} className="region-image i1"></img>
-            <img alt="" src={incineroar} className="region-image i2"></img>
-            <img alt="" src={primarina} className="region-image i3"></img>
-            <img alt="" src={lunala} className="region-image i4"></img>
-            <img alt="" src={solgaleo} className="region-image i5"></img>
-            <img alt="" src={necrozma} className="region-image i6"></img>
+            <img alt="alola" src={alola} className="region-wallpaper"></img>
+            <img alt="decidueye" src={decidueye} className="region-image i1"></img>
+            <img alt="incineroar" src={incineroar} className="region-image i2"></img>
+            <img alt="primarina" src={primarina} className="region-image i3"></img>
+            <img alt="lunala" src={lunala} className="region-image i4"></img>
+            <img alt="solgaleo" src={solgaleo} className="region-image i5"></img>
+            <img alt="necrozma" src={necrozma} className="region-image i6"></img>
         </Link>
     </section>
   );
