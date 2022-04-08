@@ -1,0 +1,62 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/0.9">
+    <url>
+        <loc>https://pokepediajx.netlify.app/</loc>
+        <lastmod>2022-03-01</lastmod>
+        <priority>1</priority>
+    </url>
+
+    </url>
+        <url>
+        <loc>https://pokepediajx.netlify.app/dashboard</loc>
+        <lastmod>2022-03-01</lastmod>
+        <priority>0.75</priority>
+    </url>
+
+    <url>
+        <loc>https://pokepediajx.netlify.app/pokedex/johto</loc>
+        <lastmod>2022-03-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+
+    </url>
+        <url>
+        <loc>https://pokepediajx.netlify.app/pokedex/kanto</loc>
+        <lastmod>2022-03-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+
+    </url>
+        <url>
+        <loc>https://pokepediajx.netlify.app/pokedex/hoenn</loc>
+        <lastmod>2022-03-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+
+    </url>
+        <url>
+        <loc>https://pokepediajx.netlify.app/pokedex/sinnoh</loc>
+        <lastmod>2022-03-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+
+    </url>
+        <url>
+        <loc>https://pokepediajx.netlify.app/pokedex/unova</loc>
+        <lastmod>2022-03-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+
+    </url>
+        <url>
+        <loc>https://pokepediajx.netlify.app/pokedex/kalos</loc>
+        <lastmod>2022-03-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+
+    </url>
+        <url>
+        <loc>https://pokepediajx.netlify.app/pokedex/alola</loc>
+        <lastmod>2022-03-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+</urlset>
