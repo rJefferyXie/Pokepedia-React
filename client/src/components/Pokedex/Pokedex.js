@@ -4,7 +4,6 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import axios from "axios";
-import { useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
@@ -22,9 +21,8 @@ import { Button, Snackbar, Alert } from "@mui/material";
 
 const Pokedex = () => {  
   const dispatch = useDispatch()
-  const location = useLocation();
-  const {region_number, region_name} = location.state;
 
+  const [regionName, setRegionName] = useState("");
   const [teamShow, setTeamShow] = useState(false);
   const [fullTeamShow, setFullTeamShow] = useState(false);
   const [tutorialShow, setTutorialShow] = useState(false);
@@ -70,20 +68,51 @@ const Pokedex = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (pokedex.region !== region_name) { 
-      dispatch(allActions.pokedexActions.setPokedex(
-        {"speciesData": [], "pokemonData": [], "region": ""}));
-      retrieve_data(); 
-    }
+    setRegionName(window.location.pathname.replace("/pokedex/", ""));
   }, []);
 
+  useEffect(() => {
+    if (pokedex.region !== regionName) { 
+      dispatch(allActions.pokedexActions.setPokedex({"speciesData": [], "pokemonData": [], "region": ""}));
+      retrieve_data(); 
+    }
+  }, [regionName])
+
   const retrieve_data = async () => {
-    const speciesJSON = await axios.get("/api/pokedex/pokemon/" + region_number).then(res => res.data);
-    const pokemonJSON = await axios.get("/api/pokedex/species/" + region_number).then(res => res.data);
+    let regionNumber;
+
+    switch (regionName) {
+      case "kanto": 
+        regionNumber = '2';
+        break;
+      case "johto": 
+        regionNumber = '7';
+        break;
+      case "hoenn": 
+        regionNumber = '4';
+        break;
+      case "sinnoh":
+        regionNumber = '6';
+        break;
+      case "unova":
+        regionNumber = '9';
+        break;
+      case "kalos":
+        regionNumber = '12';
+        break;
+      case "alola":
+        regionNumber = '14';
+        break;
+      default:
+        return;
+    }
+
+    const speciesJSON = await axios.get("/api/pokedex/pokemon/" + regionNumber).then(res => res.data);
+    const pokemonJSON = await axios.get("/api/pokedex/species/" + regionNumber).then(res => res.data);
     dispatch(allActions.pokedexActions.setPokedex(
       {"speciesData": speciesJSON[0]["pokemonData"], 
       "pokemonData": pokemonJSON[0]["speciesData"], 
-      "region": region_name}
+      "region": regionName}
       )
     );
   }

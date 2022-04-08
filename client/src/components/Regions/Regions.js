@@ -68,7 +68,7 @@ import alola from "../../images/alola/alola.png";
 const Regions = () => {
   return (
     <section id="Regions" className="flex">
-        <Link to="/pokedex/kanto" state={{ region_number: '2', region_name: "kanto" }} id="Kanto" className="region-container flex-col">
+        <Link to="/pokedex/kanto" id="Kanto" className="region-container flex-col">
             <h1 className="region-name">KANTO</h1>
             <h1 className="region-name-hover">VISIT</h1>
             <img alt="" src={kanto} className="region-wallpaper" style={{objectPosition: "left"}}></img>
@@ -79,7 +79,7 @@ const Regions = () => {
             <img alt="" src={zapdos} className="region-image i5"></img>
             <img alt="" src={moltres} className="region-image i6"></img>
         </Link>
-        <Link to="/pokedex/johto" state={{ region_number: '7', region_name: "johto" }} id="Johto" className="region-container flex-col">
+        <Link to="/pokedex/johto" id="Johto" className="region-container flex-col">
             <h1 className="region-name">JOHTO</h1>
             <h1 className="region-name-hover">VISIT</h1>
             <img alt="" src={johto} className="region-wallpaper"></img>
@@ -90,7 +90,7 @@ const Regions = () => {
             <img alt="" src={lugia} className="region-image i5"></img>
             <img alt="" src={celibi} className="region-image i6"></img>
         </Link>
-        <Link to="/pokedex/hoenn" state={{ region_number: '4', region_name: "hoenn" }} id="Hoenn" className="region-container flex-col">
+        <Link to="/pokedex/hoenn" id="Hoenn" className="region-container flex-col">
             <h1 className="region-name">HOENN</h1>
             <h1 className="region-name-hover">VISIT</h1>
             <img alt="" src={hoenn} className="region-wallpaper"></img>
@@ -101,7 +101,7 @@ const Regions = () => {
             <img alt="" src={kyogre} className="region-image i5"></img>
             <img alt="" src={rayquaza} className="region-image i6"></img>
         </Link>
-        <Link to="/pokedex/sinnoh" state={{ region_number: '6', region_name: "sinnoh" }} id="Sinnoh" className="region-container flex-col">
+        <Link to="/pokedex/sinnoh" id="Sinnoh" className="region-container flex-col">
             <h1 className="region-name">SINNOH</h1>
             <h1 className="region-name-hover">VISIT</h1>
             <img alt="" src={sinnoh} className="region-wallpaper" style={{objectPosition: "right"}}></img>
@@ -112,7 +112,7 @@ const Regions = () => {
             <img alt="" src={palkia} className="region-image i5"></img>
             <img alt="" src={giratina} className="region-image i6"></img>
         </Link>
-        <Link to="/pokedex/unova" state={{ region_number: '9', region_name: "unova" }} id="Unova" className="region-container flex-col">
+        <Link to="/pokedex/unova" id="Unova" className="region-container flex-col">
             <h1 className="region-name">UNOVA</h1>
             <h1 className="region-name-hover">VISIT</h1>
             <img alt="" src={unova} className="region-wallpaper"></img>
@@ -123,7 +123,7 @@ const Regions = () => {
             <img alt="" src={zekrom} className="region-image i5"></img>
             <img alt="" src={kyurem} className="region-image i6"></img>
         </Link>
-        <Link to="/pokedex/kalos" state={{ region_number: '12', region_name: "kalos" }} id="Kalos" className="region-container flex-col">
+        <Link to="/pokedex/kalos" id="Kalos" className="region-container flex-col">
             <h1 className="region-name">KALOS</h1>
             <h1 className="region-name-hover">VISIT</h1>
             <img alt="" src={kalos} className="region-wallpaper"></img>
@@ -134,7 +134,7 @@ const Regions = () => {
             <img alt="" src={yveltal} className="region-image i5"></img>
             <img alt="" src={zygarde} className="region-image i6"></img>
         </Link>
-        <Link to="/pokedex/alola" state={{ region_number: '16', region_name: "alola" }} id="Alola" className="region-container flex-col">
+        <Link to="/pokedex/alola" id="Alola" className="region-container flex-col">
             <h1 className="region-name">ALOLA</h1>
             <h1 className="region-name-hover">VISIT</h1>
             <img alt="" src={alola} className="region-wallpaper"></img>
