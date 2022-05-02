@@ -1,30 +1,20 @@
 #Dashboard-container {
-    height: calc(100vh - 80px);
+    height: 100%;
     width: min(100%, 1820px);
-    margin: 80px auto 0px;
-    padding: 1rem;
+    margin: 100px auto;
 }
 
 #Dashboard-left {
-    height: 40%;
-    width: 40%;
+    height: 100%;
+    width: min(100%, 420px);
     justify-content: center;
-    padding: 1rem;
-    background-color: white;
-    box-shadow: 0px 0px 4px rgb(0, 0, 0, 27%);
     flex-wrap: wrap;
     margin: auto;
-    align-content: flex-start;
 }
 
 #Dashboard-right {
-    display: flex;
-    height: 80%;
-    width: 55%;
-    border-radius: 8px;
-    padding: 1rem;
-    background-color: white;
-    box-shadow: 0px 0px 4px rgb(0, 0, 0, 27%);
+    height: 100%;
+    width: min(100%, 820px);
     margin: auto;
 }
 
@@ -35,14 +25,12 @@
 }
 
 #Posts {
-    display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     margin-top: 8px;
 }
 
 .team-post {
-    margin: 8px 8px;
+    margin: 4px 4px;
     background-color: white;
     padding: 4px 8px;
     border-radius: 8px;
@@ -52,7 +40,7 @@
 }
 
 .fun-stat {
-    width: calc(50% - 8px);
+    width: min(205px, 47%);
     height: 80px; 
     margin: 4px;
     text-align: center;
