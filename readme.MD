@@ -1,6 +1,8 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/42d1f3ff-d0fa-47d2-801b-9f0209010f44/deploy-status)](https://app.netlify.com/sites/pokepediajx/deploys)
 
-Check out my website here: https://pokepediajx.netlify.app/
+A website that fits all your pokemon needs with a responsive and modern UI. This pokedex includes many interesting features such as viewing pokemon stats and movesets, and a built in team builder + generator. This was originally created with pure HTML, CSS, and JavaScript, (see old version at https://rjefferyxie.github.io/Pokepedia/), and this is an updated version after taking a full-stack web development course. I used MongoDB, Express, React, and Node.JS as the tech stack, along with Redux to cache or maintain state throughout the program.
+
+Check out the updated version here: https://pokepediajx.netlify.app/
 
 # Table of Contents
 * [Regions](#regions)
