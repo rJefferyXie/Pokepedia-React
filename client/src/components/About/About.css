@@ -1,7 +1,10 @@
 .about-wrapper {
     width: min(90%, 1160px);
-    margin: auto;
-    padding: 10px;
+    margin: 10px auto;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 1px 1px 4px rgb(0, 0, 0, 27%);
 }
 
 .about-info {
@@ -11,7 +14,7 @@
 
 .about-image {
     width: 50%;
-    margin: 4px;
+    margin: 4px 8px;
 }
 
 @media screen and (max-width: 960px) {
