@@ -1,6 +1,6 @@
 #Team-container {
-    text-transform: capitalize;
     height: calc(100vh - 80px);
+    width: 100%;
     position: relative;
     margin: 80px auto 0px auto;
 }
@@ -12,17 +12,18 @@
 }
 
 #Team-right {
-    height: fit-content;
-    width: min(100%, 700px);
-    margin: auto;
+    height: min(100%, 480px);
+    width: min(100%, 720px);
+    margin: auto auto auto 0px;
 }
 
 #Team-left {
-    margin: auto;
-    width: fit-content;
+    height: min(100%, 480px);
+    margin: auto 0px auto auto;
+    width: min(40%, 720px);
 }
 
-#Team-header {
+.Team-header {
     margin: 4px auto;
 }
 
@@ -31,25 +32,43 @@
     margin: 4px auto;
 }
 
-#Team-settings-container {
+#Team-settings-container, #Team-description {
+    width: 100%;
     background-color: white;
     border-radius: 16px;
-    padding: 16px;
+    padding: 8px 1rem;
     box-shadow: 0px 0px 4px rgb(0, 0, 0, 27%);
     margin: 8px 0px;
 }
 
-#Settings-container {
-    margin: auto;
+#Team-description {
+    margin: auto 0px 8px 0px;
 }
 
-@media screen and (max-width: 960px) {
+#Description-p {
+    font-size: var(--step--1);
+}
+
+#Settings-container {
+    margin: auto 0px 4px;
+}
+
+.settings-label {
+    margin: 2px 0px;
+}
+
+@media screen and (max-width: 1080px) {
     #Team-container {
         flex-direction: column;
         height: 100%;
     }
 
     #Team-left {
-        margin: 60px auto 0px auto;  
+        margin: 100px auto 0px auto;  
+        width: 100%;
+    }
+
+    #Description-p {
+        font-size: var(--step-0);
     }
 }

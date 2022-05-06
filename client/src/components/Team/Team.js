@@ -143,19 +143,22 @@ const Team = () => {
         <FontAwesomeIcon icon={faArrowLeft} style={{margin: "auto"}}></FontAwesomeIcon>
       </button>
       <div id="Team-left" className="flex-col">
-        <h2 id="Team-header">Team Builder</h2>
-        <div id="Team-button-container" className="button-container flex">
-          <Button variant="contained" className="mui-button" onClick={() => clearTeam()} style={{margin: "auto 4px", width: "fit-content", backgroundColor: "rgba(177, 6, 6, 0.7)"}}>Clear Team</Button>
-          <Button variant="contained" className="mui-button" onClick={() => generateTeam()} style={{margin: "auto 4px", width: "fit-content", backgroundColor: "rgba(9, 141, 42, 0.8)"}}>Generate</Button>
-          <Button variant="contained" className="mui-button" onClick={() => setSharing(true)} style={{margin: "auto 4px", width: "fit-content", backgroundColor: "rgba(6, 114, 177, 0.8)"}}>Share Team</Button>   
+        <div id="Team-description" className="flex-col">
+          <h2 className="Team-header">Team Page</h2>
+          <p id="Description-p">{`Create a team with pokemon randomly selected from ${pokedex.region} with the click of a button! You can also share your team to the dashboard for others to see, or take a look at teams that others have made.`}</p>
         </div>
         <div id="Team-settings-container" className="flex-col">
-          <h3 id="Team-header">Build Settings</h3>
+          <h2 className="Team-header">Team Builder</h2>
           <div id="Settings-container" className="flex-col">
             <label className="settings-label"><input type="checkbox" defaultChecked={build.legendary} onClick={() => toggleLegendary()}></input> No Legendary Pokemon</label>
             <label className="settings-label"><input type="checkbox" defaultChecked={build.mythic} onClick={() => toggleMythic()}></input> No Mythical Pokemon</label>
             <label className="settings-label"><input type="checkbox" defaultChecked={build.types} onClick={() => toggleTypes()}></input> No Duplicate Types</label>
             <label className="settings-label"><input type="checkbox" defaultChecked={build.duplicates} onClick={() => toggleDuplicates()}></input> No Duplicate Pokemon</label>
+          </div>
+          <div id="Team-button-container" className="button-container flex">
+            <Button variant="contained" className="mui-button" onClick={() => clearTeam()} style={{margin: "auto 4px", width: "fit-content", backgroundColor: "rgba(177, 6, 6, 0.7)"}}>Clear Team</Button>
+            <Button variant="contained" className="mui-button" onClick={() => generateTeam()} style={{margin: "auto 4px", width: "fit-content", backgroundColor: "rgba(9, 141, 42, 0.8)"}}>Generate</Button>
+            <Button variant="contained" className="mui-button" onClick={() => setSharing(true)} style={{margin: "auto 4px", width: "fit-content", backgroundColor: "rgba(6, 114, 177, 0.8)"}}>Share</Button>   
           </div>
         </div>
       </div>
