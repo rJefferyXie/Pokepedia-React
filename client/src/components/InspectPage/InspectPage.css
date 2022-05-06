@@ -75,10 +75,12 @@
     border-radius: 8px;
     width: fit-content;
     box-shadow: 1px 1px 4px rgb(0, 0, 0, 27%);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 #Evolution-header, #Move-header {
     margin: 40px auto 20px auto;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .pokemon-index, .pokemon-weight, .pokemon-height, .pokemon-abilities, .pokemon-habitat {
@@ -126,8 +128,8 @@
     padding: 8px;
     border-radius: 8px;
     text-align: center;
-    cursor: pointer;
     box-shadow: 1px 1px 4px rgb(0, 0, 0, 27%);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .pokemon-name-inspect {
@@ -182,6 +184,7 @@
     margin: auto 4px;
     text-align: right;
     color: white;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 #Move-list {
@@ -229,6 +232,7 @@ thead {
     text-align: left;
     color: white;
     border-radius: 10px 10px 0px 0px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 tfoot {
