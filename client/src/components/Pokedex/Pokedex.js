@@ -22,7 +22,6 @@ import { Button, Snackbar, Alert } from "@mui/material";
 const Pokedex = () => {  
   const dispatch = useDispatch()
 
-  const [regionName, setRegionName] = useState("");
   const [teamShow, setTeamShow] = useState(false);
   const [fullTeamShow, setFullTeamShow] = useState(false);
   const [tutorialShow, setTutorialShow] = useState(false);
@@ -68,20 +67,17 @@ const Pokedex = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    setRegionName(window.location.pathname.replace("/pokedex/", ""));
+    let region = window.location.pathname.replace("/pokedex/", "");
+    if (pokedex.region !== region || pokedex.speciesData.length === 0) {
+      dispatch(allActions.pokedexActions.setPokedex({"speciesData": [], "pokemonData": [], "region": ""}));
+      retrieve_data(region); 
+    }
   }, []);
 
-  useEffect(() => {
-    if (pokedex.region !== regionName) { 
-      dispatch(allActions.pokedexActions.setPokedex({"speciesData": [], "pokemonData": [], "region": ""}));
-      retrieve_data(); 
-    }
-  }, [regionName])
-
-  const retrieve_data = async () => {
+  const retrieve_data = async (region) => {
     let regionNumber;
 
-    switch (regionName) {
+    switch (region) {
       case "kanto": 
         regionNumber = '2';
         break;
@@ -112,7 +108,7 @@ const Pokedex = () => {
     dispatch(allActions.pokedexActions.setPokedex(
       {"speciesData": speciesJSON[0]["pokemonData"], 
       "pokemonData": pokemonJSON[0]["speciesData"], 
-      "region": regionName}
+      "region": region}
       )
     );
   }
