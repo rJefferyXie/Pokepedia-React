@@ -1,32 +1,54 @@
 #Dashboard-container {
     height: 100%;
-    width: min(100%, 1820px);
-    margin: 100px auto;
+    min-height: calc(100vh - 80px);
+    width: 100vw;
+    margin: 80px auto 0px;
+    padding: 1rem;
 }
 
 #Dashboard-left {
-    height: 100%;
-    width: min(100%, 420px);
+    display: flex;
+    height: 20%;
+    width: min(100%, 1230px);
+    padding: 0px 0px 0px 4px;
+    margin: auto auto 2px;
     justify-content: center;
+}
+
+#Dashboard-intro {
+    width: calc(100% / 3 - 4px);
+    height: 168px;
+    padding: 4px 8px;
+    margin: auto 2px auto 0px;
+    background-color: rgba(6, 82, 120, 0.9) !important;
+    color: white !important;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+#Dashboard-stats {
+    width: calc(100% - (100% / 3 - 8px));
+    height: 100%;
     flex-wrap: wrap;
-    margin: auto;
+    margin: auto auto auto 2px;
 }
 
 #Dashboard-right {
+    display: flex;
     height: 100%;
-    width: min(100%, 820px);
-    margin: auto;
+    width: min(100%, 1230px);
+    margin: 2px auto auto;
 }
 
-#Region-filter {
+/* #Region-filter {
     width: 100%;
     justify-content: center;
     flex-wrap: wrap;
-}
+} */
 
 #Posts {
     flex-wrap: wrap;
-    margin-top: 8px;
+    margin: auto;
+    justify-content: center;
 }
 
 .team-post {
@@ -35,15 +57,20 @@
     padding: 4px 8px;
     border-radius: 8px;
     box-shadow: 0px 0px 4px rgb(0, 0, 0, 27%);
-    width: 400px;
+    width: calc(100% / 3 - 8px);
+    height: 110px;
     cursor: pointer;
+    overflow: auto;
 }
 
 .fun-stat {
-    width: min(205px, 47%);
-    height: 80px; 
+    width: calc(100% / 3 - 8px);
+    height: 80px;
     margin: 4px;
     text-align: center;
+    background-color: rgba(34, 134, 173, 0.9) !important;
+    color: white !important;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .team-titles {
@@ -54,7 +81,8 @@
 
 .ds-team-wrapper {
     margin: 4px auto;
-    width: min(100%, 400px);
+    width: 100%;
+    height: 100%;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -82,13 +110,51 @@
     background-color: rgb(97, 192, 209);
 }
 
+@media screen and (max-width: 1240px) {
+    #Dashboard-intro {
+        height: 258px;
+    }
+
+    .fun-stat {
+        width: calc(100% / 2 - 8px);
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .team-post {
+        width: calc(100% / 2 - 8px);
+        height: 130px;
+    }
+}
+
 @media screen and (max-width: 960px) {
+    .team-post {
+        height: 114px;
+    }
+}
+
+@media screen and (max-width: 840px) {
     #Dashboard-container {
-        width: 100%;
+        padding: 1rem 0px;
+    }
+
+    #Dashboard-left {
         flex-direction: column;
+        padding: 0px;
+    }
+
+    #Dashboard-intro {
+        width: calc(100% - 8px);
+        margin: 2px auto;
+        height: 168px;
+    }
+    
+    #Dashboard-stats {
+        width: 100%;
+        margin: 2px auto;
     }
 
     .team-post {
-        margin: 4px auto;
+        width: 100%;
     }
 }

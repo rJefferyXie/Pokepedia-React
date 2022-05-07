@@ -73,7 +73,7 @@ const Dashboard = () => {
     }, [stats])
 
   return (
-    <section id="Dashboard-container" className="flex">
+    <section id="Dashboard-container" className="flex-col">
       {posts.length ? null : <Loading></Loading>}
       <div id="Dashboard-left" className="flex">
           {/* <MenuList open={true} id="Region-filter" className="flex" style={{width: "100%"}}>
@@ -85,31 +85,37 @@ const Dashboard = () => {
             <MenuItem style={{margin: "4px"}}>Unova</MenuItem>
             <MenuItem style={{margin: "4px"}}>Alola</MenuItem>
           </MenuList> */}
+        <Card id="Dashboard-intro" variant="outlined" className="flex-col">
+          <h1 style={{margin: "0px 0px 0px"}}>Dashboard</h1>
+          <p style={{fontSize: "initial", margin: "auto"}}>Welcome to the community dashboard! In the dashboard you can take a look at teams that other users have created.</p>
+        </Card>
 
-        <Card variant="outlined" className="flex-col fun-stat">
-          <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Total Teams Shared</p>
-          <strong style={{fontSize: "initial", margin: "auto"}}>{posts.length}</strong>
-        </Card>
-        <Card variant="outlined" className="flex-col fun-stat">
-          <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Teams Shared Today</p>
-          <strong style={{fontSize: "initial", margin: "auto"}}>{postsToday}</strong>
-        </Card>
-        <Card variant="outlined" className="flex-col fun-stat">
-          <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Teams Shared</p>
-          <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topUser}</strong>
-        </Card>
-        <Card variant="outlined" className="flex-col fun-stat">
-          <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Popular Region</p>
-          <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topRegion}</strong>
-        </Card>
-        <Card variant="outlined" className="flex-col fun-stat">
-          <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Popular Pokemon</p>
-          <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topPokemon}</strong>
-        </Card>
-        <Card variant="outlined" className="flex-col fun-stat">
-          <p style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Popular Type</p>
-          <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topType}</strong>
-        </Card>
+        <div id="Dashboard-stats" className="flex">
+          <Card variant="outlined" className="flex-col fun-stat">
+            <h2 style={{fontSize: "initial", margin: "4px 0px 0px"}}>Total Teams Shared</h2>
+            <strong style={{fontSize: "initial", margin: "auto"}}>{posts.length}</strong>
+          </Card>
+          <Card variant="outlined" className="flex-col fun-stat">
+            <h2 style={{fontSize: "initial", margin: "4px 0px 0px"}}>Teams Shared Today</h2>
+            <strong style={{fontSize: "initial", margin: "auto"}}>{postsToday}</strong>
+          </Card>
+          <Card variant="outlined" className="flex-col fun-stat">
+            <h2 style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Teams Shared</h2>
+            <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topUser}</strong>
+          </Card>
+          <Card variant="outlined" className="flex-col fun-stat">
+            <h2 style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Popular Region</h2>
+            <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topRegion}</strong>
+          </Card>
+          <Card variant="outlined" className="flex-col fun-stat">
+            <h2 style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Popular Pokemon</h2>
+            <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topPokemon}</strong>
+          </Card>
+          <Card variant="outlined" className="flex-col fun-stat">
+            <h2 style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Popular Type</h2>
+            <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topType}</strong>
+          </Card>
+        </div>
       </div>
       <div id="Dashboard-right" className="flex-col">
         <div id="Posts" className="flex">
