@@ -69,15 +69,15 @@
 }
 
 .ds {
-    width: 60px;
-    height: 70px;
+    width: calc(100% / 6 - 4px);
+    height: max(70px, 100%);
     margin: 2px;
     box-shadow: 2px 2px 4px rgb(0, 0, 0, 27%);
     border-radius: 6px;
 }
 
 .ds .pokemon-image-card {
-    width: 60px;
+    width: 100%;
 }
 
 .ds .pokemon-name-card {
