@@ -141,7 +141,7 @@ const Pokedex = () => {
           </Tooltip> : null}
           <Snackbar open={teamShow} autoHideDuration={2000} onClose={closeTeam} style={{width: "100%"}}>
             <div className="flex" style={{width: "100%"}}>
-              <Alert onClose={closeTeam} severity={pokemonTeam.length < 6 ? "success" : "error"} style={{width: "fit-content", textAlign: "center"}}>
+              <Alert onClose={closeTeam} severity={pokemonTeam.length < 6 ? "success" : "error"} style={{width: "min(560px, 100vw)", textAlign: "center"}}>
                 {pokemonTeam.length < 6 ? "Your pokemon was added to your team!"
                 : "Your team already has six pokemon!"}
                 <div className="flex team-wrapper" style={{margin: "4px auto auto auto"}}>
@@ -155,7 +155,7 @@ const Pokedex = () => {
           </Snackbar>
           <Snackbar open={fullTeamShow} onClose={closeFullTeam} style={{width: "100%"}}>
             <div className="flex" style={{width: "100%"}}>
-              <Alert onClose={closeFullTeam} severity="info" style={{width: "fit-content", textAlign: "center"}}>
+              <Alert onClose={closeFullTeam} severity="info" style={{width: "min(560px, 100vw)", textAlign: "center"}}>
                 This is your pokemon team. Click on a pokemon to remove it.
                 <div className="flex team-wrapper" style={{margin: "4px auto auto auto"}}>
                   {[...Array(6)].map((_, i) => {
