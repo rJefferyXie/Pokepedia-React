@@ -1,6 +1,6 @@
 import "./PokemonCard.css";
-import TypeImageMap from "../Constants/TypeImageMap";
-import TypeColorSchemes from "../Constants/TypeColorSchemes"
+import TypeImageMap from "../../constants/TypeImageMap";
+import TypeColorSchemes from "../../constants/TypeColorSchemes"
 
 import { faSearch, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

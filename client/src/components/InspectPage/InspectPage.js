@@ -1,6 +1,6 @@
 import "./InspectPage.css";
-import TypeColorSchemes from "../Constants/TypeColorSchemes";
-import TypeImageMap from "../Constants/TypeImageMap";
+import TypeColorSchemes from "../../constants/TypeColorSchemes";
+import TypeImageMap from "../../constants/TypeImageMap";
 
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,7 +30,6 @@ const InspectPage = () => {
 
     const [evolutionData, setEvolutionData] = useState([]);
     const [moveData, setMoveData] = useState([]);
-    // const [loadedMoves, setLoadedMoves] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -214,11 +213,7 @@ const InspectPage = () => {
                                 if (value === 2) { return <p>{"Gender: "}<span style={{color: "#01A6EA"}} key={index}>Male</span></p> }
                                 else { return <p>{"Gender: "}<span style={{color: "#FFB1CB"}} key={index}>Female</span></p> }
                             }
-                            case "type": case "trigger": {
-                                return false;
-                            }
-                            default: {
-                                console.log(key, value);
+                            case "type": case "trigger": default: {
                                 return false;
                             }
                         }

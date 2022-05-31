@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Slider from '@mui/material/Slider';
 import Tooltip from '@mui/material/Tooltip';
 
-import Soundtracks from "../Constants/Soundtracks";
+import Soundtracks from "../../constants/Soundtracks";
 
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';

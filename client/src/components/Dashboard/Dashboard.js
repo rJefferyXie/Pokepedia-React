@@ -3,14 +3,12 @@ import "./Dashboard.css";
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import Pagination from '@mui/material/Pagination';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
 
 import PokemonCard from "../PokemonCard/PokemonCard";
 
 import Loading from "../Loading/Loading";
 
-import { Button, Card } from "@mui/material";
+import { Card } from "@mui/material";
 
 const Dashboard = () => {
     const [posts, setPosts] = useState([]);
@@ -23,15 +21,8 @@ const Dashboard = () => {
     const [topPokemon, setTopPokemon] = useState("");
     const [topType, setTopType] = useState("");
 
-    const [showFilters, setShowFilters] = useState(false);
-    const [filter, setFilter] = useState("");
-
     const handlePageChange = (event, value) => {
       setPageNumber(value);
-    }
-
-    const handleFilterChange = () => {
-
     }
 
     const getPostsToday = (date, day, month, year) => {
@@ -76,15 +67,6 @@ const Dashboard = () => {
     <section id="Dashboard-container" className="flex-col">
       {posts.length ? null : <Loading></Loading>}
       <div id="Dashboard-left" className="flex">
-          {/* <MenuList open={true} id="Region-filter" className="flex" style={{width: "100%"}}>
-            <MenuItem style={{margin: "4px", backgroundColor: "black"}}>Kanto</MenuItem>
-            <MenuItem style={{margin: "4px"}}>Johto</MenuItem>
-            <MenuItem style={{margin: "4px"}}>Hoenn</MenuItem>
-            <MenuItem style={{margin: "4px"}}>Sinnoh</MenuItem>
-            <MenuItem style={{margin: "4px"}}>Kalos</MenuItem>
-            <MenuItem style={{margin: "4px"}}>Unova</MenuItem>
-            <MenuItem style={{margin: "4px"}}>Alola</MenuItem>
-          </MenuList> */}
         <Card id="Dashboard-intro" variant="outlined" className="flex-col">
           <h1 style={{margin: "0px 0px 0px"}}>Dashboard</h1>
           <p style={{fontSize: "initial", margin: "auto"}}>Welcome to the community dashboard! In the dashboard you can take a look at teams that other users have created.</p>
