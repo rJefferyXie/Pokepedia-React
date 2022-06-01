@@ -1,10 +1,10 @@
 const StatDictionary = {
-    0: "health",
-    1: "attack",
-    2: "defense",
-    3: "special-attack",
-    4: "special-defense",
-    5: "speed"
-}
+    0: "HP",
+    1: "Attack",
+    2: "Defense",
+    3: "Sp. Attack",
+    4: "Sp. Defense",
+    5: "Speed"
+};
 
 export default StatDictionary;
