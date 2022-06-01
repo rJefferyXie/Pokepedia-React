@@ -18,7 +18,7 @@ const Move = (props) => {
 
             <td>{props.method}</td>
       </tr>
-    )
-};
+    );
+}
 
 export default Move;
