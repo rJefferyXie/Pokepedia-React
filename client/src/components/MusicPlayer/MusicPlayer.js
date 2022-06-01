@@ -1,13 +1,17 @@
 import './MusicPlayer.css';
 
+// Constants
+import Soundtracks from "../../constants/Soundtracks";
+import Regions from "../../constants/Regions";
+
+// MUI Components
 import Card from '@mui/material/Card';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Slider from '@mui/material/Slider';
 import Tooltip from '@mui/material/Tooltip';
 
-import Soundtracks from "../../constants/Soundtracks";
-
+// MUI Icons
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
@@ -17,9 +21,10 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import CloseIcon from '@mui/icons-material/Close';
 
-import React, { useState, useEffect } from 'react'
-import allActions from '../../redux/actions/allActions';
+// React and Redux
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
+import allActions from '../../redux/actions/allActions';
 
 const MusicPlayer = ({ region, track }) => {
     const [playing, setPlaying] = useState(false);
@@ -31,77 +36,47 @@ const MusicPlayer = ({ region, track }) => {
     const music = useSelector(state => state.musicReducer);
     const dispatch = useDispatch()
 
-    const regions = {
-        0: "johto",
-        1: "kanto",
-        2: "hoenn",
-        3: "sinnoh",
-        4: "unova",
-        5: "kalos",
-        6: "alola"
-    }
-
     const changeVolume = (_, volume) => {
         let player = document.getElementById("Music-audio");
         player.volume = volume;
     }
 
+    const playPause = () => {
+        setPlaying(!playing);
+        playing ? player.pause() : player.play();
+    }
+
     const nextSong = () => {
-        if (trackNumber === 6) {
-            setTrackNumber(0);
-        } else {
-            setTrackNumber(trackNumber + 1);
-        }
+        trackNumber === 6 ? setTrackNumber(0) : setTrackNumber(trackNumber + 1);
     }
 
     const prevSong = () => {
-        if (trackNumber === 0) {
-            setTrackNumber(6);
-        } else {
-            setTrackNumber(trackNumber - 1);
-        }
-    }
-
-    const playPause = () => {
-        setPlaying(!playing);
-        if (playing) {
-            player.pause();
-        } else {
-            player.play();
-        }
+        trackNumber === 0 ? setTrackNumber(6) : setTrackNumber(trackNumber - 1);
     }
 
     const nextRegion = () => {
-        if (regionNumber === 6) {
-            setRegionNumber(0);
-        } else {
-            setRegionNumber(regionNumber + 1);
-        }
+        regionNumber === 6 ? setRegionNumber(0) : setRegionNumber(regionNumber + 1);
         setTrackNumber(0);
     }
 
     const prevRegion = () => {
-        if (regionNumber === 0) {
-            setRegionNumber(6);
-        } else {
-            setRegionNumber(regionNumber - 1);
-        }
+        regionNumber === 0 ? setRegionNumber(6) : setRegionNumber(regionNumber - 1);
         setTrackNumber(0);
     }
 
     useEffect(() => {
-        setSongSRC(Soundtracks[regions[regionNumber]][trackNumber]["file_path"]);
+        setSongSRC(Soundtracks[Regions[regionNumber]][trackNumber]["file_path"]);
         if (player) {
             player.pause();
             player.load();
-            player.play().catch(e => {});
+            player.play().catch(_ => {});
             setPlaying(true);
         }
     }, [trackNumber, regionNumber]);
 
     useEffect(() => {
         let player = document.getElementById("Music-audio");
-        if (player === null) { return }
+        if (player === null) return;
 
         player.volume = "0.1";
         player.pause();
@@ -117,13 +92,13 @@ const MusicPlayer = ({ region, track }) => {
             <Tooltip title={music.closed === false ? "Close Player" : "Open Player"} placement="top" style={music.closed === false ? {position: "absolute", top: "0", right: "0"} : {width: "100%"}} arrow>
                 {music.closed === false ? 
                 <IconButton onClick={() => dispatch(allActions.musicActions.close())}>
-                    <CloseIcon style={{padding: "0px 0px 0px 0px", width: "16px", height: "16px", color: "red"}}></CloseIcon>
+                    <CloseIcon style={{padding: "0px", width: "16px", height: "16px", color: "red"}}></CloseIcon>
                 </IconButton> :                 
                 <IconButton onClick={() => dispatch(allActions.musicActions.open())}>
-                    <MusicNoteIcon style={{padding: "0px 0px 0px 0px", width: "16px", height: "16px", color: "black"}}></MusicNoteIcon>
+                    <MusicNoteIcon style={{padding: "0px", width: "16px", height: "16px", color: "black"}}></MusicNoteIcon>
                 </IconButton>}
             </Tooltip>
-            {music.closed === false ? <Typography style={{padding: "0px 8px 0px 8px", margin: "auto", width: "160px", height: "20px", overflow: "hidden", textOverflow: "ellipsis", textAlign: "center"}}>{Soundtracks[regions[regionNumber]][trackNumber]["name"]}</Typography> : null}
+            {music.closed === false ? <Typography style={{padding: "0px 8px", margin: "auto", width: "160px", height: "20px", overflow: "hidden", textOverflow: "ellipsis", textAlign: "center"}}>{Soundtracks[Regions[regionNumber]][trackNumber]["name"]}</Typography> : null}
             {music.closed === false ? 
             <div className="flex" style={{width: "fit-content", margin: "auto"}}>
                 <Tooltip title="Previous Region" placement="top" arrow>
@@ -131,7 +106,7 @@ const MusicPlayer = ({ region, track }) => {
                         <ArrowLeftIcon style={{fontSize: "2rem"}}></ArrowLeftIcon>
                     </IconButton>  
                 </Tooltip>             
-                <Typography id="Song-Name" style={{padding: "4px 8px 0px 8px", margin: "auto", textTransform: "capitalize"}}>{regions[regionNumber]}</Typography>
+                <Typography id="Song-Name" style={{padding: "4px 8px 0px 8px", margin: "auto", textTransform: "capitalize"}}>{Regions[regionNumber]}</Typography>
                 <Tooltip title="Next Region" placement="top" arrow>
                     <IconButton onClick={() => nextRegion()}>
                         <ArrowRightIcon style={{fontSize: "2rem"}}></ArrowRightIcon>
