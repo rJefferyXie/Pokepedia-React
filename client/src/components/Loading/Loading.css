@@ -11,46 +11,30 @@
     margin: auto;
 }
 
-#Loading-text {
-    
+#Fact-card {
+    margin: 8px auto; 
+    padding: 8px;
 }
 
-#Loading-image {
-    height: 128px;
-    width: 128px;
-    margin: auto;
-    animation: load 2s linear infinite;
+.fact-header {
+    margin: 0px 8px;
 }
 
-#Fact {
-    box-shadow: 1px 1px 4px rgb(0, 0, 0, 27%);
-    background-color: white;
-    border-radius: 16px;
-    padding: 16px;
-    margin: 8px auto;
+.fact-text {
+    padding: 2px 8px;
 }
 
 #Loading-button {
-    margin: 8px auto;
-    background-color: rgb(46, 132, 202);
-    font-size: 1.5rem;
-    color: white;
+    width: fit-content;
+    margin: auto;
+    background-color: rgba(6, 114, 177, 0.8);
 }
 
 #Loading-button:hover, #Loading-button:active, #Loading-button:focus {
-    background-color: rgb(77, 159, 226);
+    background-color: rgba(12, 131, 199, 0.8);
 }
 
 .loading-text {
-    margin: 8px auto;
-    text-align: center;
-}
-
-@keyframes load {
-    0% {
-        transform: rotate(0deg); 
-    }
-    100% {
-        transform: rotate(360deg); 
-    }
+    margin: 4px auto; 
+    font-size: 1rem;
 }

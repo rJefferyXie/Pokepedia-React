@@ -1,9 +1,11 @@
 import "./Loading.css"
 
-import React, { useState, useEffect } from 'react';
+// React and Redux
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
 
+// MUI
 import { LinearProgress, Card, Button } from "@mui/material";
 
 const Loading = () => {
@@ -17,18 +19,22 @@ const Loading = () => {
         setFact(facts[Math.floor(Math.random() * Object.keys(facts).length)]);
     }, []);
 
+    const setLoaded = () => {
+        dispatch(allActions.loadActions.setLoaded(true));
+    }
+
     return (
         <section id="Loading-screen" className="flex-col">
             <div id="Loading-container" className="flex-col">
-                <Card variant="outlined" className="flex-col" style={{margin: "8px auto", padding: "8px"}}>
-                    <h1 style={{margin: "0px 8px"}}>Random Pokémon Fact</h1>
-                    <p style={{padding: "2px 8px"}}>{fact}</p>
+                <Card id="Fact-card" variant="outlined" className="flex-col">
+                    <h1 className="fact-header">Random Pokémon Fact</h1>
+                    <p className="fact-text">{fact}</p>
                 </Card>
-                {(pokedex.speciesData.length && pokedex.pokemonData.length) 
-                ? <Button className="mui-button" variant="contained" onClick={() => dispatch(allActions.loadActions.setLoaded(true))} style={{width: "fit-content", margin: "auto", backgroundColor: "rgba(6, 114, 177, 0.8)"}}>Continue</Button> 
-                : <div className="flex-col">
+                {(pokedex.speciesData.length && pokedex.pokemonData.length) ? 
+                <Button id="Loading-button" className="mui-button" variant="contained" onClick={setLoaded}>Continue</Button> : 
+                <div className="flex-col">
                     <LinearProgress></LinearProgress>
-                    <p style={{margin: "4px auto", fontSize: "1rem"}}>Loading Pokédex...</p>
+                    <p className="loading-text">Loading Pokédex...</p>
                 </div>}
             </div>
         </section>
