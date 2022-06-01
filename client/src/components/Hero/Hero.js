@@ -1,14 +1,17 @@
 import "./Hero.css";
 
+// Components
 import About from "../About/About";
 import Regions from "../Regions/Regions";
 
+// MUI and Images
 import wallpaper from "../../images/wallpaper.png";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
 
-import React, { useEffect } from "react";
+// Redux and React
 import axios from "axios";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
 

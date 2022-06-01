@@ -1,5 +1,6 @@
 import "./About.css";
 
+// Images
 import lookup from "../../images/undraw/lookup.svg";
 import teambuilder from "../../images/undraw/teambuilder.svg";
 

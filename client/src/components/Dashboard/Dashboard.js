@@ -1,14 +1,15 @@
 import "./Dashboard.css";
 
-import React, { useEffect, useState } from 'react';
+// React + Axios
+import { useEffect, useState } from 'react';
 import axios from "axios";
-import Pagination from '@mui/material/Pagination';
 
+// Components
 import PokemonCard from "../PokemonCard/PokemonCard";
-
 import Loading from "../Loading/Loading";
 
-import { Card } from "@mui/material";
+// MUI
+import { Pagination, Card } from '@mui/material';
 
 const Dashboard = () => {
     const [posts, setPosts] = useState([]);

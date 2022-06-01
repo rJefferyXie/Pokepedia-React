@@ -1,5 +1,6 @@
 import "./InspectPage.css";
 
+// React and Axios
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -115,7 +116,7 @@ const InspectPage = () => {
         return Promise.all(promiseArray);
     }
     
-    async function getItemImage(data_url) {
+    const getItemImage = async (data_url) => {
         return axios.get(data_url)
         .then(response => response.data['sprites']['default']);
     }
