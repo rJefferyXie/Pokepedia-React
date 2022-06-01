@@ -1,23 +1,22 @@
 import "./Pokedex.css";
 
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+// React and Redux
 import axios from "axios";
-import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
 
-import IconButton from '@mui/material/IconButton';
+// MUI Components & Icons
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
-import Tooltip from '@mui/material/Tooltip';
+import { Button, Snackbar, Alert, IconButton, Tooltip } from "@mui/material";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+// Components
 import Loading from "../Loading/Loading";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import Tutorial from "../Tutorial/Tutorial";
-import { Link } from "react-router-dom";
-
-import { Button, Snackbar, Alert } from "@mui/material";
 
 const Pokedex = () => {  
   const dispatch = useDispatch()
@@ -30,30 +29,26 @@ const Pokedex = () => {
   const loaded = useSelector(state => state.loadReducer.loaded);
   const pokemonTeam = useSelector(state => state.teamReducer.team);
 
-  const closeTeam = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
+  const closeTeam = (_, reason) => {
+    if (reason === "clickaway") return;
     setTeamShow(false);
   }
 
-  const closeFullTeam  = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
+  const closeFullTeam  = (_, reason) => {
+    if (reason === "clickaway") return;
     setFullTeamShow(false);
   }
 
   const searchPokedex = () => {
-    let input = document.getElementById('Pokedex-search');
-    let pokemonContainers = document.getElementById("Pokedex-list").getElementsByClassName("pokemon-container");
-    var search = input.value.toLowerCase();
+    const input = document.getElementById('Pokedex-search');
+    const pokemonContainers = document.getElementById("Pokedex-list").getElementsByClassName("pokemon-container");
+    const search = input.value.toLowerCase();
 
     // Loop through all list items, and hide those who don't match the search query
     for (var i = 0; i < pokemonContainers.length; i++) {
-      var searchableContainers = pokemonContainers[i].getElementsByClassName("searchable");
-      var pokemonName = searchableContainers[0].textContent;
-      var pokemonTypes = searchableContainers[1];
+      const searchableContainers = pokemonContainers[i].getElementsByClassName("searchable");
+      const pokemonName = searchableContainers[0].textContent;
+      const pokemonTypes = searchableContainers[1];
       for (var j = 0; j < pokemonTypes.childElementCount; j++) {
         if (pokemonName.indexOf(search) > -1 || pokemonTypes.childNodes[j].getAttribute("alt").indexOf(search) > -1) {
             pokemonContainers[i].style.display = "";
@@ -142,8 +137,7 @@ const Pokedex = () => {
           <Snackbar open={teamShow} autoHideDuration={2000} onClose={closeTeam} style={{width: "100%"}}>
             <div className="flex" style={{width: "100%"}}>
               <Alert onClose={closeTeam} severity={pokemonTeam.length < 6 ? "success" : "error"} style={{width: "min(560px, 100vw)", textAlign: "center"}}>
-                {pokemonTeam.length < 6 ? "Your pokemon was added to your team!"
-                : "Your team already has six pokemon!"}
+                {pokemonTeam.length < 6 ? "Your pokemon was added to your team!" : "Your team already has six pokemon!"}
                 <div className="flex team-wrapper" style={{margin: "4px auto auto auto"}}>
                   {[...Array(6)].map((_, i) => {
                     if (pokemonTeam[i] === undefined) { return <div className="ds flex" key={i} style={{backgroundColor: "white"}}><FontAwesomeIcon icon={faPlus} style={{margin: "auto", fontSize: "1rem"}}></FontAwesomeIcon></div> }
