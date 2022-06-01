@@ -1,22 +1,24 @@
 import "./ShareForm.css";
 
-import PokemonCard from "../PokemonCard/PokemonCard";
-
+// React and Redux
 import axios from "axios";
 import { useState } from "react";
 import { useSelector } from 'react-redux';
 
+// Components
+import PokemonCard from "../PokemonCard/PokemonCard";
+
+// MUI Components
 import { ClickAwayListener, Button } from "@mui/material";
 
 
 const ShareForm = ({cancel}) => {
     const pokemonTeam = useSelector(state => state.teamReducer.team);
     const pokedex = useSelector(state => state.pokedexReducer);
-
     const [tags, setTags] = useState([]);
 
     const setSelected = (buttonID) => {
-        let tag = document.getElementById(buttonID);
+        const tag = document.getElementById(buttonID);
         if (tag.classList.contains('selected')) {
             tag.classList.toggle("selected");
             setTags(tags.filter(selectedTag => selectedTag !== tag.textContent));
@@ -24,7 +26,7 @@ const ShareForm = ({cancel}) => {
         else {
             if (document.getElementsByClassName("selected").length < 2) {
                 tag.classList.toggle("selected");
-                setTags([...tags, tag.textContent])
+                setTags([...tags, tag.textContent]);
             }
         }
     }
@@ -37,7 +39,7 @@ const ShareForm = ({cancel}) => {
             axios.post("/api/teams/create", {username: name.value, region: pokedex.region, tags: tags, team: pokemonTeam});
             axios.post("/api/dashboard/stats", {username: name.value, region: pokedex.region, team: pokemonTeam});
             cancel();
-            alert("You have successfully shared your team!")
+            alert("You have successfully shared your team!");
         }
     }
 

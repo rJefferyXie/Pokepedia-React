@@ -1,17 +1,19 @@
 import "./Team.css";
 
-import { faArrowLeft, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import PokemonCard from "../../components/PokemonCard/PokemonCard";
-import ShareForm from "../ShareForm/ShareForm";
-
-import React, { useEffect, useState } from 'react';
+// React and Redux
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
 
+// Components
+import PokemonCard from "../PokemonCard/PokemonCard";
+import ShareForm from "../ShareForm/ShareForm";
+
+// MUI and Icons
 import { Button } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Team = () => {
   const pokemonTeam = useSelector(state => state.teamReducer.team);
