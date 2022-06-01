@@ -68,34 +68,34 @@ const Dashboard = () => {
       {posts.length ? null : <Loading></Loading>}
       <div id="Dashboard-left" className="flex">
         <Card id="Dashboard-intro" variant="outlined" className="flex-col">
-          <h1 style={{margin: "0px 0px 0px"}}>Dashboard</h1>
-          <p style={{fontSize: "initial", margin: "auto"}}>Welcome to the community dashboard! In the dashboard you can take a look at teams that other users have created.</p>
+          <h1 className="card-header">Dashboard</h1>
+          <p className="card-intro-text">Welcome to the community dashboard! In the dashboard you can take a look at teams that other users have created.</p>
         </Card>
 
         <div id="Dashboard-stats" className="flex">
           <Card variant="outlined" className="flex-col fun-stat">
-            <h2 style={{fontSize: "initial", margin: "4px 0px 0px"}}>Total Teams Shared</h2>
-            <strong style={{fontSize: "initial", margin: "auto"}}>{posts.length}</strong>
+            <h2 className="card-header">Total Teams Shared</h2>
+            <strong className="card-text">{posts.length}</strong>
           </Card>
           <Card variant="outlined" className="flex-col fun-stat">
-            <h2 style={{fontSize: "initial", margin: "4px 0px 0px"}}>Teams Shared Today</h2>
-            <strong style={{fontSize: "initial", margin: "auto"}}>{postsToday}</strong>
+            <h2 className="card-header">Teams Shared Today</h2>
+            <strong className="card-text">{postsToday}</strong>
           </Card>
           <Card variant="outlined" className="flex-col fun-stat">
-            <h2 style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Teams Shared</h2>
-            <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topUser}</strong>
+            <h2 className="card-header">Most Teams Shared</h2>
+            <strong className="card-text">{topUser}</strong>
           </Card>
           <Card variant="outlined" className="flex-col fun-stat">
-            <h2 style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Popular Region</h2>
-            <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topRegion}</strong>
+            <h2 className="card-header">Most Popular Region</h2>
+            <strong className="card-text">{topRegion}</strong>
           </Card>
           <Card variant="outlined" className="flex-col fun-stat">
-            <h2 style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Popular Pokemon</h2>
-            <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topPokemon}</strong>
+            <h2 className="card-header">Most Popular Pokemon</h2>
+            <strong className="card-text">{topPokemon}</strong>
           </Card>
           <Card variant="outlined" className="flex-col fun-stat">
-            <h2 style={{fontSize: "initial", margin: "4px 0px 0px"}}>Most Popular Type</h2>
-            <strong style={{fontSize: "initial", margin: "auto", textTransform: "capitalize"}}>{topType}</strong>
+            <h2 className="card-header">Most Popular Type</h2>
+            <strong className="card-text">{topType}</strong>
           </Card>
         </div>
       </div>
@@ -113,8 +113,7 @@ const Dashboard = () => {
               })}
             </div>
             <div className="team-tags flex">
-              Tags: 
-              {post.tags.map((tag, tagIndex) => {
+              Tags: {post.tags.map((tag, tagIndex) => {
                 return <p className="team-tag" key={tagIndex}>{tag}</p>
               })}
             </div>

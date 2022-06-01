@@ -39,11 +39,21 @@
     margin: 2px auto auto;
 }
 
-/* #Region-filter {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-} */
+.card-header {
+    font-size: initial; 
+    margin: "4px 0px 0px";
+}
+
+.card-intro-text {
+    font-size: initial; 
+    margin: auto;
+}
+
+.card-text {
+    font-size: initial;
+    margin: auto;
+    text-transform: capitalize;
+}
 
 #Posts {
     flex-wrap: wrap;
