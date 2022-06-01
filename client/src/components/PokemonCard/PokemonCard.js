@@ -1,32 +1,32 @@
 import "./PokemonCard.css";
+
+// Constants
 import TypeImageMap from "../../constants/TypeImageMap";
 import TypeColorSchemes from "../../constants/TypeColorSchemes"
 
+// Icons
 import { faSearch, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import React from "react";
-import { useInView } from 'react-intersection-observer';
-
+// React and Redux
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
+import { useInView } from 'react-intersection-observer';
 import allActions from '../../redux/actions/allActions';
 
 const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex, dashboard, showTeam, teamRemove}) => {
+  const dispatch = useDispatch();
   const supportsLazyLoad = ('loading' in document.createElement('img'));
+  const background = TypeColorSchemes[pokemonData.types[0].type.name];
   const { ref, inView } = useInView({
     triggerOnce: true,
     rootMargin: '200px 0px',
     skip: supportsLazyLoad !== false,
   });
 
-  const dispatch = useDispatch()
-
   const addPokemon = () => {
     dispatch(allActions.teamActions.addToTeam({ "pokemonData": pokemonData, "speciesData": speciesData, "pokedexIndex": pokedexIndex }));
-    if (showTeam) {
-      showTeam();
-    }
+    if (showTeam) showTeam();
   }
 
   const removePokemon = () => {
@@ -34,14 +34,16 @@ const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex, dashboa
   }
 
   return (
-    <div ref={ref} onClick={teamRemove !== undefined ? () => teamRemove() : null} className={dashboard === undefined ? "pokemon-container flex-col" : "pokemon-container ds flex-col"} style={teamRemove !== undefined ? {backgroundColor: TypeColorSchemes[pokemonData.types[0].type.name], cursor: "pointer"} : {backgroundColor: TypeColorSchemes[pokemonData.types[0].type.name]}}>
+    <div ref={ref} 
+    onClick={teamRemove !== undefined ? () => teamRemove() : null} 
+    className={dashboard === undefined ? "pokemon-container flex-col" : "pokemon-container ds flex-col"} 
+    style={teamRemove !== undefined ? { backgroundColor: background, cursor: "pointer"} : { backgroundColor: background}}>
         {dashboard === undefined ? 
           <div className="pokemon-button-container flex">
             {teamIndex === undefined ?
             <button className="pokemon-button-card flex" onClick={() => addPokemon()}>
               <FontAwesomeIcon style={{margin: "auto"}} icon={faPlus}></FontAwesomeIcon>
-            </button>
-            :
+            </button> :
             <button className="pokemon-button-card flex" onClick={() => removePokemon()}>
               <FontAwesomeIcon style={{margin: "auto"}} icon={faTimes}></FontAwesomeIcon>
             </button>
