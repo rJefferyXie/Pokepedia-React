@@ -1,43 +1,39 @@
 import "./InspectPage.css";
+
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from 'react-router-dom';
+
+// Components
+import Move from "../../components/Move/Move";
+
+// Constants
 import TypeColorSchemes from "../../constants/TypeColorSchemes";
 import TypeImageMap from "../../constants/TypeImageMap";
+import StatDictionary from "../../constants/StatDictionary";
 
+// Icons
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import Move from "../../components/Move/Move";
-
-import { useLocation, useNavigate } from 'react-router-dom';
-import React, { useEffect, useState } from "react";
-
-import axios from "axios";
-
 const InspectPage = () => {
     const location = useLocation();
-    const {pokemonData, speciesData, pokedexIndex} = location.state;
+    const navigate = useNavigate();
 
+    const { pokemonData, speciesData, pokedexIndex } = location.state;
     const theme = TypeColorSchemes[pokemonData.types[0].type.name];
-    document.getElementById("Navbar").style.backgroundColor = theme;
-
-    const statDictionary = {
-        0: "HP",
-        1: "Attack",
-        2: "Defense",
-        3: "Sp. Attack",
-        4: "Sp. Defense",
-        5: "Speed"
-    };
 
     const [evolutionData, setEvolutionData] = useState([]);
     const [moveData, setMoveData] = useState([]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        document.getElementById("Navbar").style.backgroundColor = theme;
         getEvolutionChain();
         getMoves();
     }, []);
 
-    const navigate = useNavigate();
+    
     const previousPage = () => {
         document.getElementById("Navbar").style.backgroundColor = "rgba(6, 114, 177, 0.8)";
         navigate(-1);
@@ -55,59 +51,47 @@ const InspectPage = () => {
         });
     }
 
+    const getChainInfo = async (chain, chainInfo) => {
+        for (const [key, value] of Object.entries(chainInfo.evolution_details[0])) {
+            if (value) {
+                if (key === "trigger") {
+                    chain["trigger"] = value.name;
+                } 
+                else if (key === "item") {
+                    const itemURL = await getItemImage(value.url);
+                    chain["item-image"] = itemURL;
+                    chain["item-name"] = value.name;
+                }
+                else {
+                    chain[key] = value;
+                }
+            }
+        }
+        chain["arrow"] = <FontAwesomeIcon icon={faArrowRight} alt="" className="evo-arrow"></FontAwesomeIcon>
+        return chain;
+    }
+
     const getEvolutionChain = () => {
         axios.get(speciesData['evolution_chain']['url'])
         .then(response => response.data)
         .then(async (evolutionJSON) => {
-            var evolutionChain = evolutionJSON.chain;
             const data = [];
+            const evolutionChain = evolutionJSON.chain;
             data.push(await getPokeContainer(evolutionChain));
-            for (var i = 0; i < evolutionChain.evolves_to.length; i++) {
-                var newChain = evolutionChain.evolves_to[i];
 
-                var currentChain = {};
+            for (var i = 0; i < evolutionChain.evolves_to.length; i++) {
+                const newChain = evolutionChain.evolves_to[i];
                 if (newChain !== undefined) {
-                    for (const [key, value] of Object.entries(newChain.evolution_details[0])) {
-                        if (value) {
-                            if (key === "trigger") {
-                                currentChain["trigger"] = value.name;
-                            } 
-                            else if (key === "item") {
-                                const itemURL = await getItemImage(value.url);
-                                currentChain["item-image"] = itemURL;
-                                currentChain["item-name"] = value.name;
-                            }
-                            else {
-                                currentChain[key] = value;
-                            }
-                        }
-                    }
-                    currentChain["arrow"] = <FontAwesomeIcon icon={faArrowRight} alt="" className="evo-arrow"></FontAwesomeIcon>
+                    const currentChain = await getChainInfo({}, newChain);
                     data.push(currentChain);
                     data.push(await getPokeContainer(newChain));
                 }
 
                 for (var j = 0; j < newChain.evolves_to.length; j++) {
-                    var babyChain = newChain.evolves_to[j];  // will ned to fix for eevee gallade
-                    currentChain = {};
+                    const babyChain = newChain.evolves_to[j];
                     if (babyChain !== undefined) {
-                        for (const [key, value] of Object.entries(babyChain.evolution_details[0])) {
-                            if (value) {
-                                if (key === "trigger") {
-                                    currentChain["trigger"] = value.name;
-                                } 
-                                else if (key === "item") {
-                                    const itemURL = await getItemImage(value.url);
-                                    currentChain["item-image"] = itemURL;
-                                    currentChain["item-name"] = value.name;
-                                }
-                                else {
-                                    currentChain[key] = value;
-                                }
-                            }
-                        }
-                        currentChain["arrow"] = <FontAwesomeIcon icon={faArrowRight} alt="" className="evo-arrow"></FontAwesomeIcon>
-                        data.push(currentChain);
+                        const fullChain = await getChainInfo({}, babyChain);
+                        data.push(fullChain);
                         data.push(await getPokeContainer(babyChain));
                     }
                 }
@@ -126,14 +110,14 @@ const InspectPage = () => {
         for (var i = 0; i < data.length; i++) {
           promiseArray.push(axios.get(data[i]['move']['url']).then((response) => {
             return response.data;
-          }))
+          }));
         }
         return Promise.all(promiseArray);
     }
     
     async function getItemImage(data_url) {
         return axios.get(data_url)
-        .then(response => response.data['sprites']['default'])
+        .then(response => response.data['sprites']['default']);
     }
 
     return (
@@ -174,7 +158,7 @@ const InspectPage = () => {
                             return (
                                 <div className="pokemon-stat flex" key={index}>
                                     <p className="stat-name">
-                                        {statDictionary[index]}
+                                        {StatDictionary[index]}
                                     </p>
                                     <div className="stat-bar-wrapper">
                                         <div className="stat-bar flex" style={{width: stat.base_stat / 1.5 + "%", backgroundColor: theme}}>
@@ -208,14 +192,12 @@ const InspectPage = () => {
                             case "held_item": return <p key={index}>{"Holding " + value.name}</p>
                             case "location": return <p key={index}>{"Level up at: " + value.name}</p> 
                             case "party_species": return <p key={index}>{"Level up with " + value.name + " in party."}</p>
-                            case "arrow": return <p key={index}>{value}</p>;
-                            case "gender": {
-                                if (value === 2) { return <p>{"Gender: "}<span style={{color: "#01A6EA"}} key={index}>Male</span></p> }
-                                else { return <p>{"Gender: "}<span style={{color: "#FFB1CB"}} key={index}>Female</span></p> }
-                            }
-                            case "type": case "trigger": default: {
-                                return false;
-                            }
+                            case "arrow": return <p key={index}>{value}</p>
+                            case "gender": return value === 2 ?
+                                <p>{"Gender: "}<span style={{color: "#01A6EA"}} key={index}>Male</span></p> : 
+                                <p>{"Gender: "}<span style={{color: "#FFB1CB"}} key={index}>Female</span></p>
+                            case "trigger": case "type": return value === "trade" ? <p key={index}>{"Trade"}</p> : false;
+                            default: return false;
                         }
                     });
                     return <div className="flex-col evolution-condition" key={index}>{evolutionCondition}</div>;
@@ -237,8 +219,10 @@ const InspectPage = () => {
                 </thead>
                 <tbody>
                 {moveData.map((move, index) => {
+                    const level = pokemonData['moves'][index]['version_group_details']['level_learned_at'];
+                    const method = pokemonData['moves'][index]['version_group_details']['move_learn_method']['name'];
                     return (
-                        <Move move={move} level={pokemonData['moves'][index]['version_group_details']['level_learned_at']} method={pokemonData['moves'][index]['version_group_details']['move_learn_method']['name']} color={theme} key={index}></Move>
+                        <Move move={move} level={level} method={method} color={theme} key={index}></Move>
                     )}
                 )}
                 </tbody>
