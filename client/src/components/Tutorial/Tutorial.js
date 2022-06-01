@@ -1,17 +1,17 @@
 import './Tutorial.css';
 
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import Button from "@mui/material/Button";
-import Card from "@mui/material/Card";
+// React
+import { useState } from 'react';
 
-import { faSearch, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// MUI Components
+import { ClickAwayListener, Button, Card } from "@mui/material";
 
+// Images and Icons
 import pokedex1 from "../../images/tutorial/pokedex1.png";
 import inspect1 from "../../images/tutorial/inspect1.png";
 import team1 from "../../images/tutorial/team1.png";
-
-import { useState } from 'react';
+import { faSearch, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Tutorial = ({ onClickAway }) => {
     const [selected, setSelected] = useState(0);
@@ -52,9 +52,9 @@ const Tutorial = ({ onClickAway }) => {
                 <Card id="Tutorial-page" className="flex-col" variant="contained">
                     {selected === 0 ? Pokedex() : selected === 1 ? Inspect() : Teams()}
                     <div className="flex" style={{width: "100%", position: "absolute", bottom: "0px"}}>
-                        <Button className="mui-button tut-button" variant="contained" onClick={() => setSelected(0)} style={selected === 0 ? {borderRadius: "0px", backgroundColor: "rgba(32, 138, 199, 0.8)"} : {borderRadius: "0px", backgroundColor: "rgba(6, 114, 177, 0.8)"}}>Pokedex</Button>
-                        <Button className="mui-button tut-button" variant="contained" onClick={() => setSelected(1)} style={selected === 1 ? {borderRadius: "0px", backgroundColor: "rgba(32, 138, 199, 0.8)"} : {borderRadius: "0px", backgroundColor: "rgba(6, 114, 177, 0.8)"}}>Inspect</Button>
-                        <Button className="mui-button tut-button" variant="contained" onClick={() => setSelected(2)} style={selected === 2 ? {borderRadius: "0px", backgroundColor: "rgba(32, 138, 199, 0.8)"} : {borderRadius: "0px", backgroundColor: "rgba(6, 114, 177, 0.8)"}}>Teams</Button>
+                        <Button className="mui-button tut-button" variant="contained" onClick={() => setSelected(0)} style={selected === 0 ? {backgroundColor: "rgba(32, 138, 199, 0.8)"} : {backgroundColor: "rgba(6, 114, 177, 0.8)"}}>Pokedex</Button>
+                        <Button className="mui-button tut-button" variant="contained" onClick={() => setSelected(1)} style={selected === 1 ? {backgroundColor: "rgba(32, 138, 199, 0.8)"} : {backgroundColor: "rgba(6, 114, 177, 0.8)"}}>Inspect</Button>
+                        <Button className="mui-button tut-button" variant="contained" onClick={() => setSelected(2)} style={selected === 2 ? {backgroundColor: "rgba(32, 138, 199, 0.8)"} : {backgroundColor: "rgba(6, 114, 177, 0.8)"}}>Teams</Button>
                     </div>
                 </Card>
             </ClickAwayListener>
