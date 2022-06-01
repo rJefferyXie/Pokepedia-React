@@ -16,8 +16,24 @@
     margin: auto 20px auto auto;
 }
 
+.hero-text {
+    width: 100%;
+    text-align: center;
+    margin: auto;
+}
+
 #Hero-button-container {
+    margin-top: 20px;
     justify-content: center;
+}
+
+.mui-button-hero {
+    width: fit-content;
+    margin: 0px 4px !important;
+    background-color: rgba(6, 114, 177, 0.8) !important;
+    text-shadow: 
+    0 0 1px rgba(255,255,255,0.8), 
+    1px 1px 1px rgba(0,0,0,0.4);
 }
 
 @media screen and (max-width: 960px) {

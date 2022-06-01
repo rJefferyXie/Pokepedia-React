@@ -34,11 +34,11 @@ const Hero = () => {
     <section id="Hero" className="flex-col">
       <div id="Hero-wrapper" className="page-container flex">
         <div id="Left-hero-wrapper" className="flex-col">
-          <h1 style={{margin: "auto", width: "100%", textAlign: "center"}}>Welcome to Poképedia!</h1>
-          <p style={{margin: "0px auto 20px", width: "100%", textAlign: "center"}}>Revisit your favorite pokémon memories and adventures with us.</p>
+          <h1 className="hero-text">Welcome to Poképedia!</h1>
+          <p className="hero-text">Revisit your favorite pokémon memories and adventures with us.</p>
           <div id="Hero-button-container" className="flex">
-            <Button variant="contained" className="mui-button" onClick={() => scrollToRegions()} style={{width: "fit-content", margin: "0px 4px", backgroundColor: "rgba(6, 114, 177, 0.8)"}}>Select a Region</Button>
-            <Button variant="contained" className="mui-button" component={Link} to="/dashboard" style={{width: "fit-content", margin: "0px 4px", backgroundColor: "rgba(6, 114, 177, 0.8)"}}>View Dashboard</Button>
+            <Button variant="contained" className="mui-button-hero" onClick={() => scrollToRegions()}>Select a Region</Button>
+            <Button variant="contained" className="mui-button-hero" component={Link} to="/dashboard">View Dashboard</Button>
           </div>
         </div>
         <img alt="All eevee evolutions." src={wallpaper} id="Hero-wallpaper"></img>
