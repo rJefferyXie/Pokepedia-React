@@ -22,7 +22,7 @@ const Dashboard = () => {
     const [topPokemon, setTopPokemon] = useState("");
     const [topType, setTopType] = useState("");
 
-    const handlePageChange = (event, value) => {
+    const handlePageChange = (_, value) => {
       setPageNumber(value);
     }
 
