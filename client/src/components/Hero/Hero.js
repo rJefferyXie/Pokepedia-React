@@ -15,9 +15,8 @@ import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import allActions from '../../redux/actions/allActions';
 
-
 const Hero = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const scrollToRegions = () => {
       let section = document.querySelector("#Regions").offsetTop - 100;
