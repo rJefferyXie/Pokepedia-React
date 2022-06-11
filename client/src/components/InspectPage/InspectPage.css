@@ -20,7 +20,7 @@
 
 .return-button {
     color: white;
-    background-color: gray;
+    background-color: rgba(6, 114, 177, 0.8);
     cursor: pointer;
     font-size: 32px;
     position: absolute;
@@ -29,6 +29,11 @@
     border-radius: 100%;
     width: 60px;
     height: 60px;
+    transition: all 0.2s ease;
+}
+
+.return-button:hover {
+    filter: brightness(110%);
 }
 
 .main-section {
