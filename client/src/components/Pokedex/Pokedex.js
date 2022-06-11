@@ -13,6 +13,9 @@ import { Button, Snackbar, Alert, IconButton, Tooltip } from "@mui/material";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+// Constants
+import RegionNumbers from "../../constants/RegionNumbers";
+
 // Components
 import Loading from "../Loading/Loading";
 import PokemonCard from "../PokemonCard/PokemonCard";
@@ -61,52 +64,25 @@ const Pokedex = () => {
   }
 
   useEffect(() => {
+    const retrieve_data = async (region) => {
+      const regionNumber = RegionNumbers[region];
+      const speciesJSON = await axios.get("/api/pokedex/pokemon/" + regionNumber).then(res => res.data);
+      const pokemonJSON = await axios.get("/api/pokedex/species/" + regionNumber).then(res => res.data);
+      dispatch(allActions.pokedexActions.setPokedex(
+        {"speciesData": speciesJSON[0]["pokemonData"], 
+        "pokemonData": pokemonJSON[0]["speciesData"], 
+        "region": region}
+        )
+      );
+    }
+
     window.scrollTo(0, 0);
-    let region = window.location.pathname.replace("/pokedex/", "");
+    const region = window.location.pathname.replace("/pokedex/", "");
     if (pokedex.region !== region || pokedex.speciesData.length === 0) {
       dispatch(allActions.pokedexActions.setPokedex({"speciesData": [], "pokemonData": [], "region": ""}));
       retrieve_data(region); 
     }
   }, []);
-
-  const retrieve_data = async (region) => {
-    let regionNumber;
-
-    switch (region) {
-      case "kanto": 
-        regionNumber = '2';
-        break;
-      case "johto": 
-        regionNumber = '7';
-        break;
-      case "hoenn": 
-        regionNumber = '4';
-        break;
-      case "sinnoh":
-        regionNumber = '6';
-        break;
-      case "unova":
-        regionNumber = '9';
-        break;
-      case "kalos":
-        regionNumber = '12';
-        break;
-      case "alola":
-        regionNumber = '16';
-        break;
-      default:
-        return;
-    }
-
-    const speciesJSON = await axios.get("/api/pokedex/pokemon/" + regionNumber).then(res => res.data);
-    const pokemonJSON = await axios.get("/api/pokedex/species/" + regionNumber).then(res => res.data);
-    dispatch(allActions.pokedexActions.setPokedex(
-      {"speciesData": speciesJSON[0]["pokemonData"], 
-      "pokemonData": pokemonJSON[0]["speciesData"], 
-      "region": region}
-      )
-    );
-  }
 
   return (
     <section id="Pokedex-container" className="flex">
@@ -141,7 +117,12 @@ const Pokedex = () => {
                 <div className="flex team-wrapper" style={{margin: "4px auto auto auto"}}>
                   {[...Array(6)].map((_, i) => {
                     if (pokemonTeam[i] === undefined) { return <div className="ds flex" key={i} style={{backgroundColor: "white"}}><FontAwesomeIcon icon={faPlus} style={{margin: "auto", fontSize: "1rem"}}></FontAwesomeIcon></div> }
-                    return <PokemonCard teamRemove={() => dispatch(allActions.teamActions.removeFromTeam(pokemonTeam[i].pokemonData.name))} pokemonData={pokemonTeam[i].pokemonData} speciesData={pokemonTeam[i].speciesData} key={i} dashboard={true}></PokemonCard>
+                    return <PokemonCard 
+                            teamRemove={() => dispatch(allActions.teamActions.removeFromTeam(pokemonTeam[i].pokemonData.name))} 
+                            pokemonData={pokemonTeam[i].pokemonData} 
+                            speciesData={pokemonTeam[i].speciesData} 
+                            key={i} 
+                            dashboard={true}></PokemonCard>
                   })}
                 </div> 
               </Alert>
@@ -154,7 +135,12 @@ const Pokedex = () => {
                 <div className="flex team-wrapper" style={{margin: "4px auto auto auto"}}>
                   {[...Array(6)].map((_, i) => {
                     if (pokemonTeam[i] === undefined) { return <div className="ds flex" key={i} style={{backgroundColor: "white"}}><FontAwesomeIcon icon={faPlus} style={{margin: "auto", fontSize: "1rem"}}></FontAwesomeIcon></div> }
-                    return <PokemonCard teamRemove={() => dispatch(allActions.teamActions.removeFromTeam(pokemonTeam[i].pokemonData.name))} pokemonData={pokemonTeam[i].pokemonData} speciesData={pokemonTeam[i].speciesData} key={i} dashboard={true}></PokemonCard>
+                    return <PokemonCard 
+                            teamRemove={() => dispatch(allActions.teamActions.removeFromTeam(pokemonTeam[i].pokemonData.name))} 
+                            pokemonData={pokemonTeam[i].pokemonData} 
+                            speciesData={pokemonTeam[i].speciesData} 
+                            key={i} 
+                            dashboard={true}></PokemonCard>
                   })}
                 </div> 
               </Alert>
