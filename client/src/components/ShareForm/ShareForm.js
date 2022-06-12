@@ -11,7 +11,6 @@ import PokemonCard from "../PokemonCard/PokemonCard";
 // MUI Components
 import { ClickAwayListener, Button } from "@mui/material";
 
-
 const ShareForm = ({cancel}) => {
     const pokemonTeam = useSelector(state => state.teamReducer.team);
     const pokedex = useSelector(state => state.pokedexReducer);

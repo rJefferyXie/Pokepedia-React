@@ -25,7 +25,11 @@ const PokemonCard = ({pokemonData, speciesData, pokedexIndex, teamIndex, dashboa
   });
 
   const addPokemon = () => {
-    dispatch(allActions.teamActions.addToTeam({ "pokemonData": pokemonData, "speciesData": speciesData, "pokedexIndex": pokedexIndex }));
+    dispatch(allActions.teamActions.addToTeam({ 
+      "pokemonData": pokemonData, 
+      "speciesData": speciesData, 
+      "pokedexIndex": pokedexIndex 
+    }));
     if (showTeam) showTeam();
   }
 
