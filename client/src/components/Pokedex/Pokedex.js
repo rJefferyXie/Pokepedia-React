@@ -68,6 +68,7 @@ const Pokedex = () => {
       const regionNumber = RegionNumbers[region];
       const speciesJSON = await axios.get("/api/pokedex/pokemon/" + regionNumber).then(res => res.data);
       const pokemonJSON = await axios.get("/api/pokedex/species/" + regionNumber).then(res => res.data);
+      console.log(speciesJSON, pokemonJSON);
       dispatch(allActions.pokedexActions.setPokedex(
         {"speciesData": speciesJSON[0]["pokemonData"], 
         "pokemonData": pokemonJSON[0]["speciesData"], 
