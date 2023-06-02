@@ -1,1 +1,2 @@
-/api/* https://pokepedia-m8lp.onrender.com
+/api/* https://pokepedia-m8lp.onrender.com/api/:splat 200
+/* /index.html 200
